@@ -1,100 +1,100 @@
-{"order_id": 0, "customer_id": 4, "order_date": "2024-07-30", "total_amount": 9962, "status": "pending"}
-{"order_id": 1, "customer_id": 75, "order_date": "2024-05-07", "total_amount": 9593, "status": "cancelled"}
-{"order_id": 2, "customer_id": 50, "order_date": "2024-04-09", "total_amount": 8544, "status": "returned"}
-{"order_id": 3, "customer_id": 14, "order_date": "2024-07-18", "total_amount": 9753, "status": "pending"}
-{"order_id": 4, "customer_id": 63, "order_date": "2024-06-10", "total_amount": 6887, "status": "shipped"}
-{"order_id": 5, "customer_id": 83, "order_date": "2024-04-12", "total_amount": 7180, "status": "returned"}
-{"order_id": 6, "customer_id": 96, "order_date": "2024-06-06", "total_amount": 855, "status": "cancelled"}
-{"order_id": 7, "customer_id": 66, "order_date": "2024-08-25", "total_amount": 9882, "status": "shipped"}
-{"order_id": 8, "customer_id": 42, "order_date": "2024-02-01", "total_amount": 8373, "status": "shipped"}
-{"order_id": 9, "customer_id": 59, "order_date": "2024-08-27", "total_amount": 1657, "status": "pending"}
-{"order_id": 10, "customer_id": 25, "order_date": "2024-03-29", "total_amount": 4766, "status": "returned"}
-{"order_id": 11, "customer_id": 37, "order_date": "2024-06-01", "total_amount": 5734, "status": "delivered"}
-{"order_id": 12, "customer_id": 97, "order_date": "2024-01-09", "total_amount": 1521, "status": "cancelled"}
-{"order_id": 13, "customer_id": 99, "order_date": "2024-03-02", "total_amount": 9705, "status": "delivered"}
-{"order_id": 14, "customer_id": 75, "order_date": "2024-04-15", "total_amount": 8024, "status": "delivered"}
-{"order_id": 15, "customer_id": 74, "order_date": "2024-07-15", "total_amount": 4689, "status": "shipped"}
-{"order_id": 16, "customer_id": 74, "order_date": "2024-03-13", "total_amount": 4719, "status": "shipped"}
-{"order_id": 17, "customer_id": 67, "order_date": "2024-05-22", "total_amount": 4610, "status": "shipped"}
-{"order_id": 18, "customer_id": 82, "order_date": "2024-09-03", "total_amount": 9318, "status": "cancelled"}
-{"order_id": 19, "customer_id": 53, "order_date": "2024-09-30", "total_amount": 5352, "status": "delivered"}
-{"order_id": 20, "customer_id": 97, "order_date": "2024-10-04", "total_amount": 411, "status": "pending"}
-{"order_id": 21, "customer_id": 43, "order_date": "2024-07-23", "total_amount": 5182, "status": "pending"}
-{"order_id": 22, "customer_id": 35, "order_date": "2024-09-10", "total_amount": 2153, "status": "delivered"}
-{"order_id": 23, "customer_id": 17, "order_date": "2024-08-02", "total_amount": 50, "status": "shipped"}
-{"order_id": 24, "customer_id": 90, "order_date": "2024-02-02", "total_amount": 2492, "status": "returned"}
-{"order_id": 25, "customer_id": 76, "order_date": "2024-07-10", "total_amount": 5643, "status": "delivered"}
-{"order_id": 26, "customer_id": 6, "order_date": "2024-08-23", "total_amount": 285, "status": "returned"}
-{"order_id": 27, "customer_id": 13, "order_date": "2024-05-02", "total_amount": 6712, "status": "shipped"}
-{"order_id": 28, "customer_id": 65, "order_date": "2024-03-11", "total_amount": 3138, "status": "shipped"}
-{"order_id": 29, "customer_id": 8, "order_date": "2024-09-21", "total_amount": 5814, "status": "delivered"}
-{"order_id": 30, "customer_id": 2, "order_date": "2024-04-19", "total_amount": 8654, "status": "cancelled"}
-{"order_id": 31, "customer_id": 87, "order_date": "2024-02-14", "total_amount": 8272, "status": "pending"}
-{"order_id": 32, "customer_id": 98, "order_date": "2024-05-20", "total_amount": 6871, "status": "delivered"}
-{"order_id": 33, "customer_id": 3, "order_date": "2024-02-07", "total_amount": 7798, "status": "returned"}
-{"order_id": 34, "customer_id": 76, "order_date": "2024-05-31", "total_amount": 7663, "status": "shipped"}
-{"order_id": 35, "customer_id": 87, "order_date": "2024-03-08", "total_amount": 6802, "status": "returned"}
-{"order_id": 36, "customer_id": 90, "order_date": "2024-08-10", "total_amount": 6797, "status": "returned"}
-{"order_id": 37, "customer_id": 97, "order_date": "2024-05-15", "total_amount": 7658, "status": "cancelled"}
-{"order_id": 38, "customer_id": 91, "order_date": "2024-09-19", "total_amount": 1598, "status": "shipped"}
-{"order_id": 39, "customer_id": 2, "order_date": "2024-10-16", "total_amount": 1549, "status": "cancelled"}
-{"order_id": 40, "customer_id": 63, "order_date": "2024-02-26", "total_amount": 2738, "status": "cancelled"}
-{"order_id": 41, "customer_id": 41, "order_date": "2024-06-18", "total_amount": 8865, "status": "shipped"}
-{"order_id": 42, "customer_id": 42, "order_date": "2024-10-16", "total_amount": 3701, "status": "pending"}
-{"order_id": 43, "customer_id": 28, "order_date": "2024-03-18", "total_amount": 1244, "status": "shipped"}
-{"order_id": 44, "customer_id": 73, "order_date": "2024-06-18", "total_amount": 3720, "status": "shipped"}
-{"order_id": 45, "customer_id": 92, "order_date": "2024-08-15", "total_amount": 3983, "status": "cancelled"}
-{"order_id": 46, "customer_id": 13, "order_date": "2024-07-22", "total_amount": 1921, "status": "returned"}
-{"order_id": 47, "customer_id": 50, "order_date": "2024-05-01", "total_amount": 1038, "status": "cancelled"}
-{"order_id": 48, "customer_id": 83, "order_date": "2024-03-31", "total_amount": 8085, "status": "cancelled"}
-{"order_id": 49, "customer_id": 1, "order_date": "2024-02-11", "total_amount": 3279, "status": "delivered"}
-{"order_id": 50, "customer_id": 93, "order_date": "2024-07-01", "total_amount": 7643, "status": "returned"}
-{"order_id": 51, "customer_id": 93, "order_date": "2024-02-24", "total_amount": 2636, "status": "shipped"}
-{"order_id": 52, "customer_id": 48, "order_date": "2024-02-07", "total_amount": 8727, "status": "pending"}
-{"order_id": 53, "customer_id": 65, "order_date": "2024-06-25", "total_amount": 8034, "status": "shipped"}
-{"order_id": 54, "customer_id": 4, "order_date": "2024-09-18", "total_amount": 1611, "status": "shipped"}
-{"order_id": 55, "customer_id": 35, "order_date": "2024-01-20", "total_amount": 4919, "status": "cancelled"}
-{"order_id": 56, "customer_id": 90, "order_date": "2024-07-27", "total_amount": 4868, "status": "delivered"}
-{"order_id": 57, "customer_id": 11, "order_date": "2024-05-09", "total_amount": 8672, "status": "delivered"}
-{"order_id": 58, "customer_id": 8, "order_date": "2024-01-07", "total_amount": 8561, "status": "cancelled"}
-{"order_id": 59, "customer_id": 72, "order_date": "2024-02-05", "total_amount": 1680, "status": "returned"}
-{"order_id": 60, "customer_id": 38, "order_date": "2024-06-11", "total_amount": 32, "status": "delivered"}
-{"order_id": 61, "customer_id": 37, "order_date": "2024-05-14", "total_amount": 5908, "status": "shipped"}
-{"order_id": 62, "customer_id": 96, "order_date": "2024-09-28", "total_amount": 298, "status": "delivered"}
-{"order_id": 63, "customer_id": 36, "order_date": "2024-01-25", "total_amount": 2694, "status": "cancelled"}
-{"order_id": 64, "customer_id": 5, "order_date": "2024-01-23", "total_amount": 3165, "status": "cancelled"}
-{"order_id": 65, "customer_id": 3, "order_date": "2024-08-05", "total_amount": 2767, "status": "pending"}
-{"order_id": 66, "customer_id": 26, "order_date": "2024-09-10", "total_amount": 1505, "status": "delivered"}
-{"order_id": 67, "customer_id": 96, "order_date": "2024-08-24", "total_amount": 5435, "status": "delivered"}
-{"order_id": 68, "customer_id": 48, "order_date": "2024-08-20", "total_amount": 3498, "status": "pending"}
-{"order_id": 69, "customer_id": 2, "order_date": "2024-01-27", "total_amount": 5277, "status": "returned"}
-{"order_id": 70, "customer_id": 69, "order_date": "2024-01-10", "total_amount": 2835, "status": "cancelled"}
-{"order_id": 71, "customer_id": 42, "order_date": "2024-10-12", "total_amount": 753, "status": "cancelled"}
-{"order_id": 72, "customer_id": 90, "order_date": "2024-06-20", "total_amount": 1255, "status": "delivered"}
-{"order_id": 73, "customer_id": 33, "order_date": "2024-06-30", "total_amount": 9875, "status": "pending"}
-{"order_id": 74, "customer_id": 17, "order_date": "2024-07-18", "total_amount": 5815, "status": "cancelled"}
-{"order_id": 75, "customer_id": 83, "order_date": "2024-04-04", "total_amount": 7646, "status": "shipped"}
-{"order_id": 76, "customer_id": 24, "order_date": "2024-03-03", "total_amount": 4410, "status": "cancelled"}
-{"order_id": 77, "customer_id": 81, "order_date": "2024-01-28", "total_amount": 4294, "status": "delivered"}
-{"order_id": 78, "customer_id": 89, "order_date": "2024-09-04", "total_amount": 7833, "status": "cancelled"}
-{"order_id": 79, "customer_id": 96, "order_date": "2024-01-27", "total_amount": 9865, "status": "delivered"}
-{"order_id": 80, "customer_id": 28, "order_date": "2024-04-27", "total_amount": 1272, "status": "shipped"}
-{"order_id": 81, "customer_id": 6, "order_date": "2024-02-19", "total_amount": 9874, "status": "returned"}
-{"order_id": 82, "customer_id": 90, "order_date": "2024-10-19", "total_amount": 7487, "status": "delivered"}
-{"order_id": 83, "customer_id": 30, "order_date": "2024-04-02", "total_amount": 7585, "status": "pending"}
-{"order_id": 84, "customer_id": 88, "order_date": "2024-01-31", "total_amount": 3687, "status": "returned"}
-{"order_id": 85, "customer_id": 87, "order_date": "2024-07-01", "total_amount": 9225, "status": "returned"}
-{"order_id": 86, "customer_id": 82, "order_date": "2024-06-13", "total_amount": 7916, "status": "returned"}
-{"order_id": 87, "customer_id": 92, "order_date": "2024-01-05", "total_amount": 7690, "status": "shipped"}
-{"order_id": 88, "customer_id": 98, "order_date": "2024-07-23", "total_amount": 5546, "status": "cancelled"}
-{"order_id": 89, "customer_id": 56, "order_date": "2024-10-08", "total_amount": 6399, "status": "pending"}
-{"order_id": 90, "customer_id": 73, "order_date": "2024-01-26", "total_amount": 510, "status": "shipped"}
-{"order_id": 91, "customer_id": 74, "order_date": "2024-05-15", "total_amount": 8326, "status": "returned"}
-{"order_id": 92, "customer_id": 89, "order_date": "2024-02-16", "total_amount": 9510, "status": "pending"}
-{"order_id": 93, "customer_id": 80, "order_date": "2024-08-22", "total_amount": 7004, "status": "delivered"}
-{"order_id": 94, "customer_id": 75, "order_date": "2024-07-22", "total_amount": 5743, "status": "delivered"}
-{"order_id": 95, "customer_id": 37, "order_date": "2024-06-27", "total_amount": 8126, "status": "delivered"}
-{"order_id": 96, "customer_id": 53, "order_date": "2024-06-10", "total_amount": 8495, "status": "returned"}
-{"order_id": 97, "customer_id": 46, "order_date": "2024-05-18", "total_amount": 306, "status": "shipped"}
-{"order_id": 98, "customer_id": 91, "order_date": "2024-09-09", "total_amount": 8645, "status": "returned"}
-{"order_id": 99, "customer_id": 3, "order_date": "2024-01-01", "total_amount": 1906, "status": "shipped"}
+{"order_id": 0, "customer_id": 63, "order_date": "2024-04-06", "last_purchase_date": "1996-05-16", "discount": "45.33 %", "total_amount": 7132, "status": "delivered"}
+{"order_id": 1, "customer_id": 78, "order_date": "2024-05-06", "last_purchase_date": "1971-08-12", "discount": "27.54 %", "total_amount": 4662, "status": "returned"}
+{"order_id": 2, "customer_id": 17, "order_date": "2024-09-06", "last_purchase_date": "2000-10-14", "discount": "22.22 %", "total_amount": 7926, "status": "shipped"}
+{"order_id": 3, "customer_id": 23, "order_date": "2024-10-03", "last_purchase_date": "1984-02-07", "discount": "46.14 %", "total_amount": 7562, "status": "shipped"}
+{"order_id": 4, "customer_id": 20, "order_date": "2024-04-14", "last_purchase_date": "1991-06-27", "discount": "31.42 %", "total_amount": 1292, "status": "shipped"}
+{"order_id": 5, "customer_id": 34, "order_date": "2024-10-03", "last_purchase_date": "1997-09-07", "discount": "25.67 %", "total_amount": 6003, "status": "returned"}
+{"order_id": 6, "customer_id": 39, "order_date": "2024-04-15", "last_purchase_date": "1986-03-22", "discount": "12.97 %", "total_amount": 3017, "status": "returned"}
+{"order_id": 7, "customer_id": 34, "order_date": "2024-10-17", "last_purchase_date": "1999-01-20", "discount": "23.17 %", "total_amount": 300, "status": "shipped"}
+{"order_id": 8, "customer_id": 41, "order_date": "2024-04-11", "last_purchase_date": "2024-04-06", "discount": "29.32 %", "total_amount": 2787, "status": "pending"}
+{"order_id": 9, "customer_id": 65, "order_date": "2024-07-31", "last_purchase_date": "1976-11-26", "discount": "16.93 %", "total_amount": 6581, "status": "pending"}
+{"order_id": 10, "customer_id": 42, "order_date": "2024-02-08", "last_purchase_date": "1984-11-19", "discount": "32.16 %", "total_amount": 4018, "status": "pending"}
+{"order_id": 11, "customer_id": 22, "order_date": "2024-03-16", "last_purchase_date": "2007-08-28", "discount": "29.65 %", "total_amount": 5822, "status": "delivered"}
+{"order_id": 12, "customer_id": 86, "order_date": "2024-08-14", "last_purchase_date": "1996-05-28", "discount": "41.77 %", "total_amount": 5537, "status": "cancelled"}
+{"order_id": 13, "customer_id": 58, "order_date": "2024-08-11", "last_purchase_date": "2000-02-14", "discount": "27.11 %", "total_amount": 340, "status": "pending"}
+{"order_id": 14, "customer_id": 81, "order_date": "2024-01-27", "last_purchase_date": "2003-09-08", "discount": "5.71 %", "total_amount": 6290, "status": "pending"}
+{"order_id": 15, "customer_id": 31, "order_date": "2024-06-29", "last_purchase_date": "1980-02-16", "discount": "9.36 %", "total_amount": 277, "status": "pending"}
+{"order_id": 16, "customer_id": 8, "order_date": "2024-02-25", "last_purchase_date": "1983-04-23", "discount": "39.89 %", "total_amount": 577, "status": "pending"}
+{"order_id": 17, "customer_id": 63, "order_date": "2024-02-21", "last_purchase_date": "1970-01-22", "discount": "47.17 %", "total_amount": 1041, "status": "shipped"}
+{"order_id": 18, "customer_id": 71, "order_date": "2024-01-29", "last_purchase_date": "2003-06-12", "discount": "15.56 %", "total_amount": 2564, "status": "pending"}
+{"order_id": 19, "customer_id": 12, "order_date": "2024-04-29", "last_purchase_date": "1989-02-12", "discount": "49.25 %", "total_amount": 536, "status": "delivered"}
+{"order_id": 20, "customer_id": 39, "order_date": "2024-05-20", "last_purchase_date": "2016-09-04", "discount": "35.11 %", "total_amount": 8487, "status": "cancelled"}
+{"order_id": 21, "customer_id": 12, "order_date": "2024-04-26", "last_purchase_date": "1977-07-24", "discount": "0.86 %", "total_amount": 3761, "status": "returned"}
+{"order_id": 22, "customer_id": 80, "order_date": "2024-01-16", "last_purchase_date": "2000-05-29", "discount": "39.61 %", "total_amount": 8477, "status": "shipped"}
+{"order_id": 23, "customer_id": 3, "order_date": "2024-05-25", "last_purchase_date": "1973-02-09", "discount": "33.74 %", "total_amount": 2799, "status": "cancelled"}
+{"order_id": 24, "customer_id": 85, "order_date": "2024-07-19", "last_purchase_date": "1996-01-16", "discount": "6.92 %", "total_amount": 9582, "status": "shipped"}
+{"order_id": 25, "customer_id": 55, "order_date": "2024-08-03", "last_purchase_date": "2002-03-13", "discount": "12.28 %", "total_amount": 8223, "status": "pending"}
+{"order_id": 26, "customer_id": 53, "order_date": "2024-07-28", "last_purchase_date": "1991-04-11", "discount": "6.27 %", "total_amount": 8982, "status": "shipped"}
+{"order_id": 27, "customer_id": 31, "order_date": "2024-03-12", "last_purchase_date": "1987-05-30", "discount": "42.98 %", "total_amount": 5175, "status": "delivered"}
+{"order_id": 28, "customer_id": 17, "order_date": "2024-04-30", "last_purchase_date": "2021-01-03", "discount": "5.76 %", "total_amount": 8786, "status": "shipped"}
+{"order_id": 29, "customer_id": 32, "order_date": "2024-08-15", "last_purchase_date": "2006-03-23", "discount": "46.12 %", "total_amount": 4279, "status": "pending"}
+{"order_id": 30, "customer_id": 55, "order_date": "2024-08-24", "last_purchase_date": "2016-12-05", "discount": "7.88 %", "total_amount": 4267, "status": "delivered"}
+{"order_id": 31, "customer_id": 98, "order_date": "2024-01-13", "last_purchase_date": "2008-01-02", "discount": "19.13 %", "total_amount": 3982, "status": "pending"}
+{"order_id": 32, "customer_id": 86, "order_date": "2024-05-28", "last_purchase_date": "2016-04-15", "discount": "11.88 %", "total_amount": 5521, "status": "cancelled"}
+{"order_id": 33, "customer_id": 36, "order_date": "2024-02-18", "last_purchase_date": "1996-06-23", "discount": "7.12 %", "total_amount": 5419, "status": "pending"}
+{"order_id": 34, "customer_id": 77, "order_date": "2024-03-16", "last_purchase_date": "2003-07-23", "discount": "4.75 %", "total_amount": 8210, "status": "delivered"}
+{"order_id": 35, "customer_id": 37, "order_date": "2024-03-27", "last_purchase_date": "1981-01-22", "discount": "43.42 %", "total_amount": 4004, "status": "returned"}
+{"order_id": 36, "customer_id": 11, "order_date": "2024-08-27", "last_purchase_date": "1976-11-21", "discount": "20.87 %", "total_amount": 6829, "status": "returned"}
+{"order_id": 37, "customer_id": 96, "order_date": "2024-04-15", "last_purchase_date": "2014-12-27", "discount": "1.7 %", "total_amount": 7885, "status": "pending"}
+{"order_id": 38, "customer_id": 10, "order_date": "2024-08-22", "last_purchase_date": "2002-09-09", "discount": "33.8 %", "total_amount": 1163, "status": "delivered"}
+{"order_id": 39, "customer_id": 37, "order_date": "2024-07-18", "last_purchase_date": "1992-06-28", "discount": "37.46 %", "total_amount": 8984, "status": "cancelled"}
+{"order_id": 40, "customer_id": 61, "order_date": "2024-05-21", "last_purchase_date": "1994-06-12", "discount": "5.51 %", "total_amount": 3041, "status": "pending"}
+{"order_id": 41, "customer_id": 19, "order_date": "2024-07-26", "last_purchase_date": "1986-03-04", "discount": "24.02 %", "total_amount": 3063, "status": "shipped"}
+{"order_id": 42, "customer_id": 74, "order_date": "2024-05-25", "last_purchase_date": "1996-07-29", "discount": "1.03 %", "total_amount": 2612, "status": "delivered"}
+{"order_id": 43, "customer_id": 88, "order_date": "2024-01-12", "last_purchase_date": "2011-08-17", "discount": "36.0 %", "total_amount": 1900, "status": "pending"}
+{"order_id": 44, "customer_id": 17, "order_date": "2024-07-26", "last_purchase_date": "1993-12-29", "discount": "44.32 %", "total_amount": 1859, "status": "cancelled"}
+{"order_id": 45, "customer_id": 8, "order_date": "2024-08-07", "last_purchase_date": "1982-11-21", "discount": "30.64 %", "total_amount": 9823, "status": "delivered"}
+{"order_id": 46, "customer_id": 8, "order_date": "2024-05-14", "last_purchase_date": "1982-01-28", "discount": "0.7 %", "total_amount": 333, "status": "shipped"}
+{"order_id": 47, "customer_id": 41, "order_date": "2024-08-04", "last_purchase_date": "2000-10-24", "discount": "3.79 %", "total_amount": 4360, "status": "returned"}
+{"order_id": 48, "customer_id": 41, "order_date": "2024-05-25", "last_purchase_date": "2000-01-28", "discount": "2.85 %", "total_amount": 1144, "status": "pending"}
+{"order_id": 49, "customer_id": 74, "order_date": "2024-01-29", "last_purchase_date": "1985-05-18", "discount": "40.56 %", "total_amount": 2947, "status": "delivered"}
+{"order_id": 50, "customer_id": 8, "order_date": "2024-06-07", "last_purchase_date": "1986-05-02", "discount": "35.27 %", "total_amount": 9791, "status": "returned"}
+{"order_id": 51, "customer_id": 96, "order_date": "2024-04-18", "last_purchase_date": "2021-05-15", "discount": "8.41 %", "total_amount": 4988, "status": "shipped"}
+{"order_id": 52, "customer_id": 78, "order_date": "2024-09-23", "last_purchase_date": "2013-09-24", "discount": "24.19 %", "total_amount": 6180, "status": "cancelled"}
+{"order_id": 53, "customer_id": 30, "order_date": "2024-05-02", "last_purchase_date": "2015-02-01", "discount": "25.23 %", "total_amount": 17, "status": "pending"}
+{"order_id": 54, "customer_id": 66, "order_date": "2024-08-26", "last_purchase_date": "1982-12-22", "discount": "47.62 %", "total_amount": 4825, "status": "shipped"}
+{"order_id": 55, "customer_id": 36, "order_date": "2024-03-24", "last_purchase_date": "1973-12-30", "discount": "31.08 %", "total_amount": 5636, "status": "delivered"}
+{"order_id": 56, "customer_id": 23, "order_date": "2024-07-08", "last_purchase_date": "2012-03-28", "discount": "9.42 %", "total_amount": 1428, "status": "delivered"}
+{"order_id": 57, "customer_id": 63, "order_date": "2024-04-29", "last_purchase_date": "1989-04-06", "discount": "9.66 %", "total_amount": 7384, "status": "returned"}
+{"order_id": 58, "customer_id": 20, "order_date": "2024-08-21", "last_purchase_date": "2016-12-23", "discount": "35.69 %", "total_amount": 8978, "status": "pending"}
+{"order_id": 59, "customer_id": 94, "order_date": "2024-09-30", "last_purchase_date": "2011-10-12", "discount": "1.54 %", "total_amount": 3332, "status": "cancelled"}
+{"order_id": 60, "customer_id": 78, "order_date": "2024-10-15", "last_purchase_date": "1988-11-29", "discount": "6.31 %", "total_amount": 1525, "status": "cancelled"}
+{"order_id": 61, "customer_id": 17, "order_date": "2024-01-01", "last_purchase_date": "2021-10-07", "discount": "49.58 %", "total_amount": 7442, "status": "pending"}
+{"order_id": 62, "customer_id": 39, "order_date": "2024-03-31", "last_purchase_date": "1990-11-03", "discount": "43.47 %", "total_amount": 1247, "status": "delivered"}
+{"order_id": 63, "customer_id": 72, "order_date": "2024-04-25", "last_purchase_date": "1970-12-14", "discount": "33.49 %", "total_amount": 5148, "status": "shipped"}
+{"order_id": 64, "customer_id": 11, "order_date": "2024-09-23", "last_purchase_date": "1974-10-19", "discount": "17.87 %", "total_amount": 8920, "status": "delivered"}
+{"order_id": 65, "customer_id": 72, "order_date": "2024-10-04", "last_purchase_date": "1977-08-15", "discount": "34.61 %", "total_amount": 4880, "status": "cancelled"}
+{"order_id": 66, "customer_id": 12, "order_date": "2024-03-10", "last_purchase_date": "2004-01-08", "discount": "30.37 %", "total_amount": 3853, "status": "returned"}
+{"order_id": 67, "customer_id": 56, "order_date": "2024-05-20", "last_purchase_date": "1970-02-09", "discount": "11.15 %", "total_amount": 9444, "status": "delivered"}
+{"order_id": 68, "customer_id": 14, "order_date": "2024-07-07", "last_purchase_date": "2004-08-16", "discount": "35.09 %", "total_amount": 6845, "status": "delivered"}
+{"order_id": 69, "customer_id": 31, "order_date": "2024-03-01", "last_purchase_date": "1992-06-07", "discount": "17.64 %", "total_amount": 4133, "status": "delivered"}
+{"order_id": 70, "customer_id": 49, "order_date": "2024-09-22", "last_purchase_date": "1986-04-24", "discount": "24.26 %", "total_amount": 1438, "status": "pending"}
+{"order_id": 71, "customer_id": 93, "order_date": "2024-06-19", "last_purchase_date": "2002-10-12", "discount": "23.54 %", "total_amount": 5508, "status": "cancelled"}
+{"order_id": 72, "customer_id": 17, "order_date": "2024-06-07", "last_purchase_date": "2013-05-14", "discount": "37.63 %", "total_amount": 5964, "status": "cancelled"}
+{"order_id": 73, "customer_id": 81, "order_date": "2024-07-14", "last_purchase_date": "1991-10-04", "discount": "42.29 %", "total_amount": 2068, "status": "pending"}
+{"order_id": 74, "customer_id": 60, "order_date": "2024-06-13", "last_purchase_date": "2016-02-12", "discount": "25.54 %", "total_amount": 9258, "status": "delivered"}
+{"order_id": 75, "customer_id": 9, "order_date": "2024-05-17", "last_purchase_date": "2005-03-09", "discount": "11.25 %", "total_amount": 7531, "status": "returned"}
+{"order_id": 76, "customer_id": 50, "order_date": "2024-06-20", "last_purchase_date": "1974-11-12", "discount": "38.15 %", "total_amount": 7577, "status": "cancelled"}
+{"order_id": 77, "customer_id": 2, "order_date": "2024-08-11", "last_purchase_date": "2014-08-21", "discount": "40.07 %", "total_amount": 9073, "status": "pending"}
+{"order_id": 78, "customer_id": 23, "order_date": "2024-08-30", "last_purchase_date": "2017-12-05", "discount": "28.03 %", "total_amount": 9497, "status": "cancelled"}
+{"order_id": 79, "customer_id": 50, "order_date": "2024-02-18", "last_purchase_date": "2002-05-18", "discount": "41.65 %", "total_amount": 3125, "status": "returned"}
+{"order_id": 80, "customer_id": 58, "order_date": "2024-02-03", "last_purchase_date": "2002-01-21", "discount": "42.58 %", "total_amount": 6101, "status": "cancelled"}
+{"order_id": 81, "customer_id": 95, "order_date": "2024-01-10", "last_purchase_date": "2022-11-07", "discount": "47.17 %", "total_amount": 9206, "status": "shipped"}
+{"order_id": 82, "customer_id": 0, "order_date": "2024-05-31", "last_purchase_date": "2020-10-17", "discount": "33.66 %", "total_amount": 7885, "status": "shipped"}
+{"order_id": 83, "customer_id": 79, "order_date": "2024-05-17", "last_purchase_date": "2022-12-08", "discount": "41.81 %", "total_amount": 6838, "status": "pending"}
+{"order_id": 84, "customer_id": 35, "order_date": "2024-07-01", "last_purchase_date": "1998-01-27", "discount": "46.64 %", "total_amount": 3838, "status": "shipped"}
+{"order_id": 85, "customer_id": 16, "order_date": "2024-09-14", "last_purchase_date": "1973-02-13", "discount": "46.66 %", "total_amount": 9740, "status": "cancelled"}
+{"order_id": 86, "customer_id": 61, "order_date": "2024-08-03", "last_purchase_date": "1992-08-21", "discount": "16.69 %", "total_amount": 6982, "status": "shipped"}
+{"order_id": 87, "customer_id": 9, "order_date": "2024-09-12", "last_purchase_date": "1995-02-18", "discount": "24.04 %", "total_amount": 338, "status": "returned"}
+{"order_id": 88, "customer_id": 66, "order_date": "2024-07-06", "last_purchase_date": "1997-05-30", "discount": "4.79 %", "total_amount": 9910, "status": "cancelled"}
+{"order_id": 89, "customer_id": 13, "order_date": "2024-03-03", "last_purchase_date": "1978-07-19", "discount": "5.59 %", "total_amount": 9, "status": "shipped"}
+{"order_id": 90, "customer_id": 53, "order_date": "2024-05-02", "last_purchase_date": "2008-02-07", "discount": "20.81 %", "total_amount": 1328, "status": "cancelled"}
+{"order_id": 91, "customer_id": 30, "order_date": "2024-05-14", "last_purchase_date": "1986-06-24", "discount": "21.92 %", "total_amount": 1883, "status": "shipped"}
+{"order_id": 92, "customer_id": 7, "order_date": "2024-03-05", "last_purchase_date": "2024-09-08", "discount": "47.04 %", "total_amount": 6524, "status": "pending"}
+{"order_id": 93, "customer_id": 3, "order_date": "2024-09-28", "last_purchase_date": "1994-06-28", "discount": "16.45 %", "total_amount": 4768, "status": "shipped"}
+{"order_id": 94, "customer_id": 96, "order_date": "2024-01-26", "last_purchase_date": "1996-11-16", "discount": "18.49 %", "total_amount": 3345, "status": "returned"}
+{"order_id": 95, "customer_id": 37, "order_date": "2024-03-09", "last_purchase_date": "2002-01-18", "discount": "28.36 %", "total_amount": 7301, "status": "delivered"}
+{"order_id": 96, "customer_id": 90, "order_date": "2024-07-29", "last_purchase_date": "1990-03-31", "discount": "44.31 %", "total_amount": 4894, "status": "cancelled"}
+{"order_id": 97, "customer_id": 19, "order_date": "2024-04-19", "last_purchase_date": "1977-03-21", "discount": "49.01 %", "total_amount": 3470, "status": "delivered"}
+{"order_id": 98, "customer_id": 58, "order_date": "2024-02-19", "last_purchase_date": "2006-03-05", "discount": "43.15 %", "total_amount": 6343, "status": "pending"}
+{"order_id": 99, "customer_id": 42, "order_date": "2024-03-25", "last_purchase_date": "1992-11-27", "discount": "14.52 %", "total_amount": 1524, "status": "returned"}
