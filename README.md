@@ -279,6 +279,7 @@ db.Customers.aggregate([
 ```
 
 # inner join v1, ver el plan de ejecucion
+```mongodb
 db.Customers.aggregate([
     {
         // Realiza el join entre la colección Customers y Orders
@@ -296,8 +297,10 @@ db.Customers.aggregate([
         }
     }
 ]).explain("executionStats");
+```
 
 # inner join v1, documento anidado conteos antes y despues del join, ademas de todos los documentos
+```mongodb
 db.Customers.aggregate([
     {
         // Realiza el join entre Customers y Orders
@@ -326,9 +329,10 @@ db.Customers.aggregate([
         }
     }
 ]);
-
+```
 
 # INNER JOIN MUESTRA SOLO LOS DOCUMENTOS QUE TIENEN ANDIDADOS ENTRE 2 Y 3 DOCUMENTOS
+```mongodb
 db.Customers.aggregate([
     {
         // Realiza un join entre la colección Customers y Orders
@@ -355,9 +359,10 @@ db.Customers.aggregate([
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
 ]);
-
+```
 
 # INNER JOIN MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -376,8 +381,10 @@ db.Customers.aggregate([
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
 ]);
+```
 
 # INNER JOIN CON CONDICION
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -394,9 +401,10 @@ db.Customers.aggregate([
         }
     }
 ]);
+```
 
 # INNER Join, v2 documento Relacionado por documento
-
+```mongodb
 db.Customers.aggregate([
     {
       $lookup: {
@@ -415,9 +423,10 @@ db.Customers.aggregate([
       }
     }
   ]);
-
+```
 
 # INNER JOIN MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
+```mongodb
 db.Customers.aggregate([
     {
       $lookup: {
@@ -439,10 +448,11 @@ db.Customers.aggregate([
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
   ]);
-
+```
 
 
 # INNER Join, v3 documento Relacionado por documento, pero con los campos combinados en un solo documento
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -472,10 +482,10 @@ db.Customers.aggregate([
     }
 ]);
 
-
+```
 
 # LEFT JOIN
-
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -486,8 +496,10 @@ db.Customers.aggregate([
         }
     }
 ]);
+```
 
 # LEFT JOIN, solo los primeros 10 documentos, ordenando por los no vacios primero
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -506,9 +518,10 @@ db.Customers.aggregate([
         $limit: 10 // Limita los resultados a los primeros 10 documentos
     }
 ]);
-
+```
 
 # ANTI LEFT JOIN
+```mongodb
 db.Customers.aggregate([
     {
         $lookup: {
@@ -526,3 +539,4 @@ db.Customers.aggregate([
         }
     }
 ]);
+```
