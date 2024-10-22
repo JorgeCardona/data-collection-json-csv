@@ -3,19 +3,20 @@ data-collection-json-csv-sql is a repository dedicated to storing a variety of d
 
 # Crear bases de datos
 ```mongodb
-> use test_db  // Cambia el contexto de la base de datos a 'test_db'
-< switched to db test_db  // Mensaje de confirmación que indica que se ha cambiado a la base de datos 'test_db'
+use test_db  // Cambia el contexto de la base de datos a 'test_db'
+// switched to db test_db  // Mensaje de confirmación que indica que se ha cambiado a la base de datos 'test_db'
 ```
 
 # Crear una coleccion
 ```mongodb
-> db.createCollection('test_collection');  // Crea una nueva colección llamada 'test_collection' en la base de datos actual
-< { ok: 1 }  // Mensaje de confirmación que indica que la colección se ha creado correctamente (ok: 1)
+db.createCollection('test_collection');  // Crea una nueva colección llamada 'test_collection' en la base de datos actual
+// { ok: 1 }  // Mensaje de confirmación que indica que la colección se ha creado correctamente (ok: 1)
 ```
 
 # Listar las bases de datos, sino tiene colecciones no se Lista
 ```mongodb
-> show databases  // Muestra una lista de todas las bases de datos disponibles en el servidor MongoDB
+show databases  // Muestra una lista de todas las bases de datos disponibles en el servidor MongoDB
+/*
 RetailManagementDB  240.00 KiB  // Nombre de la base de datos y su tamaño
 admin               100.00 KiB  // Nombre de la base de datos y su tamaño
 config              108.00 KiB  // Nombre de la base de datos y su tamaño
@@ -23,104 +24,139 @@ local                80.00 KiB  // Nombre de la base de datos y su tamaño
 sample_analytics      9.48 MiB  // Nombre de la base de datos y su tamaño
 spark                 1.04 MiB  // Nombre de la base de datos y su tamaño
 test_db               8.00 KiB  // Nombre de la base de datos y su tamaño
+/* 
 ```
 
 # Eliminar una coleccion
 ```mongodb
-> db.test_collection.drop();  // Elimina la colección llamada 'test_collection' de la base de datos actual
-< true  // Mensaje de confirmación que indica que la colección se ha eliminado correctamente (true)
+db.test_collection.drop();  // Elimina la colección llamada 'test_collection' de la base de datos actual
+// true  // Mensaje de confirmación que indica que la colección se ha eliminado correctamente (true)
 ```
 
 # Eliminar una base de datos
 ```mongodb
-> db.dropDatabase();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
-< { ok: 1, dropped: 'test_db' }  // Mensaje de confirmación que indica que la base de datos 'test_db' se ha eliminado correctamente (ok: 1)
+db.dropDatabase();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
+{ ok: 1, dropped: 'test_db' }  // Mensaje de confirmación que indica que la base de datos 'test_db' se ha eliminado correctamente (ok: 1)
 ```
 
 # Seleccionar una base de datos que ya existe, sino existe la crea vacia
 ```mongodb
-> use RetailManagementDB  // Cambia el contexto de la base de datos a 'RetailManagementDB'
-< switched to db RetailManagementDB  // Mensaje de confirmación que indica que se ha cambiado a la base de datos 'RetailManagementDB'
+use RetailManagementDB  // Cambia el contexto de la base de datos a 'RetailManagementDB'
+// switched to db RetailManagementDB  // Mensaje de confirmación que indica que se ha cambiado a la base de datos 'RetailManagementDB'
 ```
 
 # Listar las colecciones de la base de datos Seleccionada
 ```mongodb
-> show collections  // Muestra una lista de todas las colecciones disponibles en la base de datos actual (RetailManagementDB)
+show collections  // Muestra una lista de todas las colecciones disponibles en la base de datos actual (RetailManagementDB)
+/*
 Customers           // Nombre de la colección 'Customers'
 new_collection      // Nombre de la colección 'new_collection'
 Orders              // Nombre de la colección 'Orders'
 Payments            // Nombre de la colección 'Payments'
+*/
 ```
 
 # Crear un Indice en la colección y un indice con nombre personalizado
 ```mongodb
-> db.Customers.createIndex({
+db.Customers.createIndex({
     customer_id: 1  // Crea un índice ascendente en el campo customer_id en la colección Customers
 });
 
-customer_id_1  // Nombre automático del índice basado en el campo customer_id
+// customer_id_1  // Nombre automático del índice basado en el campo customer_id
 
-> db.Orders.createIndex(
+db.Orders.createIndex(
     { customer_id: 1 },          // Crea un índice ascendente en el campo customer_id en la colección Orders
     { name: "idx_customer_id" }  // Nombre personalizado asignado al índice: idx_customer_id
 );
 
-idx_customer_id  // Nombre personalizado del índice creado
+// idx_customer_id  // Nombre personalizado del índice creado
 ```
 
 # Crear un multiples indices en la colección
 ```mongodb
-> db.Payments.createIndexes([
-    { key: { order_id: 1 }, name: "idx_order_id" },         // Crea un índice ascendente para el campo order_id
-    { key: { customer_id: 1 }, name: "idx_customer_id" },   // Crea un índice ascendente para el campo customer_id
-    { key: { order_date: -1 }, name: "idx_order_date_desc" } // Crea un índice descendente para el campo order_date
-]);
+db.Payments.createIndexes(
+   [
+     {
+       "payment_id": 1
+     },
+     {
+       "order_id": 1
+     },
+     {
+       "payment_date": -1
+     },
+     {
+       "payment_method": 1
+     }
+   ]
+ );
+
+// [ 'payment_id_1', 'order_id_1', 'payment_date_-1', 'payment_method_1' ]
+```
+
+# Elimina todos los indices presentes en la colección excepto _id
+```mongodb
+db.Payments.dropIndexes(); // Elimina todos los índices excepto _id
+/*
+{
+  nIndexesWas: 5,
+  msg: 'non-_id indexes dropped for collection',
+  ok: 1
+}
+*/
 ```
 
 # Consultar Indices  en la colección
 ```mongodb
-> db.Customers.getIndexes();
+db.Customers.getIndexes();
+/*
 [
   { v: 2, key: { _id: 1 }, name: '_id_' },                // Índice predeterminado en el campo _id, creado automáticamente por MongoDB
   { v: 2, key: { customer_id: 1 }, name: 'customer_id_1' } // Índice ascendente en el campo customer_id
 ]
+*/
 
-> db.Orders.getIndexes();
-[
+db.Orders.getIndexes();
+/*[
   { v: 2, key: { _id: 1 }, name: '_id_' },               // Índice predeterminado en el campo _id, creado automáticamente por MongoDB
   { v: 2, key: { customer_id: 1 }, name: 'idx_customer_id' } // Índice ascendente en el campo customer_id, con un nombre personalizado
 ]
+*/
 ```
 
 # Eliminar Indices
 ```mongodb
-> db.Orders.dropIndex('order_id_1');  // Elimina el índice llamado 'order_id_1' de la colección Orders
-{ nIndexesWas: 2, ok: 1 }  // Había 2 índices antes de eliminar, operación exitosa (ok: 1)
+db.Orders.dropIndex('order_id_1');  // Elimina el índice llamado 'order_id_1' de la colección Orders
+// { nIndexesWas: 2, ok: 1 }  // Había 2 índices antes de eliminar, operación exitosa (ok: 1)
 
-> db.Orders.getIndexes();  // Obtiene todos los índices de la colección Orders
+db.Orders.getIndexes();  // Obtiene todos los índices de la colección Orders
+/*
 [
   { v: 2, key: { _id: 1 }, name: '_id_' }  // Índice predeterminado en el campo _id, creado automáticamente por MongoDB
 ]
+*/
 ```
 
 
 # Insertar 1 documento de una coleccion
 ```mongodb
-> db.Customers.insertOne({  // Inserta un nuevo documento en la colección Customers
+db.Customers.insertOne({  // Inserta un nuevo documento en la colección Customers
     customer_id: 1235,      // Campo que representa el ID del cliente
     name: "Maria Lopez",    // Campo que representa el nombre del cliente
     age: 30                 // Campo que representa la edad del cliente
 });
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de inserción fue reconocida
   insertedId: ObjectId('6717017f928cf000615c3873')  // ID del documento insertado en la colección
 }
+*/
 ```
 
 # Insertar multiples documentos de una coleccion, en un solo query
 ```mongodb
-> db.Customers.insertMany([  // Inserta múltiples documentos en la colección Customers
+db.Customers.insertMany([  // Inserta múltiples documentos en la colección Customers
     {
         customer_id: 1236,    // Campo que representa el ID del cliente
         name: "Carlos Perez",  // Campo que representa el nombre del cliente
@@ -153,7 +189,8 @@ idx_customer_id  // Nombre personalizado del índice creado
     }
 ]);
 
-< { 
+/*
+{ 
   acknowledged: true,        // Indica que la operación de inserción fue reconocida
   insertedIds: {            // Objeto que contiene los IDs de los documentos insertados
     '0': ObjectId('67170291928cf000615c3875'),  // ID del primer documento insertado
@@ -162,83 +199,94 @@ idx_customer_id  // Nombre personalizado del índice creado
     '3': ObjectId('67170291928cf000615c3878')   // ID del cuarto documento insertado
   }
 }
+*/
 ```
 
 # Eliminar 1 documento de una coleccion, basado en una condicion
 ```mongodb
-> db.Customers.deleteOne(  // Elimina un documento de la colección Customers que coincide con el criterio especificado
+db.Customers.deleteOne(  // Elimina un documento de la colección Customers que coincide con el criterio especificado
     { customer_id: 0 }     // Criterio de búsqueda: busca un documento donde customer_id sea igual a 0
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de eliminación fue reconocida
   deletedCount: 1         // Número de documentos eliminados, en este caso, 1
 }
+*/
 ```
 
 # Eliminar todos documentos de una coleccion, que cumplan la condicion
 ```mongodb
-> db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Customers que coinciden con el criterio especificado
+db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Customers que coinciden con el criterio especificado
     { customer_id: { $gt: 10 }}  // Criterio de búsqueda: busca documentos donde customer_id sea mayor que 10
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de eliminación fue reconocida
   deletedCount: 89        // Número de documentos eliminados, en este caso, 89
 }
+*/
 ```
 
 # Actualizar 1 documento de una coleccion, basado en una condicion
 ```mongodb
-> db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
+db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
     { customer_id: 1 },    // Criterio de búsqueda: busca un documento donde customer_id sea igual a 1
     { $set: { salary: 2222 } }  // Actualiza el campo salary, estableciendo su valor en 2222
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de actualización fue reconocida
   insertedId: null,       // No se insertó un nuevo documento (null)
   matchedCount: 1,        // Número de documentos que coincidieron con el criterio de búsqueda, en este caso, 1
   modifiedCount: 1,       // Número de documentos que fueron modificados, en este caso, 1
   upsertedCount: 0        // Número de documentos insertados (upsert) en caso de que no se encontrara ninguno, en este caso, 0
 }
+*/
 ```
 
 # Actualizar todos documentos de una coleccion, que cumplan la condicion
 ```mongodb
-> db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
+db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 3000 } }, // Criterio de búsqueda: busca documentos donde el salario sea menor a 3000
     { $inc: { salary: 500 } }  // Incrementa el campo salary en 500 para todos los documentos que coinciden
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de actualización fue reconocida
   insertedId: null,       // No se insertó un nuevo documento (null)
   matchedCount: 4,        // Número de documentos que coincidieron con el criterio de búsqueda, en este caso, 4
   modifiedCount: 4,       // Número de documentos que fueron modificados, en este caso, 4
   upsertedCount: 0        // Número de documentos insertados (upsert) en caso de que no se encontrara ninguno, en este caso, 0
 }
+*/
 ```
 
 # Actualizar todos documentos de una coleccion, que cumplan las condiciones
 ```mongodb
-> db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
+db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 4000 }, age: { $gt: 40 } },  // Criterio de búsqueda: busca documentos donde el salario sea menor a 4000 y la edad mayor a 40
     { $mul: { salary: 1.5 } }                     // Multiplica el campo salary por 1.5 para todos los documentos que coinciden
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de actualización fue reconocida
   insertedId: null,       // No se insertó un nuevo documento (null)
   matchedCount: 3,        // Número de documentos que coincidieron con el criterio de búsqueda, en este caso, 3
   modifiedCount: 3,       // Número de documentos que fueron modificados, en este caso, 3
   upsertedCount: 0        // Número de documentos insertados (upsert) en caso de que no se encontrara ninguno, en este caso, 0
 }
+*/
 ```
 
 # UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
-> db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
+db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
     { customer_id: 1234 },  // Criterio de búsqueda: busca un documento donde customer_id sea igual a 1234
     { 
         $set: {               // Operación de actualización: establece los siguientes campos
@@ -250,30 +298,35 @@ idx_customer_id  // Nombre personalizado del índice creado
     { upsert: true }         // Opción upsert: si no encuentra coincidencias, inserta un nuevo documento
 );
 
-< { 
+/*
+{ 
   acknowledged: true,      // Indica que la operación de actualización fue reconocida
   insertedId: ObjectId('6716fe2dc8f95dbf82f9a593'),  // ID del documento insertado (nuevo documento)
   matchedCount: 0,        // Número de documentos que coincidieron con el criterio de búsqueda, en este caso, 0
   modifiedCount: 0,       // Número de documentos que fueron modificados, en este caso, 0
   upsertedCount: 1        // Número de documentos insertados (upsert), en este caso, 1
 }
+*/
 ```
 
 # UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
-> db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
+db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { nationality: "Unknown" },       // Criterio de búsqueda: busca documentos donde la nacionalidad sea "Unknown"
     { $set: { nationality: "Pereira" } }, // Actualiza el campo nationality, estableciendo su valor en "Pereira"
     { upsert: true }                  // Opción upsert: si no encuentra coincidencias, inserta un nuevo documento
 );
 
-< { 
+
+/*
+{ 
   acknowledged: true,      // Indica que la operación de actualización fue reconocida
   insertedId: null,       // No se insertó un nuevo documento (null)
   matchedCount: 1,        // Número de documentos que coincidieron con el criterio de búsqueda, en este caso, 1
   modifiedCount: 1,       // Número de documentos que fueron modificados, en este caso, 1
   upsertedCount: 0        // Número de documentos insertados (upsert), en este caso, 0
 }
+*/
 ```
 
 # Agregación de Clientes con Órdenes: Inner Join V1
