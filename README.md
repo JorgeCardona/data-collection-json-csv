@@ -52,7 +52,7 @@ Orders
 Payments
 ```
 
-# Crear un Indice en la colección
+# Crear un Indice en la colección y un indice con nombre personalizado
 ```mongodb
 > db.Customers.createIndex({
     customer_id: 1 
@@ -60,11 +60,12 @@ Payments
 
 customer_id_1
 
-> db.Orders.createIndex({ 
-    order_id: 1 
-});
+> db.Orders.createIndex(
+    { customer_id: 1 },
+    { name: "idx_customer_id" }  // Nombre personalizado para el índice
+);
 
-order_id
+idx_customer_id
 ```
 
 # Crear un multiples indices en la colección
@@ -87,7 +88,7 @@ db.Payments.createIndexes([
 > db.Orders.getIndexes();
 [
   { v: 2, key: { _id: 1 }, name: '_id_' },
-  { v: 2, key: { order_id: 1 }, name: 'order_id' }
+  { v: 2, key: { customer_id: 1 }, name: 'idx_customer_id' }
 ]
 ```
 
