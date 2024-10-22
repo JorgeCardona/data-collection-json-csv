@@ -469,7 +469,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     {
         $match: {  // Filtra los documentos que cumplen con las condiciones
             "orders_inner_join_condition": { $ne: [] }, // Filtra los documentos que tienen orders_inner_join no vacío
-            "customer_id": 34 // Agrega la condición para customer_id
+            "customer_id": 3 // Agrega la condición para customer_id
         }
     }
 ]);
@@ -629,7 +629,7 @@ db.Orders.aggregate([  // Inicia una operación de agregación en la colección 
 ]);
 ```
 
-# ANTI LEFT JOIN
+# ANTI RIGHT JOIN
 ```mongodb
 db.Orders.aggregate([  // Inicia una operación de agregación en la colección Orders
     {
