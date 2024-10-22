@@ -36,7 +36,7 @@ db.test_collection.drop();  // Elimina la colección llamada 'test_collection' d
 # Eliminar una base de datos
 ```mongodb
 db.dropDatabase();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
-{ ok: 1, dropped: 'test_db' }  // Mensaje de confirmación que indica que la base de datos 'test_db' se ha eliminado correctamente (ok: 1)
+// { ok: 1, dropped: 'test_db' }  // Mensaje de confirmación que indica que la base de datos 'test_db' se ha eliminado correctamente (ok: 1)
 ```
 
 # Seleccionar una base de datos que ya existe, sino existe la crea vacia
