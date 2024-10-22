@@ -54,17 +54,26 @@ Payments
 
 # Crear un Indice en la colección
 ```mongodb
-> db.Customers.createIndex(
-    {customer_id: 1 }
-);
+> db.Customers.createIndex({
+    customer_id: 1 
+});
 
 customer_id_1
 
-> db.Orders.createIndex(
-    { order_id: 1 }
-);
+> db.Orders.createIndex({ 
+    order_id: 1 
+});
 
 order_id
+```
+
+# Crear un multiples indices en la colección
+```mongodb
+db.Payments.createIndexes([
+    { key: { order_id: 1 }, name: "idx_order_id" },         // Índice para order_id
+    { key: { customer_id: 1 }, name: "idx_customer_id" },   // Índice para customer_id
+    { key: { order_date: -1 }, name: "idx_order_date_desc" } // Índice para order_date en orden descendente
+]);
 ```
 
 # Consultar Indices  en la colección
