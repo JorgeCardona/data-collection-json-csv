@@ -1,7 +1,6 @@
 # data-collection-json-csv-sql
 data-collection-json-csv-sql is a repository dedicated to storing a variety of datasets in both JSON, SQL and CSV formats. This collection includes data from different domains and can be used for data analysis, machine learning projects, or educational purposes.
 
-# MongoDB Documentation
 # Crear bases de datos
 ```mongodb
 > use test_db
@@ -218,7 +217,7 @@ order_id
 }
 ```
 
-# Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
+# UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 > db.Customers.updateOne(
     { customer_id: 1234 },  // Criterio de búsqueda
@@ -241,7 +240,7 @@ order_id
 }
 ```
 
-# Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
+# UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 > db.Customers.updateMany(
     { nationality: "Unknown" },       // Criterio de búsqueda
