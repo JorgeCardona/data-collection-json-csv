@@ -54,10 +54,16 @@ Payments
 
 # Crear un Indice en la colección
 ```mongodb
-> db.Customers.createIndex({ customer_id: 1 });
+> db.Customers.createIndex(
+    {customer_id: 1 }
+);
+
 customer_id_1
 
-> db.Orders.createIndex({ order_id: 1 });
+> db.Orders.createIndex(
+    { order_id: 1 }
+);
+
 order_id
 ```
 
@@ -151,7 +157,9 @@ order_id
 
 # Eliminar 1 documento de una coleccion, basado en una condicion
 ```mongodb
-> db.Customers.deleteOne({ customer_id: 0 });
+> db.Customers.deleteOne(
+    { customer_id: 0 }
+);
 
 < {
   acknowledged: true,
@@ -161,7 +169,9 @@ order_id
 
 # Eliminar todos documentos de una coleccion, que cumplan la condicion
 ```mongodb
-> db.Customers.deleteMany({ customer_id: { $gt:10 }});
+> db.Customers.deleteMany( 
+    { customer_id: { $gt:10 }}
+);
 
 < {
   acknowledged: true,
