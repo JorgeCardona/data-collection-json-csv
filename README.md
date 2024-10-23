@@ -422,6 +422,53 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     }
 ]);
 ```
+<img src="images\37_inner_join_collections.png">
+
+## INNER JOIN ENTRE MUTIPLES COLECCIONES
+```mongodb
+db.Customers.aggregate([
+    {
+        // Realiza el join entre la colección Customers y Orders
+        $lookup: {
+            from: "Orders",              // Especifica la colección con la que estamos haciendo el join (Orders)
+            localField: "customer_id",   // Campo en Customers que será usado para el match
+            foreignField: "customer_id",  // Campo en Orders que será comparado con el campo en Customers
+            as: "customers_orders_inner_join" // El resultado del join se guardará en este nuevo campo
+        }
+    },
+    {
+        // Filtra los resultados del join para incluir solo los documentos que tienen órdenes
+        $match: {
+            "customers_orders_inner_join": { $ne: [] } // Incluye solo los documentos donde el array no está vacío
+        }
+    },
+    {
+        // Realiza el join entre la colección Orders y Payments
+        $lookup: {
+            from: "Payments",               // Especifica la colección con la que estamos haciendo el join (Payments)
+            localField: "customers_orders_inner_join.order_id", // Campo en Orders que será usado para el match
+            foreignField: "order_id",       // Campo en Payments que será comparado con el campo en Orders
+            as: "payments_orders_inner_join" // El resultado del join se guardará en este nuevo campo
+        }
+    },
+    {
+        // Filtra los resultados del segundo join para incluir solo los documentos que tienen pagos
+        $match: {
+            "payments_orders_inner_join": { $ne: [] } // Incluye solo los documentos donde el array no está vacío
+        }
+    },
+    {
+        // Salta los primeros 3 documentos del resultado
+        $skip: 3  // Este operador omite los primeros 3 documentos
+    },
+    {
+        // Limita la salida a los siguientes 2 documentos después del skip
+        $limit: 2  // Este operador limita el resultado a los siguientes 2 documentos
+    }
+]);
+```
+
+<img src="images\38_inner_join_multiple_collections.png">
 
 ## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
