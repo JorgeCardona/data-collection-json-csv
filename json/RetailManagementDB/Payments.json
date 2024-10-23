@@ -1,100 +1,100 @@
-{"payment_id": 0, "order_id": 79, "payment_date": "2024-10-10", "amount": 7171, "payment_method": "Bank Transfer", "currency": ["FKP", "Falkland Islands pound"]}
-{"payment_id": 1, "order_id": 63, "payment_date": "2024-10-18", "amount": 1339, "payment_method": "Bank Transfer", "currency": ["SDG", "Sudanese pound"]}
-{"payment_id": 2, "order_id": 40, "payment_date": "2024-10-01", "amount": 8640, "payment_method": "Debit Card", "currency": ["SBD", "Solomon Islands dollar"]}
-{"payment_id": 3, "order_id": 21, "payment_date": "2024-10-17", "amount": 1256, "payment_method": "Cash", "currency": ["GIP", "Gibraltar pound"]}
-{"payment_id": 4, "order_id": 50, "payment_date": "2024-10-17", "amount": 2923, "payment_method": "Bank Transfer", "currency": ["IMP", "Manx pound"]}
-{"payment_id": 5, "order_id": 37, "payment_date": "2024-10-10", "amount": 5718, "payment_method": "Debit Card", "currency": ["TMT", "Turkmenistan manat"]}
-{"payment_id": 6, "order_id": 8, "payment_date": "2024-10-02", "amount": 8430, "payment_method": "Credit Card", "currency": ["KZT", "Kazakhstani tenge"]}
-{"payment_id": 7, "order_id": 29, "payment_date": "2024-10-15", "amount": 4105, "payment_method": "Credit Card", "currency": ["VEF", "Venezuelan bol\u00edvar"]}
-{"payment_id": 8, "order_id": 61, "payment_date": "2024-10-01", "amount": 5379, "payment_method": "Cash", "currency": ["SGD", "Singapore dollar"]}
-{"payment_id": 9, "order_id": 41, "payment_date": "2024-10-16", "amount": 8542, "payment_method": "Cash", "currency": ["PKR", "Pakistani rupee"]}
-{"payment_id": 10, "order_id": 53, "payment_date": "2024-10-20", "amount": 1917, "payment_method": "Cash", "currency": ["CLP", "Chilean peso"]}
-{"payment_id": 11, "order_id": 93, "payment_date": "2024-10-17", "amount": 9393, "payment_method": "PayPal", "currency": ["SHP", "Saint Helena pound"]}
-{"payment_id": 12, "order_id": 40, "payment_date": "2024-10-19", "amount": 5704, "payment_method": "Credit Card", "currency": ["SYP", "Syrian pound"]}
-{"payment_id": 13, "order_id": 24, "payment_date": "2024-10-20", "amount": 2186, "payment_method": "PayPal", "currency": ["BWP", "Botswana pula"]}
-{"payment_id": 14, "order_id": 74, "payment_date": "2024-10-05", "amount": 8503, "payment_method": "Credit Card", "currency": ["NIO", "Nicaraguan c\u00f3rdoba"]}
-{"payment_id": 15, "order_id": 86, "payment_date": "2024-10-09", "amount": 4794, "payment_method": "Cash", "currency": ["KYD", "Cayman Islands dollar"]}
-{"payment_id": 16, "order_id": 64, "payment_date": "2024-10-03", "amount": 824, "payment_method": "Bank Transfer", "currency": ["INR", "Indian rupee"]}
-{"payment_id": 17, "order_id": 42, "payment_date": "2024-10-14", "amount": 8771, "payment_method": "Bank Transfer", "currency": ["KPW", "North Korean won"]}
-{"payment_id": 18, "order_id": 44, "payment_date": "2024-10-16", "amount": 924, "payment_method": "Credit Card", "currency": ["ZWD", "Zimbabwean dollar"]}
-{"payment_id": 19, "order_id": 40, "payment_date": "2024-10-07", "amount": 5185, "payment_method": "Debit Card", "currency": ["COP", "Colombian peso"]}
-{"payment_id": 20, "order_id": 66, "payment_date": "2024-10-05", "amount": 1277, "payment_method": "Bank Transfer", "currency": ["MYR", "Malaysian ringgit"]}
-{"payment_id": 21, "order_id": 80, "payment_date": "2024-10-04", "amount": 4462, "payment_method": "Cash", "currency": ["RON", "Romanian leu"]}
-{"payment_id": 22, "order_id": 41, "payment_date": "2024-10-14", "amount": 3730, "payment_method": "PayPal", "currency": ["KYD", "Cayman Islands dollar"]}
-{"payment_id": 23, "order_id": 53, "payment_date": "2024-10-04", "amount": 1866, "payment_method": "Cash", "currency": ["HTG", "Haitian gourde"]}
-{"payment_id": 24, "order_id": 70, "payment_date": "2024-10-08", "amount": 7202, "payment_method": "Debit Card", "currency": ["GTQ", "Guatemalan quetzal"]}
-{"payment_id": 25, "order_id": 51, "payment_date": "2024-10-07", "amount": 9877, "payment_method": "Cash", "currency": ["SEK", "Swedish krona"]}
-{"payment_id": 26, "order_id": 18, "payment_date": "2024-10-09", "amount": 5759, "payment_method": "Credit Card", "currency": ["TRY", "Turkish lira"]}
-{"payment_id": 27, "order_id": 98, "payment_date": "2024-10-17", "amount": 1997, "payment_method": "Credit Card", "currency": ["XPF", "CFP franc"]}
-{"payment_id": 28, "order_id": 74, "payment_date": "2024-10-04", "amount": 7199, "payment_method": "PayPal", "currency": ["CUC", "Cuban convertible peso"]}
-{"payment_id": 29, "order_id": 52, "payment_date": "2024-10-06", "amount": 9846, "payment_method": "Debit Card", "currency": ["JPY", "Japanese yen"]}
-{"payment_id": 30, "order_id": 62, "payment_date": "2024-10-20", "amount": 8573, "payment_method": "Bank Transfer", "currency": ["AWG", "Aruban florin"]}
-{"payment_id": 31, "order_id": 14, "payment_date": "2024-10-01", "amount": 5541, "payment_method": "PayPal", "currency": ["GIP", "Gibraltar pound"]}
-{"payment_id": 32, "order_id": 98, "payment_date": "2024-10-18", "amount": 9908, "payment_method": "Credit Card", "currency": ["CVE", "Cape Verdean escudo"]}
-{"payment_id": 33, "order_id": 22, "payment_date": "2024-10-18", "amount": 6010, "payment_method": "PayPal", "currency": ["BAM", "Bosnia and Herzegovina convertible mark"]}
-{"payment_id": 34, "order_id": 22, "payment_date": "2024-10-14", "amount": 8049, "payment_method": "Credit Card", "currency": ["BSD", "Bahamian dollar"]}
-{"payment_id": 35, "order_id": 75, "payment_date": "2024-10-01", "amount": 1664, "payment_method": "PayPal", "currency": ["AFN", "Afghan afghani"]}
-{"payment_id": 36, "order_id": 78, "payment_date": "2024-10-05", "amount": 4880, "payment_method": "Debit Card", "currency": ["AUD", "Australian dollar"]}
-{"payment_id": 37, "order_id": 59, "payment_date": "2024-10-02", "amount": 4801, "payment_method": "Credit Card", "currency": ["GHS", "Ghanaian cedi"]}
-{"payment_id": 38, "order_id": 30, "payment_date": "2024-10-15", "amount": 8681, "payment_method": "Debit Card", "currency": ["IQD", "Iraqi dinar"]}
-{"payment_id": 39, "order_id": 19, "payment_date": "2024-10-13", "amount": 2364, "payment_method": "Bank Transfer", "currency": ["SDG", "Sudanese pound"]}
-{"payment_id": 40, "order_id": 52, "payment_date": "2024-10-20", "amount": 5414, "payment_method": "Cash", "currency": ["ISK", "Icelandic kr\u00f3na"]}
-{"payment_id": 41, "order_id": 23, "payment_date": "2024-10-18", "amount": 7471, "payment_method": "Bank Transfer", "currency": ["SPL", "Seborga luigino"]}
-{"payment_id": 42, "order_id": 90, "payment_date": "2024-10-13", "amount": 1679, "payment_method": "Debit Card", "currency": ["GBP", "Pound sterling"]}
-{"payment_id": 43, "order_id": 2, "payment_date": "2024-10-14", "amount": 8782, "payment_method": "Debit Card", "currency": ["OMR", "Omani rial"]}
-{"payment_id": 44, "order_id": 43, "payment_date": "2024-10-20", "amount": 7753, "payment_method": "Bank Transfer", "currency": ["DZD", "Algerian dinar"]}
-{"payment_id": 45, "order_id": 11, "payment_date": "2024-10-16", "amount": 1824, "payment_method": "Bank Transfer", "currency": ["GHS", "Ghanaian cedi"]}
-{"payment_id": 46, "order_id": 77, "payment_date": "2024-10-18", "amount": 8996, "payment_method": "Bank Transfer", "currency": ["YER", "Yemeni rial"]}
-{"payment_id": 47, "order_id": 33, "payment_date": "2024-10-14", "amount": 6529, "payment_method": "Debit Card", "currency": ["IMP", "Manx pound"]}
-{"payment_id": 48, "order_id": 10, "payment_date": "2024-10-05", "amount": 1811, "payment_method": "PayPal", "currency": ["XOF", "West African CFA franc"]}
-{"payment_id": 49, "order_id": 96, "payment_date": "2024-10-02", "amount": 142, "payment_method": "Cash", "currency": ["NIS", "Israeli new shekel"]}
-{"payment_id": 50, "order_id": 3, "payment_date": "2024-10-18", "amount": 8775, "payment_method": "Bank Transfer", "currency": ["DJF", "Djiboutian franc"]}
-{"payment_id": 51, "order_id": 12, "payment_date": "2024-10-10", "amount": 6783, "payment_method": "PayPal", "currency": ["DJF", "Djiboutian franc"]}
-{"payment_id": 52, "order_id": 2, "payment_date": "2024-10-17", "amount": 9183, "payment_method": "Debit Card", "currency": ["CNY", "Renminbi"]}
-{"payment_id": 53, "order_id": 98, "payment_date": "2024-10-10", "amount": 8022, "payment_method": "Cash", "currency": ["TRY", "Turkish lira"]}
-{"payment_id": 54, "order_id": 31, "payment_date": "2024-10-01", "amount": 6948, "payment_method": "PayPal", "currency": ["SHP", "Saint Helena pound"]}
-{"payment_id": 55, "order_id": 70, "payment_date": "2024-10-14", "amount": 8958, "payment_method": "Cash", "currency": ["PAB", "Panamanian balboa"]}
-{"payment_id": 56, "order_id": 22, "payment_date": "2024-10-17", "amount": 1107, "payment_method": "PayPal", "currency": ["THB", "Thai baht"]}
-{"payment_id": 57, "order_id": 82, "payment_date": "2024-10-08", "amount": 4387, "payment_method": "Credit Card", "currency": ["BBD", "Barbadian dollar"]}
-{"payment_id": 58, "order_id": 68, "payment_date": "2024-10-10", "amount": 5460, "payment_method": "PayPal", "currency": ["NIO", "Nicaraguan c\u00f3rdoba"]}
-{"payment_id": 59, "order_id": 71, "payment_date": "2024-10-15", "amount": 5428, "payment_method": "Bank Transfer", "currency": ["CVE", "Cape Verdean escudo"]}
-{"payment_id": 60, "order_id": 84, "payment_date": "2024-10-06", "amount": 1137, "payment_method": "PayPal", "currency": ["VEF", "Venezuelan bol\u00edvar"]}
-{"payment_id": 61, "order_id": 60, "payment_date": "2024-10-11", "amount": 7824, "payment_method": "Debit Card", "currency": ["BRL", "Brazilian real"]}
-{"payment_id": 62, "order_id": 62, "payment_date": "2024-10-18", "amount": 553, "payment_method": "Bank Transfer", "currency": ["CLP", "Chilean peso"]}
-{"payment_id": 63, "order_id": 98, "payment_date": "2024-10-06", "amount": 1083, "payment_method": "Bank Transfer", "currency": ["NAD", "Namibian dollar"]}
-{"payment_id": 64, "order_id": 85, "payment_date": "2024-10-18", "amount": 1434, "payment_method": "Credit Card", "currency": ["ZWD", "Zimbabwean dollar"]}
-{"payment_id": 65, "order_id": 62, "payment_date": "2024-10-08", "amount": 3968, "payment_method": "Credit Card", "currency": ["AWG", "Aruban florin"]}
-{"payment_id": 66, "order_id": 2, "payment_date": "2024-10-03", "amount": 9536, "payment_method": "PayPal", "currency": ["GYD", "Guyanese dollar"]}
-{"payment_id": 67, "order_id": 58, "payment_date": "2024-10-03", "amount": 7257, "payment_method": "Debit Card", "currency": ["NAD", "Namibian dollar"]}
-{"payment_id": 68, "order_id": 34, "payment_date": "2024-10-10", "amount": 819, "payment_method": "Credit Card", "currency": ["TTD", "Trinidad and Tobago dollar"]}
-{"payment_id": 69, "order_id": 77, "payment_date": "2024-10-11", "amount": 6076, "payment_method": "Cash", "currency": ["ISK", "Icelandic kr\u00f3na"]}
-{"payment_id": 70, "order_id": 21, "payment_date": "2024-10-19", "amount": 6688, "payment_method": "Credit Card", "currency": ["XOF", "West African CFA franc"]}
-{"payment_id": 71, "order_id": 72, "payment_date": "2024-10-18", "amount": 3077, "payment_method": "Bank Transfer", "currency": ["GHS", "Ghanaian cedi"]}
-{"payment_id": 72, "order_id": 89, "payment_date": "2024-10-15", "amount": 498, "payment_method": "PayPal", "currency": ["BAM", "Bosnia and Herzegovina convertible mark"]}
-{"payment_id": 73, "order_id": 11, "payment_date": "2024-10-10", "amount": 8767, "payment_method": "Credit Card", "currency": ["KHR", "Cambodian riel"]}
-{"payment_id": 74, "order_id": 78, "payment_date": "2024-10-17", "amount": 8819, "payment_method": "Debit Card", "currency": ["KES", "Kenyan shilling"]}
-{"payment_id": 75, "order_id": 63, "payment_date": "2024-10-19", "amount": 8517, "payment_method": "Cash", "currency": ["GIP", "Gibraltar pound"]}
-{"payment_id": 76, "order_id": 53, "payment_date": "2024-10-11", "amount": 4892, "payment_method": "Credit Card", "currency": ["LBP", "Lebanese pound"]}
-{"payment_id": 77, "order_id": 54, "payment_date": "2024-10-03", "amount": 8406, "payment_method": "PayPal", "currency": ["LBP", "Lebanese pound"]}
-{"payment_id": 78, "order_id": 79, "payment_date": "2024-10-05", "amount": 6895, "payment_method": "PayPal", "currency": ["KWD", "Kuwaiti dinar"]}
-{"payment_id": 79, "order_id": 44, "payment_date": "2024-10-13", "amount": 7822, "payment_method": "Debit Card", "currency": ["BZD", "Belize dollar"]}
-{"payment_id": 80, "order_id": 16, "payment_date": "2024-10-11", "amount": 4455, "payment_method": "Bank Transfer", "currency": ["CDF", "Congolese franc"]}
-{"payment_id": 81, "order_id": 40, "payment_date": "2024-10-20", "amount": 9766, "payment_method": "Cash", "currency": ["XAF", "Central African CFA franc"]}
-{"payment_id": 82, "order_id": 60, "payment_date": "2024-10-17", "amount": 8306, "payment_method": "Credit Card", "currency": ["ZAR", "South African rand"]}
-{"payment_id": 83, "order_id": 74, "payment_date": "2024-10-10", "amount": 5935, "payment_method": "Cash", "currency": ["SGD", "Singapore dollar"]}
-{"payment_id": 84, "order_id": 53, "payment_date": "2024-10-16", "amount": 4872, "payment_method": "Bank Transfer", "currency": ["PEN", "Peruvian sol"]}
-{"payment_id": 85, "order_id": 37, "payment_date": "2024-10-13", "amount": 6200, "payment_method": "PayPal", "currency": ["LBP", "Lebanese pound"]}
-{"payment_id": 86, "order_id": 55, "payment_date": "2024-10-15", "amount": 4878, "payment_method": "Cash", "currency": ["ZAR", "South African rand"]}
-{"payment_id": 87, "order_id": 48, "payment_date": "2024-10-03", "amount": 9154, "payment_method": "PayPal", "currency": ["XDR", "Special drawing rights"]}
-{"payment_id": 88, "order_id": 26, "payment_date": "2024-10-17", "amount": 1908, "payment_method": "Cash", "currency": ["NIS", "Israeli new shekel"]}
-{"payment_id": 89, "order_id": 34, "payment_date": "2024-10-07", "amount": 5087, "payment_method": "Credit Card", "currency": ["UZS", "Uzbekistani so\u02bbm"]}
-{"payment_id": 90, "order_id": 70, "payment_date": "2024-10-20", "amount": 3192, "payment_method": "Cash", "currency": ["LRD", "Liberian dollar"]}
-{"payment_id": 91, "order_id": 58, "payment_date": "2024-10-20", "amount": 5061, "payment_method": "PayPal", "currency": ["NPR", "Nepalese rupee"]}
-{"payment_id": 92, "order_id": 7, "payment_date": "2024-10-11", "amount": 8420, "payment_method": "Bank Transfer", "currency": ["IQD", "Iraqi dinar"]}
-{"payment_id": 93, "order_id": 64, "payment_date": "2024-10-18", "amount": 9395, "payment_method": "Cash", "currency": ["BRL", "Brazilian real"]}
-{"payment_id": 94, "order_id": 7, "payment_date": "2024-10-20", "amount": 156, "payment_method": "Cash", "currency": ["MGA", "Malagasy ariar"]}
-{"payment_id": 95, "order_id": 56, "payment_date": "2024-10-12", "amount": 6582, "payment_method": "Debit Card", "currency": ["LTL", "Lithuanian litas"]}
-{"payment_id": 96, "order_id": 52, "payment_date": "2024-10-02", "amount": 2907, "payment_method": "Credit Card", "currency": ["TJS", "Tajikistani somoni"]}
-{"payment_id": 97, "order_id": 67, "payment_date": "2024-10-06", "amount": 8805, "payment_method": "Bank Transfer", "currency": ["GHS", "Ghanaian cedi"]}
-{"payment_id": 98, "order_id": 26, "payment_date": "2024-10-03", "amount": 8186, "payment_method": "Cash", "currency": ["SCR", "Seychellois rupee"]}
-{"payment_id": 99, "order_id": 10, "payment_date": "2024-10-16", "amount": 741, "payment_method": "Credit Card", "currency": ["LSL", "Lesotho loti"]}
+{"payment_id": 0, "order_id": 95, "payment_date": "2024-10-17", "amount": 1362, "payment_method": "Debit Card", "currency": ["SCR", "Seychellois rupee"]}
+{"payment_id": 1, "order_id": 20, "payment_date": "2024-10-10", "amount": 1337, "payment_method": "PayPal", "currency": ["CNY", "Renminbi"]}
+{"payment_id": 2, "order_id": 16, "payment_date": "2024-10-03", "amount": 847, "payment_method": "Debit Card", "currency": ["HRK", "Croatian kuna"]}
+{"payment_id": 3, "order_id": 25, "payment_date": "2024-10-11", "amount": 8038, "payment_method": "Cash", "currency": ["YER", "Yemeni rial"]}
+{"payment_id": 4, "order_id": 49, "payment_date": "2024-10-21", "amount": 736, "payment_method": "Debit Card", "currency": ["NZD", "New Zealand dollar"]}
+{"payment_id": 5, "order_id": 43, "payment_date": "2024-10-05", "amount": 3652, "payment_method": "Cash", "currency": ["COP", "Colombian peso"]}
+{"payment_id": 6, "order_id": 1, "payment_date": "2024-10-16", "amount": 4384, "payment_method": "Bank Transfer", "currency": ["ZWD", "Zimbabwean dollar"]}
+{"payment_id": 7, "order_id": 49, "payment_date": "2024-10-06", "amount": 1847, "payment_method": "PayPal", "currency": ["CNY", "Renminbi"]}
+{"payment_id": 8, "order_id": 7, "payment_date": "2024-10-09", "amount": 6859, "payment_method": "Cash", "currency": ["SAR", "Saudi riyal"]}
+{"payment_id": 9, "order_id": 26, "payment_date": "2024-10-18", "amount": 4433, "payment_method": "Debit Card", "currency": ["XCD", "Eastern Caribbean dollar"]}
+{"payment_id": 10, "order_id": 15, "payment_date": "2024-10-03", "amount": 5359, "payment_method": "Debit Card", "currency": ["NPR", "Nepalese rupee"]}
+{"payment_id": 11, "order_id": 69, "payment_date": "2024-10-13", "amount": 4420, "payment_method": "Cash", "currency": ["MDL", "Moldovan leu"]}
+{"payment_id": 12, "order_id": 40, "payment_date": "2024-10-08", "amount": 1231, "payment_method": "Cash", "currency": ["KPW", "North Korean won"]}
+{"payment_id": 13, "order_id": 43, "payment_date": "2024-10-03", "amount": 6819, "payment_method": "Credit Card", "currency": ["QAR", "Qatari riyal"]}
+{"payment_id": 14, "order_id": 98, "payment_date": "2024-10-10", "amount": 3094, "payment_method": "PayPal", "currency": ["BYR", "Belarusian ruble"]}
+{"payment_id": 15, "order_id": 94, "payment_date": "2024-10-09", "amount": 9547, "payment_method": "Credit Card", "currency": ["VEF", "Venezuelan bol\u00edvar"]}
+{"payment_id": 16, "order_id": 78, "payment_date": "2024-10-13", "amount": 7950, "payment_method": "PayPal", "currency": ["KMF", "Comorian franc"]}
+{"payment_id": 17, "order_id": 5, "payment_date": "2024-10-14", "amount": 7448, "payment_method": "PayPal", "currency": ["TTD", "Trinidad and Tobago dollar"]}
+{"payment_id": 18, "order_id": 70, "payment_date": "2024-10-06", "amount": 4146, "payment_method": "Bank Transfer", "currency": ["AFN", "Afghan afghani"]}
+{"payment_id": 19, "order_id": 59, "payment_date": "2024-10-06", "amount": 1500, "payment_method": "Credit Card", "currency": ["BMD", "Bermudian dollar"]}
+{"payment_id": 20, "order_id": 37, "payment_date": "2024-10-08", "amount": 5429, "payment_method": "Cash", "currency": ["VEF", "Venezuelan bol\u00edvar"]}
+{"payment_id": 21, "order_id": 88, "payment_date": "2024-10-14", "amount": 2366, "payment_method": "Bank Transfer", "currency": ["PYG", "Paraguayan guarani"]}
+{"payment_id": 22, "order_id": 99, "payment_date": "2024-10-19", "amount": 4158, "payment_method": "Credit Card", "currency": ["THB", "Thai baht"]}
+{"payment_id": 23, "order_id": 10, "payment_date": "2024-10-11", "amount": 4013, "payment_method": "Debit Card", "currency": ["ZAR", "South African rand"]}
+{"payment_id": 24, "order_id": 83, "payment_date": "2024-10-06", "amount": 2360, "payment_method": "Cash", "currency": ["TMT", "Turkmenistan manat"]}
+{"payment_id": 25, "order_id": 69, "payment_date": "2024-10-22", "amount": 8115, "payment_method": "Bank Transfer", "currency": ["SAR", "Saudi riyal"]}
+{"payment_id": 26, "order_id": 32, "payment_date": "2024-10-03", "amount": 6529, "payment_method": "Debit Card", "currency": ["BTN", "Bhutanese ngultrum"]}
+{"payment_id": 27, "order_id": 13, "payment_date": "2024-10-09", "amount": 7169, "payment_method": "PayPal", "currency": ["GIP", "Gibraltar pound"]}
+{"payment_id": 28, "order_id": 55, "payment_date": "2024-10-18", "amount": 9944, "payment_method": "Cash", "currency": ["KWD", "Kuwaiti dinar"]}
+{"payment_id": 29, "order_id": 81, "payment_date": "2024-10-16", "amount": 5614, "payment_method": "Bank Transfer", "currency": ["GBP", "Pound sterling"]}
+{"payment_id": 30, "order_id": 36, "payment_date": "2024-10-04", "amount": 1402, "payment_method": "Bank Transfer", "currency": ["STD", "S\u00e3o Tom\u00e9 and Pr\u00edncipe dobra"]}
+{"payment_id": 31, "order_id": 59, "payment_date": "2024-10-04", "amount": 2940, "payment_method": "Credit Card", "currency": ["HRK", "Croatian kuna"]}
+{"payment_id": 32, "order_id": 2, "payment_date": "2024-10-15", "amount": 1390, "payment_method": "Debit Card", "currency": ["BDT", "Bangladeshi taka"]}
+{"payment_id": 33, "order_id": 38, "payment_date": "2024-10-03", "amount": 5312, "payment_method": "Debit Card", "currency": ["ZMW", "Zambian kwacha"]}
+{"payment_id": 34, "order_id": 92, "payment_date": "2024-10-07", "amount": 4218, "payment_method": "PayPal", "currency": ["NAD", "Namibian dollar"]}
+{"payment_id": 35, "order_id": 19, "payment_date": "2024-10-17", "amount": 2843, "payment_method": "Credit Card", "currency": ["KRW", "South Korean won"]}
+{"payment_id": 36, "order_id": 24, "payment_date": "2024-10-22", "amount": 1639, "payment_method": "Cash", "currency": ["SPL", "Seborga luigino"]}
+{"payment_id": 37, "order_id": 37, "payment_date": "2024-10-15", "amount": 6375, "payment_method": "Cash", "currency": ["CRC", "Costa Rican col\u00f3n"]}
+{"payment_id": 38, "order_id": 92, "payment_date": "2024-10-20", "amount": 8908, "payment_method": "Cash", "currency": ["RWF", "Rwandan franc"]}
+{"payment_id": 39, "order_id": 1, "payment_date": "2024-10-15", "amount": 6818, "payment_method": "PayPal", "currency": ["MDL", "Moldovan leu"]}
+{"payment_id": 40, "order_id": 97, "payment_date": "2024-10-16", "amount": 3881, "payment_method": "Bank Transfer", "currency": ["SEK", "Swedish krona"]}
+{"payment_id": 41, "order_id": 30, "payment_date": "2024-10-02", "amount": 9823, "payment_method": "Bank Transfer", "currency": ["DJF", "Djiboutian franc"]}
+{"payment_id": 42, "order_id": 81, "payment_date": "2024-10-16", "amount": 5071, "payment_method": "Bank Transfer", "currency": ["TJS", "Tajikistani somoni"]}
+{"payment_id": 43, "order_id": 78, "payment_date": "2024-10-05", "amount": 165, "payment_method": "Credit Card", "currency": ["EUR", "Euro"]}
+{"payment_id": 44, "order_id": 42, "payment_date": "2024-10-03", "amount": 9557, "payment_method": "Debit Card", "currency": ["DOP", "Dominican peso"]}
+{"payment_id": 45, "order_id": 40, "payment_date": "2024-10-09", "amount": 7062, "payment_method": "Debit Card", "currency": ["LBP", "Lebanese pound"]}
+{"payment_id": 46, "order_id": 80, "payment_date": "2024-10-15", "amount": 6767, "payment_method": "Bank Transfer", "currency": ["ZWD", "Zimbabwean dollar"]}
+{"payment_id": 47, "order_id": 23, "payment_date": "2024-10-21", "amount": 6603, "payment_method": "Bank Transfer", "currency": ["GMD", "Gambian dalasi"]}
+{"payment_id": 48, "order_id": 1, "payment_date": "2024-10-10", "amount": 8012, "payment_method": "PayPal", "currency": ["AFN", "Afghan afghani"]}
+{"payment_id": 49, "order_id": 13, "payment_date": "2024-10-17", "amount": 3465, "payment_method": "Credit Card", "currency": ["NIS", "Israeli new shekel"]}
+{"payment_id": 50, "order_id": 38, "payment_date": "2024-10-18", "amount": 6651, "payment_method": "Credit Card", "currency": ["COP", "Colombian peso"]}
+{"payment_id": 51, "order_id": 69, "payment_date": "2024-10-10", "amount": 9873, "payment_method": "Bank Transfer", "currency": ["MXN", "Mexican peso"]}
+{"payment_id": 52, "order_id": 63, "payment_date": "2024-10-03", "amount": 7789, "payment_method": "Cash", "currency": ["XCD", "Eastern Caribbean dollar"]}
+{"payment_id": 53, "order_id": 79, "payment_date": "2024-10-09", "amount": 1241, "payment_method": "Credit Card", "currency": ["YER", "Yemeni rial"]}
+{"payment_id": 54, "order_id": 75, "payment_date": "2024-10-18", "amount": 8100, "payment_method": "Credit Card", "currency": ["XPF", "CFP franc"]}
+{"payment_id": 55, "order_id": 2, "payment_date": "2024-10-10", "amount": 6641, "payment_method": "Bank Transfer", "currency": ["SPL", "Seborga luigino"]}
+{"payment_id": 56, "order_id": 46, "payment_date": "2024-10-21", "amount": 6462, "payment_method": "Cash", "currency": ["SYP", "Syrian pound"]}
+{"payment_id": 57, "order_id": 38, "payment_date": "2024-10-12", "amount": 6792, "payment_method": "PayPal", "currency": ["MWK", "Malawian kwacha"]}
+{"payment_id": 58, "order_id": 72, "payment_date": "2024-10-07", "amount": 7415, "payment_method": "Cash", "currency": ["GTQ", "Guatemalan quetzal"]}
+{"payment_id": 59, "order_id": 64, "payment_date": "2024-10-06", "amount": 1260, "payment_method": "Credit Card", "currency": ["BZD", "Belize dollar"]}
+{"payment_id": 60, "order_id": 30, "payment_date": "2024-10-06", "amount": 7992, "payment_method": "Bank Transfer", "currency": ["IRR", "Iranian rial"]}
+{"payment_id": 61, "order_id": 71, "payment_date": "2024-10-09", "amount": 2857, "payment_method": "Bank Transfer", "currency": ["TND", "Tunisian dinar"]}
+{"payment_id": 62, "order_id": 31, "payment_date": "2024-10-06", "amount": 3758, "payment_method": "PayPal", "currency": ["SOS", "Somali shilling"]}
+{"payment_id": 63, "order_id": 45, "payment_date": "2024-10-01", "amount": 565, "payment_method": "Bank Transfer", "currency": ["LSL", "Lesotho loti"]}
+{"payment_id": 64, "order_id": 24, "payment_date": "2024-10-15", "amount": 3782, "payment_method": "Cash", "currency": ["FJD", "Fijian dollar"]}
+{"payment_id": 65, "order_id": 81, "payment_date": "2024-10-20", "amount": 8317, "payment_method": "Cash", "currency": ["BDT", "Bangladeshi taka"]}
+{"payment_id": 66, "order_id": 22, "payment_date": "2024-10-09", "amount": 7762, "payment_method": "Bank Transfer", "currency": ["LTL", "Lithuanian litas"]}
+{"payment_id": 67, "order_id": 6, "payment_date": "2024-10-20", "amount": 6823, "payment_method": "PayPal", "currency": ["BMD", "Bermudian dollar"]}
+{"payment_id": 68, "order_id": 94, "payment_date": "2024-10-05", "amount": 2440, "payment_method": "Debit Card", "currency": ["SEK", "Swedish krona"]}
+{"payment_id": 69, "order_id": 64, "payment_date": "2024-10-05", "amount": 9067, "payment_method": "Cash", "currency": ["KGS", "Kyrgyzstani som"]}
+{"payment_id": 70, "order_id": 84, "payment_date": "2024-10-05", "amount": 2286, "payment_method": "Cash", "currency": ["ANG", "Netherlands Antillean guilder"]}
+{"payment_id": 71, "order_id": 56, "payment_date": "2024-10-04", "amount": 8395, "payment_method": "Bank Transfer", "currency": ["PKR", "Pakistani rupee"]}
+{"payment_id": 72, "order_id": 46, "payment_date": "2024-10-06", "amount": 6154, "payment_method": "Cash", "currency": ["CDF", "Congolese franc"]}
+{"payment_id": 73, "order_id": 58, "payment_date": "2024-10-06", "amount": 682, "payment_method": "PayPal", "currency": ["AMD", "Armenian dram"]}
+{"payment_id": 74, "order_id": 59, "payment_date": "2024-10-22", "amount": 3786, "payment_method": "PayPal", "currency": ["CUC", "Cuban convertible peso"]}
+{"payment_id": 75, "order_id": 61, "payment_date": "2024-10-16", "amount": 5277, "payment_method": "Cash", "currency": ["TTD", "Trinidad and Tobago dollar"]}
+{"payment_id": 76, "order_id": 6, "payment_date": "2024-10-18", "amount": 3904, "payment_method": "Bank Transfer", "currency": ["LAK", "Lao kip"]}
+{"payment_id": 77, "order_id": 98, "payment_date": "2024-10-11", "amount": 9798, "payment_method": "PayPal", "currency": ["BGN", "Bulgarian lev"]}
+{"payment_id": 78, "order_id": 92, "payment_date": "2024-10-12", "amount": 6980, "payment_method": "Cash", "currency": ["AMD", "Armenian dram"]}
+{"payment_id": 79, "order_id": 40, "payment_date": "2024-10-09", "amount": 6490, "payment_method": "Bank Transfer", "currency": ["XOF", "West African CFA franc"]}
+{"payment_id": 80, "order_id": 52, "payment_date": "2024-10-22", "amount": 3393, "payment_method": "Bank Transfer", "currency": ["SGD", "Singapore dollar"]}
+{"payment_id": 81, "order_id": 42, "payment_date": "2024-10-19", "amount": 5889, "payment_method": "PayPal", "currency": ["USD", "United States dollar"]}
+{"payment_id": 82, "order_id": 71, "payment_date": "2024-10-01", "amount": 4942, "payment_method": "Bank Transfer", "currency": ["SLL", "Sierra Leonean leone"]}
+{"payment_id": 83, "order_id": 73, "payment_date": "2024-10-12", "amount": 8811, "payment_method": "PayPal", "currency": ["MVR", "Maldivian rufiyaa"]}
+{"payment_id": 84, "order_id": 61, "payment_date": "2024-10-05", "amount": 5596, "payment_method": "Cash", "currency": ["PGK", "Papua New Guinean kina"]}
+{"payment_id": 85, "order_id": 79, "payment_date": "2024-10-13", "amount": 4029, "payment_method": "Credit Card", "currency": ["SBD", "Solomon Islands dollar"]}
+{"payment_id": 86, "order_id": 50, "payment_date": "2024-10-09", "amount": 9205, "payment_method": "Credit Card", "currency": ["SLL", "Sierra Leonean leone"]}
+{"payment_id": 87, "order_id": 22, "payment_date": "2024-10-14", "amount": 8515, "payment_method": "Cash", "currency": ["LTL", "Lithuanian litas"]}
+{"payment_id": 88, "order_id": 69, "payment_date": "2024-10-08", "amount": 8252, "payment_method": "PayPal", "currency": ["ETB", "Ethiopian birr"]}
+{"payment_id": 89, "order_id": 99, "payment_date": "2024-10-13", "amount": 1109, "payment_method": "Credit Card", "currency": ["MMK", "Burmese kyat"]}
+{"payment_id": 90, "order_id": 88, "payment_date": "2024-10-03", "amount": 5750, "payment_method": "Bank Transfer", "currency": ["GNF", "Guinean franc"]}
+{"payment_id": 91, "order_id": 9, "payment_date": "2024-10-02", "amount": 1400, "payment_method": "Cash", "currency": ["PHP", "Philippine peso"]}
+{"payment_id": 92, "order_id": 42, "payment_date": "2024-10-12", "amount": 3470, "payment_method": "Cash", "currency": ["CUC", "Cuban convertible peso"]}
+{"payment_id": 93, "order_id": 42, "payment_date": "2024-10-12", "amount": 4102, "payment_method": "Debit Card", "currency": ["BDT", "Bangladeshi taka"]}
+{"payment_id": 94, "order_id": 79, "payment_date": "2024-10-22", "amount": 7879, "payment_method": "Cash", "currency": ["BZD", "Belize dollar"]}
+{"payment_id": 95, "order_id": 51, "payment_date": "2024-10-19", "amount": 2093, "payment_method": "Bank Transfer", "currency": ["UGX", "Ugandan shilling"]}
+{"payment_id": 96, "order_id": 61, "payment_date": "2024-10-17", "amount": 583, "payment_method": "Debit Card", "currency": ["XPF", "CFP franc"]}
+{"payment_id": 97, "order_id": 60, "payment_date": "2024-10-13", "amount": 8033, "payment_method": "Cash", "currency": ["AZN", "Azerbaijani manat"]}
+{"payment_id": 98, "order_id": 43, "payment_date": "2024-10-11", "amount": 5228, "payment_method": "Cash", "currency": ["IDR", "Indonesian rupiah"]}
+{"payment_id": 99, "order_id": 5, "payment_date": "2024-10-16", "amount": 8419, "payment_method": "Bank Transfer", "currency": ["STD", "S\u00e3o Tom\u00e9 and Pr\u00edncipe dobra"]}

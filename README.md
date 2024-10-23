@@ -352,6 +352,27 @@ db.Customers.find(
 <img src="images\34_filter_and_or_condition.png">
 
 
+# Recuperar todos los documentos que cumplan la condicion del and y ordenarlo de manera descendete
+```mongodb
+db.Customers.find(
+    {
+        // Usamos el operador lógico '$and' para cumplir con ambas condiciones
+        '$and': [ 
+            { 
+                'customer_id': { $gt: 1 } // Condición 1: Selecciona documentos donde 'customer_id' es mayor que 1
+            },  
+            { 
+                'salary': { $gt: 9000 }   // Condición 2: Selecciona documentos donde 'salary' es mayor que 9000
+            }     
+        ]
+    }
+)
+.sort({ 
+    'salary': -1  // Ordena los resultados por el campo 'salary' en orden descendente (de mayor a menor)
+});
+```
+<img src="images\35_filter_and_order_descending.png">
+
 
 # Agregación de Clientes con Órdenes: Inner Join V1
 ```mongodb
