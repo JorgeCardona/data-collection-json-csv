@@ -199,7 +199,8 @@ db.Customers.updateOne(  // Actualiza un único documento en la colección Custo
         $set: {               // Operación de actualización: establece los siguientes campos
             name: "Jorge Cardona",  // Campo que representa el nombre del cliente
             age: 31,               // Campo que representa la edad del cliente
-            nationality: "Unknown"  // Campo que representa la nacionalidad del cliente
+            nationality: "Unknown",  // Campo que representa la nacionalidad del cliente
+            current_continent: "Oceania"  // Campo que representa el continente donde reside actualmente el cliente
         } 
     },  
     { upsert: true }         // Opción upsert: si no encuentra coincidencias, inserta un nuevo documento
@@ -259,17 +260,6 @@ db.Customers.countDocuments();
 db.Customers.find({}, { _id: 1, customer_id: 1, name: 1 }).limit(4)
 ```
 <img src="images\28_filter_equals.png">
-
-# Recuperar todos los documentos iguales a la condicion
-```mongodb
-db.Customers.find(
-    {
-      'customer_id': 1 // Filtro de búsqueda: Busca los documentos donde el campo 'customer_id' sea igual a 1
-    }
-); 
-```
-<img src="images\25_find_limit.png">
-
 
 # Recuperar todos los documentos menores que la condicion
 ```mongodb
@@ -372,6 +362,29 @@ db.Customers.find(
 });
 ```
 <img src="images\35_filter_and_order_descending.png">
+
+
+# Agrupacion, agregado, Recuperar todos los documentos agrupados y ordenados segun la condicion
+```mongodb
+db.Customers.aggregate([  // Inicia una operación de agregación sobre la colección 'Customers'
+    {
+        $group: {  // Define una etapa de agrupación
+            _id: "$current_continent",  // Agrupa los documentos por el valor del campo 'current_continent'
+            total_customers: { $sum: 1 },  // Cuenta el número de clientes en cada continente sumando 1 por cada documento
+            total_salary: { $sum: "$salary" },  // Suma los salarios de los clientes en cada continente
+            avg_age: { $avg: "$age" }  // Calcula la edad promedio de los clientes en cada continente
+        }
+    },
+    {
+        $sort: {  // Define una etapa de ordenación
+            avg_age: 1,  // Ordena los resultados por 'avg_age' en orden ascendente (1)
+            total_salary: -1,  // Ordena los resultados por 'total_salary' en orden descendente (-1)
+            total_customers: -1  // Ordena los resultados por 'total_customers' en orden descendente (-1)
+        }
+    }
+]);
+```
+<img src="images\36_grouped_and_sorted.png">
 
 
 # Agregación de Clientes con Órdenes: Inner Join V1
