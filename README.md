@@ -366,20 +366,25 @@ db.Customers.find(
 
 # Agrupacion, agregado, Recuperar todos los documentos agrupados y ordenados segun la condicion
 ```mongodb
-db.Customers.aggregate([  // Inicia una operación de agregación sobre la colección 'Customers'
+db.Customers.aggregate([
     {
-        $group: {  // Define una etapa de agrupación
-            _id: "$current_continent",  // Agrupa los documentos por el valor del campo 'current_continent'
-            total_customers: { $sum: 1 },  // Cuenta el número de clientes en cada continente sumando 1 por cada documento
+        $group: {  // Inicia la etapa de agrupación
+            _id: "$current_continent",  // Agrupa los documentos por el campo 'current_continent'
+            total_customers: { $sum: 1 },  // Cuenta el número de clientes en cada continente
             total_salary: { $sum: "$salary" },  // Suma los salarios de los clientes en cada continente
-            avg_age: { $avg: "$age" }  // Calcula la edad promedio de los clientes en cada continente
+            avg_age: { $avg: "$age" },  // Calcula la edad promedio de los clientes en cada continente
+            min_age: { $min: "$age" },  // Encuentra la edad mínima de los clientes en cada continente
+            max_age: { $max: "$age" },  // Encuentra la edad máxima de los clientes en cada continente
+            std_dev_age: { $stdDevPop: "$age" },  // Calcula la desviación estándar poblacional de la edad
+            high_salary_count: { $sum: { $cond: [{ $gt: ["$salary", 5000] }, 1, 0] } },  // Cuenta los clientes con salario mayor a 5000
+            unique_nationalities: { $addToSet: "$nationality" }  // Crea un array de nacionalidades únicas de los clientes en cada continente
         }
     },
     {
-        $sort: {  // Define una etapa de ordenación
-            avg_age: 1,  // Ordena los resultados por 'avg_age' en orden ascendente (1)
-            total_salary: -1,  // Ordena los resultados por 'total_salary' en orden descendente (-1)
-            total_customers: -1  // Ordena los resultados por 'total_customers' en orden descendente (-1)
+        $sort: {  // Inicia la etapa de ordenación
+            avg_age: 1,  // Ordena los resultados por 'avg_age' en orden ascendente
+            total_salary: -1,  // Ordena los resultados por 'total_salary' en orden descendente
+            total_customers: -1  // Ordena los resultados por 'total_customers' en orden descendente
         }
     }
 ]);
