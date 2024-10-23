@@ -304,6 +304,55 @@ db.Customers.find(
 <img src="images\31_filter_greater_than.png">
 
 
+# Recuperar todos los documentos que cumplan la condicion del or
+```mongodb
+db.Customers.find(
+    {
+        '$or': [ // Operador lógico: Busca documentos que cumplen al menos una de las condiciones
+            { 'customer_id': { $gt: 10 } }, // Condición 1: 'customer_id' es mayor que 10
+            { 'customer_id': { $lt: 2 } }   // Condición 2: 'customer_id' es menor que 2
+        ]
+    }
+);
+```
+<img src="images\32_filter_or_condition.png">
+
+
+# Recuperar todos los documentos que cumplan la condicion del and
+```mongodb
+db.Customers.find(
+    {
+        '$and': [ // Operador lógico: Busca documentos que cumplen ambas condiciones
+            { 'customer_id': { $gt: 1 } }, // Condición 1: 'customer_id' es mayor que 1
+            { 'salary': { $gt: 9000 } }     // Condición 2: 'salary' es mayor que 9000
+        ]
+    }
+);
+```
+<img src="images\33_filter_and_condition.png">
+
+# Recuperar todos los documentos que cumplan la condicion del and y el or
+```mongodb
+db.Customers.find(
+    {
+        '$or': [ // Operador lógico: Busca documentos que cumplen al menos una de las condiciones
+            { // Primera condición del $or
+                '$and': [ // Operador lógico: Ambas condiciones dentro de este grupo deben cumplirse
+                    { 'customer_id': { $gt: 10 } }, // 'customer_id' debe ser mayor que 10
+                    { 'salary': { $gt: 3000 } }     // 'salary' debe ser mayor que 3000
+                ]
+            },
+            { // Segunda condición del $or
+                'age': { $lt: 30 } // 'age' debe ser menor que 30
+            }
+        ]
+    }
+);
+```
+<img src="images\34_filter_and_or_condition.png">
+
+
+
 # Agregación de Clientes con Órdenes: Inner Join V1
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
