@@ -424,7 +424,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ```
 <img src="images\37_inner_join_collections.png">
 
-## INNER JOIN ENTRE MUTIPLES COLECCIONES
+## INNER JOIN ENTRE MUTIPLES COLECCIONES INICIANDO DESDE EL 4 DOCUEMNTO Y FILTRANDO LOS 2 SIGUIENTES
 ```mongodb
 db.Customers.aggregate([
     {
