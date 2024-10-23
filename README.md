@@ -217,6 +217,93 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\22_upsert_many.png">
 
+
+# recuperar el primer documento de la coleccion
+```mongodb
+db.Customers.findOne(); // Utiliza el método findOne() para obtener el primer documento de la colección Customers.
+```
+<img src="images\23_find_one.png">
+
+
+# recuperar todos los documentos de la coleccion
+```mongodb
+db.Customers.find(); // Usa el método find() para obtener todos los documentos de la colección Customers.
+```
+<img src="images\24_find_all.png">
+
+# Recuperar los primeros 2 documentos de la colección
+# Utiliza el método find() para obtener todos los documentos de la colección Customers,
+# y luego aplica limit(2) para devolver solo los primeros dos documentos.
+```mongodb
+db.Customers.find().limit(2);
+```
+<img src="images\25_find_limit.png">
+
+# Contar cuántos documentos hay en la colección Customers
+# Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
+```mongodb
+db.Customers.countDocuments();
+```
+<img src="images\26_count.png">
+
+# Contar cuántos documentos hay en la colección Customers
+# Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
+```mongodb
+db.Customers.countDocuments();
+```
+<img src="images\26_count.png">
+
+# Recuperar todos los documentos pero mostrando solo los primeros tres campos (_id, customer_id, name)
+# Utiliza el método find() y la proyección para incluir solo los campos deseados.
+```mongodb
+db.Customers.find({}, { _id: 1, customer_id: 1, name: 1 }).limit(4)
+```
+<img src="images\28_filter_equals.png">
+
+# Recuperar todos los documentos iguales a la condicion
+```mongodb
+db.Customers.find(
+    {
+      'customer_id': 1 // Filtro de búsqueda: Busca los documentos donde el campo 'customer_id' sea igual a 1
+    }
+); 
+```
+<img src="images\25_find_limit.png">
+
+
+# Recuperar todos los documentos menores que la condicion
+```mongodb
+db.Customers.find(
+    {
+        'customer_id': { $lt: 2 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea menor que 2
+    }
+);
+```
+<img src="images\29_filter_lower_than.png">
+
+
+# Recuperar todos los documentos menores o iguales que la condicion
+```mongodb
+db.Customers.find(
+    {
+        'customer_id': { $lte: 2 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea menor o igual a 2
+    }
+);
+```
+<img src="images\30_filter_lower_or_equals_than.png">
+
+
+# Recuperar todos los documentos mayores que la condicion
+```mongodb
+db.Customers.find(
+    {
+        'customer_id': { $gt: 10 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea mayor que 10
+    }
+);
+```
+<img src="images\31_filter_greater_than.png">
+
+
 # Agregación de Clientes con Órdenes: Inner Join V1
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
