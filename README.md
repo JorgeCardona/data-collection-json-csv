@@ -1,50 +1,52 @@
-# data-collection-json-csv-sql
+## data-collection-json-csv-sql
 data-collection-json-csv-sql is a repository dedicated to storing a variety of datasets in both JSON, SQL and CSV formats. This collection includes data from different domains and can be used for data analysis, machine learning projects, or educational purposes.
 
-# Crear bases de datos
+# <center> BASES DE DATOS Y COLECCIONES
+## Crear bases de datos
 ```mongodb
 use test_db;  // Cambia el contexto de la base de datos a 'test_db'
 ```
 <img src="images\01_create_database.png">
 
-# Crear una coleccion
+## Crear una coleccion
 ```mongodb
 db.createCollection('test_collection');  // Crea una nueva colección llamada 'test_collection' en la base de datos actual
 // { ok: 1 }  // Mensaje de confirmación que indica que la colección se ha creado correctamente (ok: 1)
 ```
 <img src="images\02_create_collection.png">
 
-# Listar las bases de datos, sino tiene colecciones no se Lista
+## Listar las bases de datos, sino tiene colecciones no se Lista
 ```mongodb
 show databases;  // Muestra una lista de todas las bases de datos disponibles en el servidor MongoDB 
 ```
 <img src="images\03_show_databases.png">
 
-# Eliminar una coleccion
+## Eliminar una coleccion
 ```mongodb
 db.test_collection.drop();  // Elimina la colección llamada 'test_collection' de la base de datos actual
 ```
 <img src="images\04_drop_collection.png">
 
-# Eliminar una base de datos
+## Eliminar una base de datos
 ```mongodb
 db.dropDatabase();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
 ```
 <img src="images\05_drop_database.png">
 
-# Seleccionar una base de datos que ya existe, sino existe la crea vacia
+## Seleccionar una base de datos que ya existe, sino existe la crea vacia
 ```mongodb
 use RetailManagementDB;  // Cambia el contexto de la base de datos a 'RetailManagementDB'
 ```
 <img src="images\06_change_database.png">
 
-# Listar las colecciones de la base de datos Seleccionada
+## Listar las colecciones de la base de datos Seleccionada
 ```mongodb
 show collections;  // Muestra una lista de todas las colecciones disponibles en la base de datos actual (RetailManagementDB)
 ```
 <img src="images\07_show_collections.png">
 
-# Crear un Indice generico en la colección
+# <center> INDICES
+## Crear un Indice generico en la colección
 ```mongodb
 db.Customers.createIndex({
     customer_id: 1  // Crea un índice ascendente en el campo customer_id en la colección Customers
@@ -53,7 +55,7 @@ db.Customers.createIndex({
 <img src="images\08_create_generic_index.png">
 
 
-# Crear un Indice con nombre personalizado en la colección
+## Crear un Indice con nombre personalizado en la colección
 ```mongodb
 db.Orders.createIndex(
     { customer_id: 1 },          // Crea un índice ascendente en el campo customer_id en la colección Orders
@@ -62,7 +64,7 @@ db.Orders.createIndex(
 ```
 <img src="images\09_create_custom_name_index.png">
 
-# Crear un multiples indices en la colección
+## Crear un multiples indices en la colección
 ```mongodb
 db.Payments.createIndexes(
    [
@@ -83,25 +85,26 @@ db.Payments.createIndexes(
 ```
 <img src="images\10_create_multiple_indexes.png">
 
-# Consultar Indices  en la colección
+## Consultar Indices  en la colección
 ```mongodb
 db.Customers.getIndexes();
 ```
 <img src="images\11_check_all_indexes.png">
 
-# Elimina todos los indices presentes en la colección excepto _id
+## Elimina todos los indices presentes en la colección excepto _id
 ```mongodb
 db.Payments.dropIndexes(); // Elimina todos los índices excepto _id
 ```
 <img src="images\12_drop_all_indexes.png">
 
-# Eliminar Indices
+## Eliminar Indices
 ```mongodb
 db.Orders.dropIndex('order_id_1');  // Elimina el índice llamado 'order_id_1' de la colección Orders
 ```
 <img src="images\13_drop_one_index.png">
 
-# Insertar 1 documento de una coleccion
+# <center> INSERCION DE DOCUMENTOS
+## Insertar 1 documento de una coleccion
 ```mongodb
 db.Customers.insertOne({  // Inserta un nuevo documento en la colección Customers
     customer_id: 1235,      // Campo que representa el ID del cliente
@@ -111,7 +114,7 @@ db.Customers.insertOne({  // Inserta un nuevo documento en la colección Custome
 ```
 <img src="images\14_insert_one.png">
 
-# Insertar multiples documentos de una coleccion, en un solo query
+## Insertar multiples documentos de una coleccion, en un solo query
 ```mongodb
 db.Customers.insertMany([  // Inserta múltiples documentos en la colección Customers
     {
@@ -148,7 +151,8 @@ db.Customers.insertMany([  // Inserta múltiples documentos en la colección Cus
 ```
 <img src="images\15_insert_many.png">
 
-# Eliminar 1 documento de una coleccion, basado en una condicion
+# <center> ELIMINACION DE DOCUMENTOS
+## Eliminar 1 documento de una coleccion, basado en una condicion
 ```mongodb
 db.Customers.deleteOne(  // Elimina un documento de la colección Customers que coincide con el criterio especificado
     { customer_id: 0 }     // Criterio de búsqueda: busca un documento donde customer_id sea igual a 0
@@ -156,7 +160,7 @@ db.Customers.deleteOne(  // Elimina un documento de la colección Customers que 
 ```
 <img src="images\16_delete_one.png">
 
-# Eliminar todos documentos de una coleccion, que cumplan la condicion
+## Eliminar todos documentos de una coleccion, que cumplan la condicion
 ```mongodb
 db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Customers que coinciden con el criterio especificado
     { customer_id: { $gt: 10 }}  // Criterio de búsqueda: busca documentos donde customer_id sea mayor que 10
@@ -164,7 +168,8 @@ db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Cust
 ```
 <img src="images\17_delete_many.png">
 
-# Actualizar 1 documento de una coleccion, basado en una condicion
+# <center> ACTUALIZACION DE DOCUMENTOS
+## Actualizar 1 documento de una coleccion, basado en una condicion
 ```mongodb
 db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
     { customer_id: 1 },    // Criterio de búsqueda: busca un documento donde customer_id sea igual a 1
@@ -173,7 +178,7 @@ db.Customers.updateOne(  // Actualiza un único documento en la colección Custo
 ```
 <img src="images\18_update_one.png">
 
-# Actualizar todos documentos de una coleccion, que cumplan la condicion
+## Actualizar todos documentos de una coleccion, que cumplan la condicion
 ```mongodb
 db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 3000 } }, // Criterio de búsqueda: busca documentos donde el salario sea menor a 3000
@@ -182,7 +187,7 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\19_update_many_1.png">
 
-# Actualizar todos documentos de una coleccion, que cumplan las condiciones
+## Actualizar todos documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 4000 }, age: { $gt: 40 } },  // Criterio de búsqueda: busca documentos donde el salario sea menor a 4000 y la edad mayor a 40
@@ -191,7 +196,8 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\20_update_many_2.png">
 
-# UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
+# <center> ACTUALIZACION/INSERCION DE DOCUEMNTOS
+## UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
     { customer_id: 1234 },  // Criterio de búsqueda: busca un documento donde customer_id sea igual a 1234
@@ -208,7 +214,7 @@ db.Customers.updateOne(  // Actualiza un único documento en la colección Custo
 ```
 <img src="images\21_upsert_one.png">
 
-# UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
+## UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { nationality: "Unknown" },       // Criterio de búsqueda: busca documentos donde la nacionalidad sea "Unknown"
@@ -218,50 +224,52 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\22_upsert_many.png">
 
-
-# recuperar el primer documento de la coleccion
+# <center> COMSULTA DE DOCUMENTOS
+## recuperar el primer documento de la coleccion
 ```mongodb
 db.Customers.findOne(); // Utiliza el método findOne() para obtener el primer documento de la colección Customers.
 ```
 <img src="images\23_find_one.png">
 
 
-# recuperar todos los documentos de la coleccion
+## recuperar todos los documentos de la coleccion
 ```mongodb
 db.Customers.find(); // Usa el método find() para obtener todos los documentos de la colección Customers.
 ```
 <img src="images\24_find_all.png">
 
-# Recuperar los primeros 2 documentos de la colección
-# Utiliza el método find() para obtener todos los documentos de la colección Customers,
-# y luego aplica limit(2) para devolver solo los primeros dos documentos.
+## Recuperar los primeros 2 documentos de la colección
+## Utiliza el método find() para obtener todos los documentos de la colección Customers,
+## y luego aplica limit(2) para devolver solo los primeros dos documentos.
 ```mongodb
 db.Customers.find().limit(2);
 ```
 <img src="images\25_find_limit.png">
 
-# Contar cuántos documentos hay en la colección Customers
-# Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
+# <center> CONTEO DE DOCUMENTOS
+## Contar cuántos documentos hay en la colección Customers
+## Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
 ```mongodb
 db.Customers.countDocuments();
 ```
 <img src="images\26_count.png">
 
-# Contar cuántos documentos hay en la colección Customers
-# Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
+## Contar cuántos documentos hay en la colección Customers
+## Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
 ```mongodb
 db.Customers.countDocuments();
 ```
 <img src="images\26_count.png">
 
-# Recuperar todos los documentos pero mostrando solo los primeros tres campos (_id, customer_id, name)
-# Utiliza el método find() y la proyección para incluir solo los campos deseados.
+# <center> COMSULTA Y LIMITE DE DOCUMENTOS CON CAMPOS ESPECIFICOS
+## Recuperar todos los documentos pero mostrando solo los primeros tres campos (_id, customer_id, name)
+## Utiliza el método find() y la proyección para incluir solo los campos deseados.
 ```mongodb
 db.Customers.find({}, { _id: 1, customer_id: 1, name: 1 }).limit(4)
 ```
 <img src="images\28_filter_equals.png">
 
-# Recuperar todos los documentos menores que la condicion
+## Recuperar todos los documentos menores que la condicion
 ```mongodb
 db.Customers.find(
     {
@@ -271,8 +279,8 @@ db.Customers.find(
 ```
 <img src="images\29_filter_lower_than.png">
 
-
-# Recuperar todos los documentos menores o iguales que la condicion
+# <center> COMSULTA DE DOCUMENTOS CON CONDICION MENOR O IGUAL QUE
+## Recuperar todos los documentos menores o iguales que la condicion
 ```mongodb
 db.Customers.find(
     {
@@ -282,8 +290,8 @@ db.Customers.find(
 ```
 <img src="images\30_filter_lower_or_equals_than.png">
 
-
-# Recuperar todos los documentos mayores que la condicion
+# <center> COMSULTA DE DOCUMENTOS CON CONDICION MENOR QUE
+## Recuperar todos los documentos mayores que la condicion
 ```mongodb
 db.Customers.find(
     {
@@ -293,8 +301,8 @@ db.Customers.find(
 ```
 <img src="images\31_filter_greater_than.png">
 
-
-# Recuperar todos los documentos que cumplan la condicion del or
+# <center> COMSULTA DE DOCUMENTOS CON CONDICION OR
+## Recuperar todos los documentos que cumplan la condicion del or
 ```mongodb
 db.Customers.find(
     {
@@ -307,8 +315,8 @@ db.Customers.find(
 ```
 <img src="images\32_filter_or_condition.png">
 
-
-# Recuperar todos los documentos que cumplan la condicion del and
+# <center> COMSULTA DE DOCUMENTOS CON CONDICION AND
+## Recuperar todos los documentos que cumplan la condicion del and
 ```mongodb
 db.Customers.find(
     {
@@ -321,7 +329,8 @@ db.Customers.find(
 ```
 <img src="images\33_filter_and_condition.png">
 
-# Recuperar todos los documentos que cumplan la condicion del and y el or
+# <center> COMSULTA DE DOCUMENTOS CON CONDICIONES AND y OR
+## Recuperar todos los documentos que cumplan la condicion del and y el or
 ```mongodb
 db.Customers.find(
     {
@@ -342,7 +351,7 @@ db.Customers.find(
 <img src="images\34_filter_and_or_condition.png">
 
 
-# Recuperar todos los documentos que cumplan la condicion del and y ordenarlo de manera descendete
+## Recuperar todos los documentos que cumplan la condicion del and y ordenarlo de manera descendete
 ```mongodb
 db.Customers.find(
     {
@@ -363,8 +372,9 @@ db.Customers.find(
 ```
 <img src="images\35_filter_and_order_descending.png">
 
+# <center> AGREGACIONES
 
-# Agrupacion, agregado, Recuperar todos los documentos agrupados y ordenados segun la condicion
+## Agrupacion, agregado, Recuperar todos los documentos agrupados y ordenados segun la condicion
 ```mongodb
 db.Customers.aggregate([
     {
@@ -391,8 +401,8 @@ db.Customers.aggregate([
 ```
 <img src="images\36_grouped_and_sorted.png">
 
-
-# Agregación de Clientes con Órdenes: Inner Join V1
+# <center> JOINs
+## Inner Join V1
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -413,7 +423,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# inner join v1, ver el plan de ejecucion
+## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -434,7 +444,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]).explain("executionStats");  // Ejecuta la operación y devuelve estadísticas de ejecución sobre el pipeline de agregación
 ```
 
-# inner join v1, documento anidado conteos antes y despues del join, ademas de todos los documentos
+## INNER JOIN V1, documento anidado conteos antes y despues del join, ademas de todos los documentos
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -466,7 +476,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# INNER JOIN MUESTRA SOLO LOS DOCUMENTOS QUE TIENEN ANDIDADOS ENTRE 2 Y 3 DOCUMENTOS
+## INNER JOIN V1 MUESTRA SOLO LOS DOCUMENTOS QUE TIENEN ANDIDADOS ENTRE 2 Y 3 DOCUMENTOS
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -496,7 +506,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# INNER JOIN MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
+## INNER JOIN V1 MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -518,7 +528,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# INNER JOIN CON CONDICION
+## INNER JOIN CON CONDICION
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -538,7 +548,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# INNER Join, v2 documento Relacionado por documento
+## INNER JOIN V2 documento Relacionado por documento
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -560,7 +570,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# INNER JOIN MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
+## INNER JOIN V2 MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -586,7 +596,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ```
 
 
-# INNER Join, v3 documento Relacionado por documento, pero con los campos combinados en un solo documento
+## INNER JOIN V3 documento Relacionado por documento, pero con los campos combinados en un solo documento
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -618,7 +628,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# LEFT JOIN
+## LEFT JOIN
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -632,7 +642,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# LEFT JOIN, solo los primeros 10 documentos, ordenando por los no vacios primero
+## LEFT JOIN, solo los primeros 10 documentos, ordenando por los no vacios primero
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -654,7 +664,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# ANTI LEFT JOIN
+## ANTI LEFT JOIN
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
     {
@@ -673,7 +683,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
-# RIGHT JOIN, se invierten las colecciones del left join
+## RIGHT JOIN, se invierten las colecciones del left join
 ```mongodb
 db.Orders.aggregate([  // Inicia una operación de agregación en la colección Orders
     {
@@ -692,7 +702,7 @@ db.Orders.aggregate([  // Inicia una operación de agregación en la colección 
 ]);
 ```
 
-# ANTI RIGHT JOIN
+## ANTI RIGHT JOIN
 ```mongodb
 db.Orders.aggregate([  // Inicia una operación de agregación en la colección Orders
     {
