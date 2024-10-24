@@ -913,6 +913,83 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
+## FULLOUTER JOIN V3 SIN DOCUMENTOS ANIDADOS, TODOS LOS CAMPOS AL MISMO NIVEL ADICIONANDO EL ID DE AMBOS OBJETOS
+```mongodb
+db.Customers.aggregate([  // Inicia una operación de agregación sobre la colección "Customers"
+    {
+        $lookup: {  // Realiza un Left Join entre la colección "Customers" y "Orders"
+            from: "Orders",  // Colección "Orders" a la que se va a unir
+            localField: "customer_id",  // Campo en "Customers" que se usará para la coincidencia
+            foreignField: "customer_id",  // Campo en "Orders" que se usará para la coincidencia
+            as: "orders"  // Almacena los documentos coincidentes de "Orders" en el campo "orders"
+        }
+    },
+    {
+        $unwind: {  // Descompone el array "orders" en documentos individuales para trabajar con ellos uno por uno
+            path: "$orders",  // Descompone el campo "orders"
+            preserveNullAndEmptyArrays: true  // Si no hay órdenes coincidentes, mantiene el documento de "Customers" sin modificaciones
+        }
+    },
+    {
+        $unionWith: {  // Realiza una operación de "Right Join" para incluir órdenes que no tengan clientes
+            coll: "Orders",  // Trabaja con la colección "Orders"
+            pipeline: [  // Define un pipeline (flujo de operaciones) para procesar los documentos de "Orders"
+                {
+                    $lookup: {  // Realiza un Join entre "Orders" y "Customers" para encontrar clientes
+                        from: "Customers",  // Colección "Customers" a la que se va a unir
+                        localField: "customer_id",  // Campo en "Orders" que se usará para la coincidencia
+                        foreignField: "customer_id",  // Campo en "Customers" que se usará para la coincidencia
+                        as: "customer"  // Almacena los documentos coincidentes de "Customers" en el campo "customer"
+                    }
+                },
+                {
+                    $unwind: {  // Descompone el array "customer" en documentos individuales
+                        path: "$customer",  // Descompone el campo "customer"
+                        preserveNullAndEmptyArrays: true  // Si no hay clientes coincidentes, mantiene el documento de "Orders" sin modificaciones
+                    }
+                }
+            ]
+        }
+    },
+    {
+        $addFields: {  // Añade nuevos campos al resultado sin eliminar los campos originales
+            _id_Customer: { 
+                $cond: { 
+                    if: { $ne: ["$customer", null] },  // Si el campo "customer" no es null (existe cliente asociado)
+                    then: "$customer._id",  // Asigna el ID del cliente al nuevo campo "_id_Customer"
+                    else: null  // Si no hay cliente asociado, asigna null a "_id_Customer"
+                } 
+            },
+            _id_Order: { 
+                $cond: { 
+                    if: { $ne: ["$orders", null] },  // Si el campo "orders" no es null (existe orden asociada)
+                    then: "$orders._id",  // Asigna el ID de la orden al nuevo campo "_id_Order"
+                    else: null  // Si no hay orden asociada, asigna null a "_id_Order"
+                }
+            }
+        }
+    },
+    {
+        $replaceRoot: {  // Reemplaza la raíz del documento actual por una combinación de varios campos
+            newRoot: { 
+                $mergeObjects: [ "$$ROOT", "$customer", "$orders"]  // Combina todos los campos de $$ROOT (el documento original), "customer" y "orders" en un único documento
+            }
+        }
+    },
+    {
+        $sort: {  // Ordena los resultados de la agregación
+            customer_id: 1,  // Orden ascendente por el campo "customer_id"
+            order_id: 1  // Orden ascendente por el campo "order_id"
+        }
+    },
+    {
+        $project: {  // Controla qué campos se mostrarán en los resultados finales
+            orders: 0,  // Elimina el campo "orders" del resultado
+            customer: 0  // Elimina el campo "customer" del resultado
+        }
+    }
+]);
+```
 
 ## ANTI FULLOUTER JOIN
 ```mongodb
