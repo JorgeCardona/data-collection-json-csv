@@ -165,6 +165,15 @@ db.Customers.deleteOne(  // Elimina un documento de la colección Customers que 
 db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Customers que coinciden con el criterio especificado
     { customer_id: { $gt: 10 }}  // Criterio de búsqueda: busca documentos donde customer_id sea mayor que 10
 );
+
+db.Orders.deleteMany(  // Inicia la operación para eliminar múltiples documentos de la colección Orders
+    { 
+        $or: [  // Utiliza el operador lógico OR para combinar condiciones
+            { customer_id: { $lt: 5 } },    // Elimina documentos donde customer_id sea menor que 5
+            { customer_id: { $gt: 15 } }    // Elimina documentos donde customer_id sea mayor que 15
+        ]  
+    }
+);
 ```
 <img src="images\17_delete_many.png">
 
@@ -196,7 +205,7 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\20_update_many_2.png">
 
-# <center> ACTUALIZACION/INSERCION DE DOCUEMNTOS
+# <center> UPSERT - ACTUALIZACION/INSERCION DE DOCUMENTOS
 ## UPSERT Actualizar o insertar un documentos de una coleccion, que cumplan las condiciones
 ```mongodb
 db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
@@ -224,7 +233,7 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 ```
 <img src="images\22_upsert_many.png">
 
-# <center> COMSULTA DE DOCUMENTOS
+# <center> CONSULTA DE DOCUMENTOS
 ## recuperar el primer documento de la coleccion
 ```mongodb
 db.Customers.findOne(); // Utiliza el método findOne() para obtener el primer documento de la colección Customers.
@@ -261,7 +270,7 @@ db.Customers.countDocuments();
 ```
 <img src="images\26_count.png">
 
-# <center> COMSULTA Y LIMITE DE DOCUMENTOS CON CAMPOS ESPECIFICOS
+# <center> CONSULTA Y LIMITE DE DOCUMENTOS CON CAMPOS ESPECIFICOS
 ## Recuperar todos los documentos pero mostrando solo los primeros tres campos (_id, customer_id, name)
 ## Utiliza el método find() y la proyección para incluir solo los campos deseados.
 ```mongodb
@@ -279,7 +288,7 @@ db.Customers.find(
 ```
 <img src="images\29_filter_lower_than.png">
 
-# <center> COMSULTA DE DOCUMENTOS CON CONDICION MENOR O IGUAL QUE
+# <center> CONSULTA DE DOCUMENTOS CON CONDICION MENOR O IGUAL QUE
 ## Recuperar todos los documentos menores o iguales que la condicion
 ```mongodb
 db.Customers.find(
@@ -290,7 +299,7 @@ db.Customers.find(
 ```
 <img src="images\30_filter_lower_or_equals_than.png">
 
-# <center> COMSULTA DE DOCUMENTOS CON CONDICION MENOR QUE
+# <center> CONSULTA DE DOCUMENTOS CON CONDICION MENOR QUE
 ## Recuperar todos los documentos mayores que la condicion
 ```mongodb
 db.Customers.find(
@@ -301,7 +310,7 @@ db.Customers.find(
 ```
 <img src="images\31_filter_greater_than.png">
 
-# <center> COMSULTA DE DOCUMENTOS CON CONDICION OR
+# <center> CONSULTA DE DOCUMENTOS CON CONDICION OR
 ## Recuperar todos los documentos que cumplan la condicion del or
 ```mongodb
 db.Customers.find(
@@ -315,7 +324,7 @@ db.Customers.find(
 ```
 <img src="images\32_filter_or_condition.png">
 
-# <center> COMSULTA DE DOCUMENTOS CON CONDICION AND
+# <center> CONSULTA DE DOCUMENTOS CON CONDICION AND
 ## Recuperar todos los documentos que cumplan la condicion del and
 ```mongodb
 db.Customers.find(
@@ -329,7 +338,7 @@ db.Customers.find(
 ```
 <img src="images\33_filter_and_condition.png">
 
-# <center> COMSULTA DE DOCUMENTOS CON CONDICIONES AND y OR
+# <center> CONSULTA DE DOCUMENTOS CON CONDICIONES AND y OR
 ## Recuperar todos los documentos que cumplan la condicion del and y el or
 ```mongodb
 db.Customers.find(
@@ -763,6 +772,194 @@ db.Orders.aggregate([  // Inicia una operación de agregación en la colección 
     {
         $match: {  // Filtra los resultados de la agregación
             "orders_anti_right_join": { $eq: [] }  // Incluye solo los documentos donde el arreglo de órdenes está vacío
+        }
+    }
+]);
+```
+
+## FULLOUTER JOIN V1 CON DOCUMENTOS ANIDADOS
+```mongodb
+db.Customers.aggregate([
+    {
+        // Realiza un Left Join entre Customers y Orders
+        $lookup: {
+            from: "Orders",                   // Colección con la que se hace el join
+            localField: "customer_id",        // Campo en Customers para el match
+            foreignField: "customer_id",      // Campo en Orders para el match
+            as: "left_join"                   // Resultado del left join se guarda aquí
+        }
+    },
+    {
+        // Agrega el resultado de las órdenes que no tienen clientes
+        $unionWith: {
+            // Realiza un Right Join entre Orders y Customers
+            coll: "Orders",
+            pipeline: [
+                {
+                    $lookup: {
+                        from: "Customers",            // Colección con la que se hace el join
+                        localField: "customer_id",    // Campo en Orders para el match
+                        foreignField: "customer_id",   // Campo en Customers para el match
+                        as: "right_join"              // Resultado del right join se guarda aquí
+                    }
+                }
+            ]
+        }
+    }
+]);
+```
+
+## FULLOUTER JOIN V2 SIN DOCUMENTOS ANIDADOS, PERO JSON DE LA COLECCION DEL JOIN
+```mongodb
+db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
+    {
+        $lookup: {  // Realiza un Left Join entre Customers y Orders
+            from: "Orders",                  // Colección a la que se está uniendo
+            localField: "customer_id",       // Campo en Customers que se usa para el join
+            foreignField: "customer_id",     // Campo en Orders que se usa para el join
+            as: "orders"                      // Nombre del nuevo campo que contendrá las órdenes
+        }
+    },
+    {
+        $unionWith: {  // Realiza un Right Join para obtener las órdenes sin clientes
+            coll: "Orders",
+            pipeline: [
+                {
+                    $lookup: {
+                        from: "Customers",            // Colección a la que se está uniendo
+                        localField: "customer_id",    // Campo en Orders que se usa para el join
+                        foreignField: "customer_id",   // Campo en Customers que se usa para el join
+                        as: "customer"                 // Nombre del nuevo campo que contendrá el cliente
+                    }
+                },
+                {
+                    $project: {  // Proyecta solo los campos necesarios
+                        order_id: 1, // Campo de la orden que se desea incluir
+                        order_date: 1, // Otro campo de la orden
+                        // Agrega aquí otros campos de Orders que deseas incluir
+                        customer: { $arrayElemAt: ["$customer", 0] } // Asegura que solo se incluya el primer cliente
+                    }
+                }
+            ]
+        }
+    },
+    {
+        $replaceRoot: {  // Reemplaza la raíz del documento
+            newRoot: { 
+                $mergeObjects: [ "$$ROOT", { orders: "$orders", customer: "$customer" } ] // Combina los campos
+            }
+        }
+    }
+]);
+```
+
+## FULLOUTER JOIN V3 SIN DOCUMENTOS ANIDADOS, TODOS LOS CAMPOS AL MISMO NIVEL
+```mongodb
+db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
+    {
+        $lookup: {  // Realiza un Left Join entre Customers y Orders
+            from: "Orders",                  // Colección a la que se está uniendo
+            localField: "customer_id",       // Campo en Customers que se usa para el join
+            foreignField: "customer_id",     // Campo en Orders que se usa para el join
+            as: "orders"                      // Nombre del nuevo campo que contendrá las órdenes
+        }
+    },
+    {
+        $unwind: {  // Descompone el array de órdenes en documentos individuales
+            path: "$orders",
+            preserveNullAndEmptyArrays: true  // Mantiene documentos de Customers sin órdenes
+        }
+    },
+    {
+        $unionWith: {  // Realiza un Right Join para obtener las órdenes sin clientes
+            coll: "Orders",
+            pipeline: [
+                {
+                    $lookup: {
+                        from: "Customers",            // Colección a la que se está uniendo
+                        localField: "customer_id",    // Campo en Orders que se usa para el join
+                        foreignField: "customer_id",   // Campo en Customers que se usa para el join
+                        as: "customer"                 // Nombre del nuevo campo que contendrá el cliente
+                    }
+                },
+                {
+                    $unwind: {                     // Descompone el array de clientes en documentos individuales
+                        path: "$customer",
+                        preserveNullAndEmptyArrays: true // Mantiene documentos de Orders sin clientes
+                    }
+                }
+            ]
+        }
+    },
+    {
+        $replaceRoot: {  // Reemplaza la raíz del documento
+            newRoot: { 
+                $mergeObjects: [ "$$ROOT", "$orders", "$customer" ] // Combina todos los campos
+            }
+        }
+    },
+    {
+        $sort: { 
+            customer_id: 1, // Ordena los resultados por customer_id en orden ascendente
+            order_id: 1     // Ordena los resultados por order_id en orden ascendente
+        }
+    },
+    {
+        $project: {
+            orders: 0, // Opcional: Si no deseas mostrar el campo de órdenes como array
+            customer: 0 // Opcional: Si no deseas mostrar el campo de cliente como objeto
+        }
+    }
+]);
+```
+
+
+## ANTI FULLOUTER JOIN
+```mongodb
+db.Customers.aggregate([
+    {
+        // Realiza un Left Join entre Customers y Orders
+        $lookup: {
+            from: "Orders",                   // Colección con la que se hace el join
+            localField: "customer_id",        // Campo en Customers para el match
+            foreignField: "customer_id",      // Campo en Orders para el match
+            as: "orders_anti_left_join"       // Resultado del left join se guarda aquí
+        }
+    },
+    {
+        // Filtra para incluir solo los clientes que no tienen órdenes
+        $match: {
+            "orders_anti_left_join": { $eq: [] }  // Clientes sin órdenes
+        }
+    },
+    {
+        // Agrega el resultado de los clientes sin órdenes en un array
+        $unionWith: {
+            // Realiza un Right Join entre Orders y Customers
+            coll: "Orders",
+            pipeline: [
+                {
+                    $lookup: {
+                        from: "Customers",            // Colección con la que se hace el join
+                        localField: "customer_id",    // Campo en Orders para el match
+                        foreignField: "customer_id",   // Campo en Customers para el match
+                        as: "orders_anti_right_join"   // Resultado del right join se guarda aquí
+                    }
+                },
+                {
+                    // Filtra para incluir solo las órdenes que no tienen clientes
+                    $match: {
+                        "orders_anti_right_join": { $eq: [] }  // Órdenes sin clientes
+                    }
+                }
+            ]
+        }
+    },
+    {
+        // Proyecta todos los campos menos orders_anti_left_join y orders_anti_right_join
+        $project: {
+            orders_anti_left_join: 0,      // Excluye el campo orders_anti_left_join que es una lista vacia
+            orders_anti_right_join: 0,     // Excluye el campo orders_anti_right_join  que es una lista vacia
         }
     }
 ]);
