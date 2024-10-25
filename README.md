@@ -1041,3 +1041,64 @@ db.Customers.aggregate([
     }
 ]);
 ```
+
+## UNION ALL
+```mongodb
+db.Customers.aggregate([
+    // 1. Incluye todos los documentos de Customers
+    {
+        $unionWith: {
+            coll: "Orders",  // Une Customers con la colección Orders
+        }
+    }
+]);
+```
+
+## UNION ALL MULTIPLES COLECCIONES
+```mongodb
+db.Customers.aggregate([
+    // 1. Une los documentos de Customers con los de Orders
+    {
+        $unionWith: {
+            coll: "Orders",  // Especifica que se unirá con la colección Orders
+        }
+    },
+    // 2. Une los documentos de las colecciones anteriores con los de Payments
+    {
+        $unionWith: {
+            coll: "Payments",  // Especifica que se unirá con la colección Payments
+        }
+    }
+]);
+```
+
+## UNION
+```mongodb
+db.Customers.aggregate([
+    // 1. Incluye todos los documentos de Customers
+    {
+        $unionWith: {
+            coll: "Orders"  // Une Customers con la colección Orders
+        }
+    },
+    // 2. Agrupa para eliminar duplicados, validando por múltiples campos
+    {
+        $group: {
+            _id: {
+                customer_id: "$customer_id",  // Campo para identificar duplicados
+                email: "$email",               // Otro campo para validar duplicados
+                // Agrega más campos según sea necesario
+            },
+            doc: { $first: "$$ROOT" }  // Mantiene el primer documento encontrado
+        }
+    },
+    // 3. Reemplaza la raíz con el documento original
+    {
+        $replaceRoot: { newRoot: "$doc" }
+    },
+    // 4. Ordena los resultados por customer_id de forma ascendente
+    {
+        $sort: { customer_id: 1 }  // 1 para orden ascendente
+    }
+]);
+```
