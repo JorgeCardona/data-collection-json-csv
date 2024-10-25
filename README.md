@@ -543,7 +543,7 @@ db.Payments.aggregate([
 ```
 <img src="images\45_getLastCurrencyValueFromList_agreagate.png">
 
-## OBTENER LOS DOCUEMNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA SENSITIVO AL CASO
+## OBTENER LOS DOCUMeNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA SENSITIVO AL CASO
 ```mongodb
 db.Payments.aggregate([
   {
@@ -554,7 +554,7 @@ db.Payments.aggregate([
 <img src="images\46_check_value_in_list_sensitive.png">
 
 
-## OBTENER LOS DOCUEMNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA NO SENSITIVO AL CASO
+## OBTENER LOS DOCUMeNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA NO SENSITIVO AL CASO
 ```mongodb
 db.Payments.find({
   currency: { $regex: /^singapore dollar$/i }  // Busca "Singapore dollar" en el campo currency sin ser sensible al caso
