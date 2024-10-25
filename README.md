@@ -410,6 +410,158 @@ db.Customers.aggregate([
 ```
 <img src="images\36_grouped_and_sorted.png">
 
+
+# BUSQUEDA POR TEXTO
+## Solo busca por documentos que COMIENCEN por una cadena o caracter especifico
+### SENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  name: { $regex: "^m" }  // Busca documentos donde el campo "name" comience con la letra "M"
+});
+```
+
+### INSENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  name: { $regex: "^m" , $options: "i"}  // Busca documentos donde el campo "name" comience con la letra "m",  La opción "i" hace que la búsqueda sea insensible a mayúsculas/minúsculas
+});
+```
+<img src="images\37_case_insensitive_prefix_match.png">
+
+## Solo busca por documentos que CONTIENEN la una cadena o caracter especifico
+### SENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  name: { $regex: "st" }  // Busca documentos donde el campo "name" contenga la secuencia de caracteres "st"
+});
+```
+
+### INSENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  name: { $regex: "st", $options: "i" } // Busca documentos donde el campo "name" contenga la secuencia de caracteres "st"
+});
+```
+<img src="images\38_case_insensitive_contains_match.png">
+
+## Solo busca por documentos que FINALICEN por una cadena o caracter especifico
+### SENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  email: { $regex: ".NET$" }  // Busca documentos donde el campo "email" finalice la secuencia de caracteres ".NET"
+});
+```
+
+### INSENSIBLE AL CASO
+```mongodb
+db.Customers.find({
+  email: { $regex: ".NET$", $options: "i" } // Busca documentos donde el campo "email" finalice la secuencia de caracteres ".NET", NO SENSIBLE AL CASO
+});
+```
+<img src="images\39_case_insensitive_suffix_match.png">
+
+
+## Busca el PRIMER DOCUMENTO y lo elimina
+```mongodb
+db.Orders.findOneAndDelete({ 
+  order_id: { $lt: 4 }  // Busca y elimina el primer documento donde "order_id" sea menor que 4
+});
+```
+<img src="images\40_findOne_and_delete.png">
+
+
+## Busca el PRIMER DOCUMENTO y lo Reemplaza
+```mongodb
+db.Customers.findOneAndReplace(
+  { customer_id: 1 },  // Filtro para encontrar el documento
+  { 
+    customer_id: 1,               // Nuevo documento
+    name: "Ernest Boyd",
+    email: "jeffreyday@example.org",
+    phone: "249.965.2201",
+    address: "10955 Roy Canyon Apt. 553 Jeanetteland, AS 54699",
+    age: 83,
+    country: "Romania",
+    continent: "Asia"
+  },
+  { returnNewDocument: true }  // Opcional: retorna el nuevo documento
+);
+```
+<img src="images\41_findOne_and_replace.png">
+
+
+## Busca el PRIMER DOCUMENTO y lo Actualiza
+```mongodb
+db.Customers.findOneAndUpdate(
+  { customer_id: 1 },  // Filtro para encontrar el documento
+  { 
+    $set: {              // Modifica solo los campos especificados
+      email: "newemail@example.com",  // Cambia el email
+      age: 23                       // Actualiza la edad
+    }
+  },
+  { returnNewDocument: true }  // Opcional: retorna el documento actualizado
+);
+```
+<img src="images\42_findOne_and_update.png">
+
+
+## Busca los valores UNICOS del campo
+```mongodb
+db.Customers.distinct("current_continent");  // // Busca y devuelve una lista de valores únicos del campo  current_continent
+```
+<img src="images\43_distinct.png">
+
+
+## OBTENER EL ULTIMO VALOR DE UN CAMPO QUE CONTIENE UNA LISTA USANDO FIND 
+```mongodb
+db.Payments.find(
+  {},
+  { currency: { $slice: -1 } }  // Proyección para obtener solo el último valor de currency en cada documento
+).sort({ _id: -1 })  // Ordena por _id en orden descendente para obtener los últimos documentos
+.limit(3);  // Limita la salida a los 3 últimos documentos
+```
+<img src="images\44_getLastCurrencyValueFromList_find.png">
+
+## OBTENER EL ULTIMO VALOR DE UN CAMPO QUE CONTIENE UNA LISTA USANDO AGGREGATE
+```mongodb
+db.Payments.aggregate([
+  {
+    $sort: { _id: -1 }  // Ordena los documentos por _id en orden descendente
+  },
+  {
+    $limit: 3  // Limita la salida a los 3 últimos documentos
+  },
+  {
+    $project: {
+      _id: 1,  // Incluye el ID del documento
+      order_id: 1,  // Incluye otros campos que desees
+      last_currency: { $arrayElemAt: ["$currency", -1] }  // Obtiene el último valor de currency
+    }
+  }
+])
+```
+<img src="images\45_getLastCurrencyValueFromList_agreagate.png">
+
+## OBTENER LOS DOCUEMNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA SENSITIVO AL CASO
+```mongodb
+db.Payments.aggregate([
+  {
+    $match: { currency: { $in: ["Singapore dollar"] } }  // Filtra documentos donde currency incluye "Singapore dollar"
+  }
+])
+```
+<img src="images\46_check_value_in_list_sensitive.png">
+
+
+## OBTENER LOS DOCUEMNTOS QUE TIENEN UN VALOR DENTRO DE UNA LISTA NO SENSITIVO AL CASO
+```mongodb
+db.Payments.find({
+  currency: { $regex: /^singapore dollar$/i }  // Busca "Singapore dollar" en el campo currency sin ser sensible al caso
+})
+```
+<img src="images\47_check_value_in_list_no_sensitive_case.png">
+
 # <center> JOINs
 ## Inner Join V1
 ```mongodb
@@ -431,7 +583,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     }
 ]);
 ```
-<img src="images\37_inner_join_collections.png">
+<img src="images\48_inner_join_collections.png">
 
 ## INNER JOIN ENTRE MUTIPLES COLECCIONES INICIANDO DESDE EL 4 DOCUMENTO Y FILTRANDO LOS 2 SIGUIENTES
 ```mongodb
@@ -477,7 +629,7 @@ db.Customers.aggregate([
 ]);
 ```
 
-<img src="images\38_inner_join_multiple_collections.png">
+<img src="images\49_inner_join_multiple_collections.png">
 
 ## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
