@@ -562,6 +562,39 @@ db.Payments.find({
 ```
 <img src="images\47_check_value_in_list_no_sensitive_case.png">
 
+## MAP REDUCE
+```mongodb
+// Función Map: define una función para mapear los datos de entrada
+var mapFunction = function() {
+    // Emitimos el campo 'payment_method' como clave y el campo 'amount' como valor
+    emit(this.payment_method, this.amount);
+};
+
+// Función Reduce: define una función para reducir los datos mapeados
+var reduceFunction = function(key, values) {
+    // Suma todos los valores de 'amount' que tienen la misma clave 'payment_method'
+    return Array.sum(values);
+};
+
+// Ejecución del MapReduce sobre la colección 'Payments'
+db.Payments.mapReduce(
+    // Especifica la función map para procesar cada documento de la colección
+    mapFunction,
+    
+    // Especifica la función reduce para agrupar y consolidar los resultados
+    reduceFunction,
+    
+    {
+        // Define la colección de salida, donde se guardarán los resultados agrupados
+        out: "resultados_payment_method"
+    }
+);
+
+// Consulta la colección de salida 'resultados_payment_method' para ver los resultados generados
+db.resultados_payment_method.find();
+```
+<img src="images\48_map_reduce.png">
+
 # <center> JOINs
 ## Inner Join V1
 ```mongodb
@@ -583,7 +616,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     }
 ]);
 ```
-<img src="images\48_inner_join_collections.png">
+<img src="images\49_inner_join_collections.png">
 
 ## INNER JOIN ENTRE MUTIPLES COLECCIONES INICIANDO DESDE EL 4 DOCUMENTO Y FILTRANDO LOS 2 SIGUIENTES
 ```mongodb
@@ -629,7 +662,7 @@ db.Customers.aggregate([
 ]);
 ```
 
-<img src="images\49_inner_join_multiple_collections.png">
+<img src="images\50_inner_join_multiple_collections.png">
 
 ## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
