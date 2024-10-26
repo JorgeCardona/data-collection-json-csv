@@ -1,13 +1,13 @@
 ## data-collection-json-csv-sql
 data-collection-json-csv-sql is a repository dedicated to storing a variety of datasets in both JSON, SQL and CSV formats. This collection includes data from different domains and can be used for data analysis, machine learning projects, or educational purposes.
 
-## Usa el Método .pretty() para Resultados Organizados
-El método .pretty() se utiliza en MongoDB para presentar los resultados de las consultas de manera más legible y estructurada. Esto es especialmente útil cuando se recuperan datos de APIs o se realizan consultas que devuelven varios documentos. Al aplicar .pretty(), los resultados se formatean con saltos de línea y sangrías, lo que facilita su visualización.
+## Usa el Método  para Resultados Organizados
+El método  se utiliza en MongoDB para presentar los resultados de las consultas de manera más legible y estructurada. Esto es especialmente útil cuando se recuperan datos de APIs o se realizan consultas que devuelven varios documentos. Al aplicar , los resultados se formatean con saltos de línea y sangrías, lo que facilita su visualización.
 
 ```mongodb
-.pretty()
+
 ```
-## Beneficios de Usar .pretty()
+## Beneficios de Usar 
 Legibilidad: Mejora la claridad al presentar documentos con varios campos.
 Estructura: Permite identificar rápidamente la jerarquía de los datos.
 Facilidad de Análisis: Ayuda a los desarrolladores a entender mejor la salida de las consultas.
@@ -22,7 +22,7 @@ use test_db;  // Cambia el contexto de la base de datos a 'test_db'
 
 ## Crear una coleccion
 ```mongodb
-db.createCollection('test_collection').pretty();  // Crea una nueva colección llamada 'test_collection' en la base de datos actual
+db.createCollection('test_collection');  // Crea una nueva colección llamada 'test_collection' en la base de datos actual
 // { ok: 1 }  // Mensaje de confirmación que indica que la colección se ha creado correctamente (ok: 1)
 ```
 <img src="images\02_create_collection.png">
@@ -35,13 +35,13 @@ show databases;  // Muestra una lista de todas las bases de datos disponibles en
 
 ## Eliminar una coleccion
 ```mongodb
-db.test_collection.drop().pretty();  // Elimina la colección llamada 'test_collection' de la base de datos actual
+db.test_collection.drop();  // Elimina la colección llamada 'test_collection' de la base de datos actual
 ```
 <img src="images\04_drop_collection.png">
 
 ## Eliminar una base de datos
 ```mongodb
-db.dropDatabase().pretty();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
+db.dropDatabase();  // Elimina la base de datos actual (test_db) junto con todas sus colecciones
 ```
 <img src="images\05_drop_database.png">
 
@@ -62,7 +62,7 @@ show collections;  // Muestra una lista de todas las colecciones disponibles en 
 ```mongodb
 db.Customers.createIndex({
     customer_id: 1  // Crea un índice ascendente en el campo customer_id en la colección Customers
-}).pretty();
+});
 ```
 <img src="images\08_create_generic_index.png">
 
@@ -72,7 +72,7 @@ db.Customers.createIndex({
 db.Orders.createIndex(
     { customer_id: 1 },          // Crea un índice ascendente en el campo customer_id en la colección Orders
     { name: "idx_customer_id" }  // Nombre personalizado asignado al índice: idx_customer_id
-).pretty();
+);
 ```
 <img src="images\09_create_custom_name_index.png">
 
@@ -93,25 +93,25 @@ db.Payments.createIndexes(
        "payment_method": 1
      }
    ]
- ).pretty();
+ );
 ```
 <img src="images\10_create_multiple_indexes.png">
 
 ## Consultar Indices  en la colección
 ```mongodb
-db.Customers.getIndexes().pretty();
+db.Customers.getIndexes();
 ```
 <img src="images\11_check_all_indexes.png">
 
 ## Elimina todos los indices presentes en la colección excepto _id
 ```mongodb
-db.Payments.dropIndexes().pretty(); // Elimina todos los índices excepto _id
+db.Payments.dropIndexes().; // Elimina todos los índices excepto _id
 ```
 <img src="images\12_drop_all_indexes.png">
 
 ## Eliminar Indices
 ```mongodb
-db.Orders.dropIndex('order_id_1').pretty();  // Elimina el índice llamado 'order_id_1' de la colección Orders
+db.Orders.dropIndex('order_id_1');  // Elimina el índice llamado 'order_id_1' de la colección Orders
 ```
 <img src="images\13_drop_one_index.png">
 
@@ -122,7 +122,7 @@ db.Customers.insertOne({  // Inserta un nuevo documento en la colección Custome
     customer_id: 1235,      // Campo que representa el ID del cliente
     name: "Nathalie Cardona", // Campo que representa el nombre del cliente
     age: 30                 // Campo que representa la edad del cliente
-}).pretty();
+});
 ```
 <img src="images\14_insert_one.png">
 
@@ -159,7 +159,7 @@ db.Customers.insertMany([  // Inserta múltiples documentos en la colección Cus
         phone: null,           // Este campo está definido como null
         address: "789 Plaza Central"  // Campo que representa la dirección del cliente
     }
-]).pretty();
+]);
 ```
 <img src="images\15_insert_many.png">
 
@@ -168,7 +168,7 @@ db.Customers.insertMany([  // Inserta múltiples documentos en la colección Cus
 ```mongodb
 db.Customers.deleteOne(  // Elimina un documento de la colección Customers que coincide con el criterio especificado
     { customer_id: 0 }     // Criterio de búsqueda: busca un documento donde customer_id sea igual a 0
-).pretty();
+);
 ```
 <img src="images\16_delete_one.png">
 
@@ -176,7 +176,7 @@ db.Customers.deleteOne(  // Elimina un documento de la colección Customers que 
 ```mongodb
 db.Customers.deleteMany(  // Elimina múltiples documentos de la colección Customers que coinciden con el criterio especificado
     { customer_id: { $gt: 10 }}  // Criterio de búsqueda: busca documentos donde customer_id sea mayor que 10
-).pretty();
+);
 
 db.Orders.deleteMany(  // Inicia la operación para eliminar múltiples documentos de la colección Orders
     { 
@@ -185,7 +185,7 @@ db.Orders.deleteMany(  // Inicia la operación para eliminar múltiples document
             { customer_id: { $gt: 15 } }    // Elimina documentos donde customer_id sea mayor que 15
         ]  
     }
-).pretty();
+);
 ```
 <img src="images\17_delete_many.png">
 
@@ -195,7 +195,7 @@ db.Orders.deleteMany(  // Inicia la operación para eliminar múltiples document
 db.Customers.updateOne(  // Actualiza un único documento en la colección Customers que coincide con el criterio especificado
     { customer_id: 1 },    // Criterio de búsqueda: busca un documento donde customer_id sea igual a 1
     { $set: { salary: 2222 } }  // Actualiza el campo salary, estableciendo su valor en 2222
-).pretty();
+);
 ```
 <img src="images\18_update_one.png">
 
@@ -204,7 +204,7 @@ db.Customers.updateOne(  // Actualiza un único documento en la colección Custo
 db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 3000 } }, // Criterio de búsqueda: busca documentos donde el salario sea menor a 3000
     { $inc: { salary: 500 } }  // Incrementa el campo salary en 500 para todos los documentos que coinciden
-).pretty();
+);
 ```
 <img src="images\19_update_many_1.png">
 
@@ -213,7 +213,7 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
 db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Customers que coinciden con el criterio especificado
     { salary: { $lt: 4000 }, age: { $gt: 40 } },  // Criterio de búsqueda: busca documentos donde el salario sea menor a 4000 y la edad mayor a 40
     { $mul: { salary: 1.5 } }                     // Multiplica el campo salary por 1.5 para todos los documentos que coinciden
-).pretty();
+);
 ```
 <img src="images\20_update_many_2.png">
 
@@ -231,7 +231,7 @@ db.Customers.updateOne(  // Actualiza un único documento en la colección Custo
         } 
     },  
     { upsert: true }         // Opción upsert: si no encuentra coincidencias, inserta un nuevo documento
-).pretty();
+);
 ```
 <img src="images\21_upsert_one.png">
 
@@ -241,21 +241,21 @@ db.Customers.updateMany(  // Actualiza múltiples documentos en la colección Cu
     { nationality: "Unknown" },       // Criterio de búsqueda: busca documentos donde la nacionalidad sea "Unknown"
     { $set: { nationality: "Pereira" } }, // Actualiza el campo nationality, estableciendo su valor en "Pereira"
     { upsert: true }                  // Opción upsert: si no encuentra coincidencias, inserta un nuevo documento
-).pretty();
+);
 ```
 <img src="images\22_upsert_many.png">
 
 # <center> CONSULTA DE DOCUMENTOS
 ## recuperar el primer documento de la coleccion
 ```mongodb
-db.Customers.findOne().pretty(); // Utiliza el método findOne() para obtener el primer documento de la colección Customers.
+db.Customers.findOne(); // Utiliza el método findOne() para obtener el primer documento de la colección Customers.
 ```
 <img src="images\23_find_one.png">
 
 
 ## recuperar todos los documentos de la coleccion
 ```mongodb
-db.Customers.find().pretty(); // Usa el método find() para obtener todos los documentos de la colección Customers.
+db.Customers.find(); // Usa el método find() para obtener todos los documentos de la colección Customers.
 ```
 <img src="images\24_find_all.png">
 
@@ -271,16 +271,17 @@ db.Customers.find().limit(2).pretty();
 ## Contar cuántos documentos hay en la colección Customers
 ## Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
 ```mongodb
-db.Customers.countDocuments().pretty();
+// Cuenta el número total de documentos en la colección Customers
+db.Customers.countDocuments();
 ```
 <img src="images\26_count.png">
 
-## Contar cuántos documentos hay en la colección Customers
-## Utiliza el método countDocuments() para devolver el número total de documentos en la colección.
+## Contar cuántos documentos hay en la colección Customers con la condicion dada
 ```mongodb
-db.Customers.countDocuments().pretty();
+// Cuenta el número de clientes que tienen más de 30 años
+db.Customers.countDocuments({ age: { $gt: 30 } });
 ```
-<img src="images\26_count.png">
+<img src="images\27_condition_count.png">
 
 # <center> CONSULTA Y LIMITE DE DOCUMENTOS CON CAMPOS ESPECIFICOS
 ## Recuperar todos los documentos pero mostrando solo los primeros tres campos (_id, customer_id, name)
@@ -296,7 +297,7 @@ db.Customers.find(
     {
         'customer_id': { $lt: 2 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea menor que 2
     }
-).pretty();
+);
 ```
 <img src="images\29_filter_lower_than.png">
 
@@ -307,7 +308,7 @@ db.Customers.find(
     {
         'customer_id': { $lte: 2 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea menor o igual a 2
     }
-).pretty();
+);
 ```
 <img src="images\30_filter_lower_or_equals_than.png">
 
@@ -318,7 +319,7 @@ db.Customers.find(
     {
         'customer_id': { $gt: 10 } // Filtro de búsqueda: Busca documentos donde el campo 'customer_id' sea mayor que 10
     }
-).pretty();
+);
 ```
 <img src="images\31_filter_greater_than.png">
 
@@ -332,7 +333,7 @@ db.Customers.find(
             { 'customer_id': { $lt: 2 } }   // Condición 2: 'customer_id' es menor que 2
         ]
     }
-).pretty();
+);
 ```
 <img src="images\32_filter_or_condition.png">
 
@@ -346,7 +347,7 @@ db.Customers.find(
             { 'salary': { $gt: 9000 } }     // Condición 2: 'salary' es mayor que 9000
         ]
     }
-).pretty();
+);
 ```
 <img src="images\33_filter_and_condition.png">
 
@@ -367,7 +368,7 @@ db.Customers.find(
             }
         ]
     }
-).pretty();
+);
 ```
 <img src="images\34_filter_and_or_condition.png">
 
@@ -389,7 +390,7 @@ db.Customers.find(
 )
 .sort({ 
     'salary': -1  // Ordena los resultados por el campo 'salary' en orden descendente (de mayor a menor)
-}).pretty();
+});
 ```
 <img src="images\35_filter_and_order_descending.png">
 
@@ -418,7 +419,7 @@ db.Customers.aggregate([
             total_customers: -1  // Ordena los resultados por 'total_customers' en orden descendente
         }
     }
-]).pretty();
+]);
 ```
 <img src="images\36_grouped_and_sorted.png">
 
@@ -429,14 +430,14 @@ db.Customers.aggregate([
 ```mongodb
 db.Customers.find({
   name: { $regex: "^m" }  // Busca documentos donde el campo "name" comience con la letra "M"
-}).pretty();
+});
 ```
 
 ### INSENSIBLE AL CASO
 ```mongodb
 db.Customers.find({
   name: { $regex: "^m" , $options: "i"}  // Busca documentos donde el campo "name" comience con la letra "m",  La opción "i" hace que la búsqueda sea insensible a mayúsculas/minúsculas
-}).pretty();
+});
 ```
 <img src="images\37_case_insensitive_prefix_match.png">
 
@@ -445,14 +446,14 @@ db.Customers.find({
 ```mongodb
 db.Customers.find({
   name: { $regex: "st" }  // Busca documentos donde el campo "name" contenga la secuencia de caracteres "st"
-}).pretty();
+});
 ```
 
 ### INSENSIBLE AL CASO
 ```mongodb
 db.Customers.find({
   name: { $regex: "st", $options: "i" } // Busca documentos donde el campo "name" contenga la secuencia de caracteres "st"
-}).pretty();
+});
 ```
 <img src="images\38_case_insensitive_contains_match.png">
 
@@ -461,14 +462,14 @@ db.Customers.find({
 ```mongodb
 db.Customers.find({
   email: { $regex: ".NET$" }  // Busca documentos donde el campo "email" finalice la secuencia de caracteres ".NET"
-}).pretty();
+});
 ```
 
 ### INSENSIBLE AL CASO
 ```mongodb
 db.Customers.find({
   email: { $regex: ".NET$", $options: "i" } // Busca documentos donde el campo "email" finalice la secuencia de caracteres ".NET", NO SENSIBLE AL CASO
-}).pretty();
+});
 ```
 <img src="images\39_case_insensitive_suffix_match.png">
 
@@ -477,7 +478,7 @@ db.Customers.find({
 ```mongodb
 db.Orders.findOneAndDelete({ 
   order_id: { $lt: 4 }  // Busca y elimina el primer documento donde "order_id" sea menor que 4
-}).pretty();
+});
 ```
 <img src="images\40_findOne_and_delete.png">
 
@@ -497,7 +498,7 @@ db.Customers.findOneAndReplace(
     continent: "Asia"
   },
   { returnNewDocument: true }  // Opcional: retorna el nuevo documento
-).pretty();
+);
 ```
 <img src="images\41_findOne_and_replace.png">
 
@@ -513,14 +514,14 @@ db.Customers.findOneAndUpdate(
     }
   },
   { returnNewDocument: true }  // Opcional: retorna el documento actualizado
-).pretty();
+);
 ```
 <img src="images\42_findOne_and_update.png">
 
 
 ## Busca los valores UNICOS del campo
 ```mongodb
-db.Customers.distinct("current_continent").pretty();  // // Busca y devuelve una lista de valores únicos del campo  current_continent
+db.Customers.distinct("current_continent");  // // Busca y devuelve una lista de valores únicos del campo  current_continent
 ```
 <img src="images\43_distinct.png">
 
@@ -531,7 +532,7 @@ db.Payments.find(
   {},
   { currency: { $slice: -1 } }  // Proyección para obtener solo el último valor de currency en cada documento
 ).sort({ _id: -1 })  // Ordena por _id en orden descendente para obtener los últimos documentos
-.limit(3).pretty();  // Limita la salida a los 3 últimos documentos
+.limit(3);  // Limita la salida a los 3 últimos documentos
 ```
 <img src="images\44_getLastCurrencyValueFromList_find.png">
 
@@ -579,13 +580,13 @@ db.Payments.find({
 // Función Map: define una función para mapear los datos de entrada
 var mapFunction = function() {
     // Emitimos el campo 'payment_method' como clave y el campo 'amount' como valor
-    emit(this.payment_method, this.amount).pretty();
+    emit(this.payment_method, this.amount);
 };
 
 // Función Reduce: define una función para reducir los datos mapeados
 var reduceFunction = function(key, values) {
     // Suma todos los valores de 'amount' que tienen la misma clave 'payment_method'
-    return Array.sum(values).pretty();
+    return Array.sum(values);
 };
 
 // Ejecución del MapReduce sobre la colección 'Payments'
@@ -600,10 +601,10 @@ db.Payments.mapReduce(
         // Define la colección de salida, donde se guardarán los resultados agrupados
         out: "map_reduce_payment_collection"
     }
-).pretty();
+);
 
 // Consulta la colección de salida 'map_reduce_payment_collection' para ver los resultados generados
-db.map_reduce_payment_collection.find().pretty();
+db.map_reduce_payment_collection.find();
 ```
 <img src="images\48_map_reduce.png">
 
@@ -626,7 +627,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             "orders_inner_join_v1": { $ne: [] } // Incluye solo los documentos que tienen órdenes, es decir, que no tienen el array vacío
         }
     }
-]).pretty();
+]);
 ```
 <img src="images\49_inner_join_collections.png">
 
@@ -671,7 +672,7 @@ db.Customers.aggregate([
         // Limita la salida a los siguientes 2 documentos después del skip
         $limit: 2  // Este operador limita el resultado a los siguientes 2 documentos
     }
-]).pretty();
+]);
 ```
 
 <img src="images\50_inner_join_multiple_collections.png">
@@ -694,7 +695,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             "orders_inner_join_v1": { $ne: [] } // Incluye solo los documentos que tienen órdenes, es decir, que no tienen el array vacío
         }
     }
-]).explain("executionStats").pretty();  // Ejecuta la operación y devuelve estadísticas de ejecución sobre el pipeline de agregación
+]).explain("executionStats");  // Ejecuta la operación y devuelve estadísticas de ejecución sobre el pipeline de agregación
 ```
 
 ## INNER JOIN V1, documento anidado conteos antes y despues del join, ademas de todos los documentos
@@ -726,7 +727,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             ]
         }
     }
-]).pretty();
+]);
 ```
 
 ## INNER JOIN V1 MUESTRA SOLO LOS DOCUMENTOS QUE TIENEN ANDIDADOS ENTRE 2 Y 3 DOCUMENTOS
@@ -756,7 +757,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     {
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
-]).pretty();
+]);
 ```
 
 ## INNER JOIN V1 MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
@@ -778,7 +779,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     {
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
-]).pretty();
+]);
 ```
 
 ## INNER JOIN CON CONDICION
@@ -798,7 +799,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             "customer_id": 3 // Agrega la condición para customer_id
         }
     }
-]).pretty();
+]);
 ```
 
 ## INNER JOIN V2 documento Relacionado por documento
@@ -820,7 +821,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             "orders_inner_join_v2": { $ne: [] } // Asegura que solo se incluyan los documentos con órdenes
         }
     }
-]).pretty();
+]);
 ```
 
 ## INNER JOIN V2 MUESTRA EL TOTAL DE DOCUMENTOS QUE CUMPLEN CON LA CONSULTA
@@ -845,7 +846,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     {
         $count: "total_documents" // Cuenta el número total de documentos que cumplen con las condiciones
     }
-]).pretty();
+]);
 ```
 
 
@@ -878,7 +879,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             orders_inner_join_v3: 0 // Opcional: Si no deseas mostrar el array de órdenes original
         }
     }
-]).pretty();
+]);
 ```
 
 ## LEFT JOIN
@@ -892,7 +893,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             as: "orders_left_join"           // Nombre del nuevo campo que contendrá las órdenes
         }
     }
-]).pretty();
+]);
 ```
 
 ## LEFT JOIN, solo los primeros 10 documentos, ordenando por los no vacios primero
@@ -914,7 +915,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     {
         $limit: 10 // Limita los resultados a los primeros 10 documentos
     }
-]).pretty();
+]);
 ```
 
 ## ANTI LEFT JOIN
@@ -933,7 +934,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             "orders_anti_left_join": { $eq: [] }     // Incluye solo los documentos donde el arreglo de órdenes está vacío
         }
     }
-]).pretty();
+]);
 ```
 
 ## RIGHT JOIN, se invierten las colecciones del left join
@@ -952,7 +953,7 @@ db.Orders.aggregate([  // Inicia una operación de agregación en la colección 
             "customers_right_join": { $ne: [] }  // Incluye solo los documentos donde el arreglo de clientes no está vacío
         }
     }
-]).pretty();
+]);
 ```
 
 ## ANTI RIGHT JOIN
@@ -971,7 +972,7 @@ db.Orders.aggregate([  // Inicia una operación de agregación en la colección 
             "orders_anti_right_join": { $eq: [] }  // Incluye solo los documentos donde el arreglo de órdenes está vacío
         }
     }
-]).pretty();
+]);
 ```
 
 ## FULLOUTER JOIN V1 CON DOCUMENTOS ANIDADOS
@@ -1003,7 +1004,7 @@ db.Customers.aggregate([
             ]
         }
     }
-]).pretty();
+]);
 ```
 
 ## FULLOUTER JOIN V2 SIN DOCUMENTOS ANIDADOS, PERO JSON DE LA COLECCION DEL JOIN
@@ -1047,7 +1048,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             }
         }
     }
-]).pretty();
+]);
 ```
 
 ## FULLOUTER JOIN V3 SIN DOCUMENTOS ANIDADOS, TODOS LOS CAMPOS AL MISMO NIVEL
@@ -1107,7 +1108,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
             customer: 0 // Opcional: Si no deseas mostrar el campo de cliente como objeto
         }
     }
-]).pretty();
+]);
 ```
 
 ## FULLOUTER JOIN V3 SIN DOCUMENTOS ANIDADOS, TODOS LOS CAMPOS AL MISMO NIVEL ADICIONANDO EL ID DE AMBOS OBJETOS
@@ -1185,7 +1186,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación sobre la colec
             customer: 0  // Elimina el campo "customer" del resultado
         }
     }
-]).pretty();
+]);
 ```
 
 ## ANTI FULLOUTER JOIN
@@ -1236,7 +1237,7 @@ db.Customers.aggregate([
             orders_anti_right_join: 0,     // Excluye el campo orders_anti_right_join  que es una lista vacia
         }
     }
-]).pretty();
+]);
 ```
 
 ## UNION ALL
@@ -1248,7 +1249,7 @@ db.Customers.aggregate([
             coll: "Orders",  // Une Customers con la colección Orders
         }
     }
-]).pretty();
+]);
 ```
 
 ## UNION ALL MULTIPLES COLECCIONES
@@ -1266,7 +1267,7 @@ db.Customers.aggregate([
             coll: "Payments",  // Especifica que se unirá con la colección Payments
         }
     }
-]).pretty();
+]);
 ```
 
 ## UNION
@@ -1297,5 +1298,5 @@ db.Customers.aggregate([
     {
         $sort: { customer_id: 1 }  // 1 para orden ascendente
     }
-]).pretty();
+]);
 ```
