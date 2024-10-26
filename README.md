@@ -622,92 +622,150 @@ db.Payments.mapReduce(
 // Consulta la colección de salida 'map_reduce_payment_collection' para ver los resultados generados
 db.map_reduce_payment_collection.find();
 ```
+<img src="images\48_map_reduce.png">
 
-## MAP REDUCE Incluyendo multiples map/reduce
+## MAP REDUCE Incluyendo multiples map/reduce, usando coleccion intermedia
 ```mongodb
+// Eliminar todos los documentos de la colección de salida
+db.map_reduce_payment_collection.deleteMany({}); // Borra todos los documentos existentes en la colección 'map_reduce_payment_collection' antes de realizar el nuevo mapReduce para evitar duplicados.
 
-// Comando para eliminar todos los documentos de la colección 'map_reduce_payment_collection'
-db.map_reduce_payment_collection.deleteMany({});
-
-var mapFunction = function() {
-    // Dividir la fecha en año, mes y día.
-    // La fecha está en formato "YYYY-MM-DD", por lo que utilizamos split para separarla.
-    var dateParts = this.payment_date.split("-");
-
-    // Asignar el primer elemento del array a la variable 'year', que representa el año.
-    var year = dateParts[0];
-
-    // Asignar el segundo elemento del array a la variable 'month', que representa el mes.
-    var month = dateParts[1];
-
-    // Asignar el tercer elemento del array a la variable 'day', que representa el día.
-    var day = dateParts[2];
-
-    // Emitir el payment_method como clave en el resultado del map.
-    // Emitimos un objeto que incluye el año, mes, día, el monto de la transacción (amount),
-    // y un conteo inicial de 1 para esta transacción.
-    emit(this.payment_method, {
-        year: year,    // Año extraído de la fecha
-        month: month,  // Mes extraído de la fecha
-        day: day,      // Día extraído de la fecha
-        amount: this.amount, // Monto de la transacción
-        count: 1       // Inicializamos el conteo en 1 para cada transacción
+var mapFunction = function() { // Definición de la función de mapeo que se ejecutará en cada documento de la colección
+    var dateParts = this.payment_date.split("-"); // Divide la fecha de pago en partes (año, mes, día) usando el guion como delimitador.
+    var year = dateParts[0]; // Asigna el primer elemento como año.
+    var month = dateParts[1]; // Asigna el segundo elemento como mes.
+    var day = dateParts[2]; // Asigna el tercer elemento como día.
+    
+    // Emitir el método de pago como clave y un objeto que contiene información relevante.
+    emit(this.payment_method, { // Utiliza la función emit para emitir el payment_method como clave.
+        year: year, // Agrega el año al objeto emitido.
+        month: month, // Agrega el mes al objeto emitido.
+        day: day, // Agrega el día al objeto emitido.
+        amount: this.amount, // Agrega el monto de la transacción al objeto emitido.
+        count: 1 // Inicializa el conteo en 1 para cada transacción emitida.
     });
 };
 
-var reduceFunction = function(key, values) {
-    // Inicializamos un objeto 'reducedValue' para almacenar el monto total,
-    // el conteo total y un objeto para contar las ocurrencias de cada fecha.
-    var reducedValue = {
-        totalAmount: 0,   // Total acumulado de los montos
-        totalCount: 0,    // Total acumulado de las transacciones
-        dates: {}         // Objeto para contar las ocurrencias de cada fecha
-    };
+var reduceFunction = function(key, values) { // Definición de la función de reducción que se ejecutará sobre los valores emitidos.
+    var totalAmount = 0;                // Inicializa la variable para el total acumulado de montos.
+    var totalCount = 0;                 // Inicializa la variable para el total acumulado de transacciones.
+    var payment_dates = {};              // Inicializa un objeto para contar las ocurrencias de cada fecha.
 
-    // Iteramos sobre cada valor en el array 'values', que contiene los resultados emitidos por la función map.
-    values.forEach(function(value) {
-        // Sumar los montos de cada transacción al total acumulado.
-        reducedValue.totalAmount += value.amount;
+    // Itera sobre cada valor en el array 'values' que fue emitido por la función de mapeo.
+    values.forEach(function(hola) { // 'hola' es un parámetro que representa cada objeto emitido.
+        totalAmount += hola.amount; // Suma el monto de cada transacción al total acumulado.
+        totalCount += hola.count; // Suma el conteo de transacciones al total acumulado.
 
-        // Sumar la cantidad de transacciones al conteo total.
-        reducedValue.totalCount += value.count;
+        // Crea un identificador único para la fecha en formato "YYYY-MM-DD".
+        var dateKey = hola.year + "-" + hola.month + "-" + hola.day;
 
-        // Crear un identificador único para la fecha en formato "YYYY-MM-DD".
-        var dateKey = value.year + "-" + value.month + "-" + value.day;
-
-        // Si la fecha no está en el objeto 'dates', inicializarla en 0.
-        if (!reducedValue.dates[dateKey]) {
-            reducedValue.dates[dateKey] = 0; // Inicializa el conteo de esa fecha
+        // Si la fecha no está en el objeto 'payment_dates', inicializarla en 0.
+        if (!payment_dates[dateKey]) {
+            payment_dates[dateKey] = 0; // Inicializa el conteo para esa fecha.
         }
 
-        // Aumentar el conteo para la fecha correspondiente.
-        reducedValue.dates[dateKey] += value.count; // Aumentar el conteo para esta fecha
+        // Aumenta el conteo para la fecha correspondiente.
+        payment_dates[dateKey] += 1; // Aumenta el conteo para esta fecha.
     });
 
-    // Retornar el objeto 'reducedValue' que ahora contiene el monto total,
-    // el conteo total y un objeto con las fechas y sus ocurrencias.
-    return reducedValue;
+    // Retorna un objeto que incluye el payment_method como _id y los totales y fechas correspondientes.
+    return {
+        _id: key,                       // Asigna la clave actual (payment_method) a _id.
+        totalAmount: totalAmount,       // Total acumulado de los montos.
+        totalCount: totalCount,         // Total acumulado de las transacciones.
+        payment_dates: payment_dates     // Objeto que cuenta las ocurrencias de cada fecha.
+    };
 };
 
-// Ejecución del MapReduce sobre la colección 'Payments'
-db.Payments.mapReduce(
-    // Especifica la función map para procesar cada documento de la colección
-    mapFunction,
-    
-    // Especifica la función reduce para agrupar y consolidar los resultados
-    reduceFunction,
-    
+// Función de mapeo nuevamente (redundante, debe ser eliminada)
+var mapFunction = function() { // Definición de la función de mapeo.
+    var dateParts = this.payment_date.split("-"); // Divide la fecha en partes.
+    var year = dateParts[0]; // Asigna el año.
+    var month = dateParts[1]; // Asigna el mes.
+    var day = dateParts[2]; // Asigna el día.
+
+    // Emitir el método de pago y la información relevante.
+    emit(this.payment_method, {
+        amount: this.amount, // Agrega el monto de la transacción.
+        count: 1, // Inicializa el conteo en 1.
+        year: year, // Agrega el año.
+        month: month, // Agrega el mes.
+        day: day // Agrega el día.
+    });
+};
+
+// Función de reducción (duplicada, se debe eliminar la anterior)
+var reduceFunction = function(key, values) { // Definición de la función de reducción.
+    var totalAmount = 0; // Inicializa el total de montos.
+    var totalCount = 0; // Inicializa el total de conteos.
+    var payment_dates = {}; // Inicializa un objeto para contar las fechas.
+
+    // Itera sobre los valores emitidos.
+    values.forEach(function(value) { // 'value' es cada objeto emitido.
+        totalAmount += value.amount; // Suma el monto al total.
+        totalCount += value.count; // Suma el conteo al total.
+
+        // Crea un identificador único para la fecha.
+        var dateKey = value.year + "-" + value.month + "-" + value.day;
+
+        // Si la fecha no está en el objeto, inicializarla en 0.
+        if (!payment_dates[dateKey]) {
+            payment_dates[dateKey] = 0; // Inicializa el conteo para esa fecha.
+        }
+        payment_dates[dateKey] += value.count; // Aumenta el conteo para la fecha.
+    });
+
+    // Retorna un objeto con los totales y el conteo de fechas.
+    return {
+        totalAmount: totalAmount, // Retorna el monto total acumulado.
+        totalCount: totalCount, // Retorna el conteo total acumulado.
+        payment_dates: payment_dates // Retorna el objeto con los conteos de fechas.
+    };
+};
+
+// Función de finalización
+var finalizeFunction = function(key, reducedValue) { // Definición de la función que ajusta el resultado final.
+    return { // Retorna un objeto con los resultados finales.
+        _id: key,                       // Asigna la clave actual (payment_method) a _id.
+        totalAmount: reducedValue.totalAmount, // Toma el totalAmount del resultado reducido.
+        totalCount: reducedValue.totalCount,   // Toma el totalCount del resultado reducido.
+        payment_dates: reducedValue.payment_dates // Toma payment_dates del resultado reducido.
+    };
+};
+
+// Ejecutar mapReduce con la función de finalización
+db.Payments.mapReduce( // Ejecuta la operación mapReduce sobre la colección 'Payments'.
+    mapFunction, // Función de mapeo que emite los datos necesarios.
+    reduceFunction, // Función de reducción que agrega los resultados emitidos.
     {
-        // Define la colección de salida, donde se guardarán los resultados agrupados
-        out: "map_reduce_payment_collection"
+        out: "temp_collection", // Define el nombre de la colección temporal para los resultados.
+        finalize: finalizeFunction // Especifica la función de finalización que ajustará los resultados finales.
     }
 );
 
-// Consulta la colección de salida 'map_reduce_payment_collection' para ver los resultados generados
-db.map_reduce_payment_collection.find();
+// Procesar la colección temporal para dar formato a los resultados
+db.temp_collection.aggregate([ // Inicia una operación de agregación sobre la colección temporal.
+    {
+        $project: { // Fase de proyección para dar formato a los resultados.
+            _id: 1, // Incluye el campo _id de los resultados.
+            totalAmount: "$value.totalAmount", // Extrae totalAmount de la clave value.
+            totalCount: "$value.totalCount",   // Extrae totalCount de la clave value.
+            payment_dates: "$value.payment_dates" // Extrae payment_dates de la clave value.
+        }
+    },
+    {
+        $out: "map_reduce_payment_collection" // Almacena los resultados formateados en la colección final.
+    }
+]);
+
+// Eliminar la colección temporal
+db.temp_collection.drop(); // Borra la colección temporal 'temp_collection' después de que los datos han sido procesados y almacenados.
+
+
+// Mostrar el resultado
+db.map_reduce_payment_collection.find().pretty(); // Realiza una consulta para mostrar los documentos de la colección 'map_reduce_payment_collection' en un formato legible.
 ```
 
-<img src="images\48_map_reduce.png">
+<img src="images\49_map_reduce_multiple_map_reduce.png">
 
 # <center> JOINs
 ## Inner Join V1
@@ -730,7 +788,7 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
     }
 ]);
 ```
-<img src="images\49_inner_join_collections.png">
+<img src="images\50_inner_join_collections.png">
 
 ## INNER JOIN ENTRE MUTIPLES COLECCIONES INICIANDO DESDE EL 4 DOCUMENTO Y FILTRANDO LOS 2 SIGUIENTES
 ```mongodb
@@ -776,7 +834,7 @@ db.Customers.aggregate([
 ]);
 ```
 
-<img src="images\50_inner_join_multiple_collections.png">
+<img src="images\51_inner_join_multiple_collections.png">
 
 ## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
