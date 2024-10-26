@@ -693,32 +693,44 @@ var mapFunction = function() { // Definición de la función de mapeo.
     });
 };
 
-// Función de reducción (duplicada, se debe eliminar la anterior)
-var reduceFunction = function(key, values) { // Definición de la función de reducción.
-    var totalAmount = 0; // Inicializa el total de montos.
-    var totalCount = 0; // Inicializa el total de conteos.
-    var payment_dates = {}; // Inicializa un objeto para contar las fechas.
+var reduceFunction = function(key, values) { // Definición de la función de reducción que se ejecutará sobre los valores emitidos.
+    var totalAmount = 0;                // Inicializa la variable para el total acumulado de montos.
+    var totalCount = 0;                 // Inicializa la variable para el total acumulado de transacciones.
+    var payment_dates = {};              // Inicializa un objeto para contar las ocurrencias de cada fecha.
 
-    // Itera sobre los valores emitidos.
-    values.forEach(function(value) { // 'value' es cada objeto emitido.
-        totalAmount += value.amount; // Suma el monto al total.
-        totalCount += value.count; // Suma el conteo al total.
+    // Itera sobre cada valor en el array 'values' que fue emitido por la función de mapeo.
+    values.forEach(function(hola) { // 'hola' es un parámetro que representa cada objeto emitido.
+        totalAmount += hola.amount; // Suma el monto de cada transacción al total acumulado.
+        totalCount += hola.count; // Suma el conteo de transacciones al total acumulado.
 
-        // Crea un identificador único para la fecha.
-        var dateKey = value.year + "-" + value.month + "-" + value.day;
+        // Crea un identificador único para la fecha en formato "YYYY-MM-DD".
+        var dateKey = hola.year + "-" + hola.month + "-" + hola.day;
 
-        // Si la fecha no está en el objeto, inicializarla en 0.
+        // Si la fecha no está en el objeto 'payment_dates', inicializarla en 0.
         if (!payment_dates[dateKey]) {
             payment_dates[dateKey] = 0; // Inicializa el conteo para esa fecha.
         }
-        payment_dates[dateKey] += value.count; // Aumenta el conteo para la fecha.
+
+        // Aumenta el conteo para la fecha correspondiente.
+        payment_dates[dateKey] += 1; // Aumenta el conteo para esta fecha.
     });
 
-    // Retorna un objeto con los totales y el conteo de fechas.
+    // Ordenar las fechas de menor a mayor
+    var sortedPaymentDates = Object.keys(payment_dates).sort(); // Obtiene las claves (fechas) y las ordena.
+
+    // Crear un nuevo objeto para almacenar las fechas ordenadas y sus ocurrencias
+    var sortedDatesWithCounts = {};
+    sortedPaymentDates.forEach(function(date) {
+        sortedDatesWithCounts[date] = payment_dates[date]; // Asocia cada fecha con su conteo.
+    });
+
+    // Retorna un objeto que incluye el payment_method como _id
+    // junto con el monto total, el conteo total y las fechas ordenadas con sus ocurrencias.
     return {
-        totalAmount: totalAmount, // Retorna el monto total acumulado.
-        totalCount: totalCount, // Retorna el conteo total acumulado.
-        payment_dates: payment_dates // Retorna el objeto con los conteos de fechas.
+        _id: key,                       // Asigna la clave actual (payment_method) a _id.
+        totalAmount: totalAmount,       // Total acumulado de los montos.
+        totalCount: totalCount,         // Total acumulado de las transacciones.
+        payment_dates: sortedDatesWithCounts // Objeto que cuenta las ocurrencias de cada fecha, ordenadas.
     };
 };
 
