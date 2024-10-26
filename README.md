@@ -787,35 +787,40 @@ db.map_reduce_payment_collection.deleteMany({});
 // Pipeline de agregación
 db.Payments.aggregate([
     {
-        // Verificar que payment_date sea una cadena antes de usar $split
+        // Añadir un nuevo campo 'dateParts' al documento
+        // Verificar que 'payment_date' sea una cadena antes de usar $split
         $addFields: {
             dateParts: {
+                // $cond permite hacer una evaluación condicional
                 $cond: {
+                    // Condición: Verificamos si el tipo de 'payment_date' es una cadena
                     if: { $eq: [{ $type: "$payment_date" }, "string"] },
+                    // Si es verdadero, dividimos la cadena en partes usando '-' como delimitador
                     then: { $split: ["$payment_date", "-"] },
+                    // Si es falso, devolvemos un array vacío
                     else: ["", "", ""]
                 }
             }
         }
     },
     {
-        // Extraer el año, mes y día de dateParts
+        // Añadir campos separados para año, mes y día
         $addFields: {
-            year: { $arrayElemAt: ["$dateParts", 0] },
-            month: { $arrayElemAt: ["$dateParts", 1] },
-            day: { $arrayElemAt: ["$dateParts", 2] }
+            year: { $arrayElemAt: ["$dateParts", 0] }, // Obtener el primer elemento (año)
+            month: { $arrayElemAt: ["$dateParts", 1] }, // Obtener el segundo elemento (mes)
+            day: { $arrayElemAt: ["$dateParts", 2] } // Obtener el tercer elemento (día)
         }
     },
     {
         // Agrupar por método de pago
         $group: {
-            _id: "$payment_method",
-            totalAmount: { $sum: "$amount" },      // Sumar montos
-            totalCount: { $sum: 1 },               // Contar transacciones
-            payment_dates: {
+            _id: "$payment_method", // Agrupamos documentos por el campo 'payment_method'
+            totalAmount: { $sum: "$amount" }, // Sumar montos de las transacciones
+            totalCount: { $sum: 1 }, // Contar el número total de transacciones
+            payment_dates: { // Crear un array de objetos para las fechas de pago
                 $push: {
-                    date: { $concat: ["$year", "-", "$month", "-", "$day"] },
-                    count: 1
+                    date: { $concat: ["$year", "-", "$month", "-", "$day"] }, // Concatenar año, mes y día en formato de fecha
+                    count: 1 // Contar cada ocurrencia de la fecha como 1
                 }
             }
         }
@@ -824,21 +829,39 @@ db.Payments.aggregate([
         // Contar las ocurrencias de cada fecha única
         $addFields: {
             payment_dates: {
+                // Convertir el array de fechas a un objeto
                 $arrayToObject: {
+                    // Usar $map para transformar el array
                     $map: {
                         input: {
+                            // Usar otro $map para iterar sobre el array de fechas
                             $map: {
                                 input: {
+                                    // Usar $reduce para combinar los arrays de fechas
                                     $reduce: {
-                                        input: "$payment_dates",
-                                        initialValue: [],
+                                        input: "$payment_dates", // El array que estamos reduciendo
+                                        initialValue: [], // Valor inicial del acumulador como un array vacío
                                         in: {
+                                            // Concatenar el valor acumulado con el resultado del condicional
                                             $concatArrays: [
-                                                "$$value",
+                                                "$$value", // Valor acumulado hasta ahora
                                                 {
+                                                    // Condicional que evalúa si la fecha ya está en el array acumulado
                                                     $cond: {
-                                                        if: { $in: ["$$this.date", { $map: { input: "$$value", in: "$$this.date" } }] },
+                                                        if: { 
+                                                            $in: [
+                                                                "$$this.date", // Fecha actual
+                                                                { 
+                                                                    $map: { 
+                                                                        input: "$$value", // Array acumulado
+                                                                        in: "$$this.date" // Extraer la fecha de cada objeto
+                                                                    }
+                                                                }
+                                                            ] 
+                                                        },
+                                                        // Si ya existe, no agregamos nada
                                                         then: [],
+                                                        // Si no existe, agregamos el objeto de fecha
                                                         else: ["$$this"]
                                                     }
                                                 }
@@ -846,20 +869,30 @@ db.Payments.aggregate([
                                         }
                                     }
                                 },
+                                // Nombrar cada objeto de fecha como 'dateObj'
                                 as: "dateObj",
+                                // Extraer solo la fecha
                                 in: "$$dateObj.date"
                             }
                         },
+                        // Nombrar cada fecha como 'dateKey'
                         as: "dateKey",
+                        // Crear un objeto con la clave como la fecha y el valor como el conteo
                         in: {
-                            k: "$$dateKey",
+                            k: "$$dateKey", // La clave es la fecha
                             v: {
+                                // Contar las ocurrencias de cada fecha en el array original
                                 $sum: {
                                     $map: {
-                                        input: "$payment_dates",
-                                        as: "dateObj",
+                                        input: "$payment_dates", // El array original de fechas
+                                        as: "dateObj", // Cada objeto de fecha como 'dateObj'
                                         in: {
-                                            $cond: { if: { $eq: ["$$dateObj.date", "$$dateKey"] }, then: "$$dateObj.count", else: 0 }
+                                            // Condicional para contar las fechas que coinciden
+                                            $cond: { 
+                                                if: { $eq: ["$$dateObj.date", "$$dateKey"] }, // Comparamos si la fecha actual coincide con 'dateKey'
+                                                then: "$$dateObj.count", // Si coincide, tomamos el conteo
+                                                else: 0 // Si no, devolvemos 0
+                                            }
                                         }
                                     }
                                 }
@@ -874,9 +907,10 @@ db.Payments.aggregate([
         // Ordenar el arreglo de payment_dates
         $addFields: {
             payment_dates: {
+                // Usar $sortArray para ordenar las fechas
                 $sortArray: {
-                    input: { $objectToArray: "$payment_dates" },
-                    sortBy: { k: 1 }  // Ordenar por la clave (fecha) de menor a mayor
+                    input: { $objectToArray: "$payment_dates" }, // Convertir el objeto a array para ordenar
+                    sortBy: { k: 1 } // Ordenar por la clave (fecha) de menor a mayor
                 }
             }
         }
@@ -884,26 +918,30 @@ db.Payments.aggregate([
     {
         // Convertir payment_dates de nuevo a objeto
         $addFields: {
-            payment_dates: { $arrayToObject: "$payment_dates" }
+            payment_dates: { $arrayToObject: "$payment_dates" } // Convertir el array de nuevo a objeto
         }
     },
     {
-        // Proyectar los campos necesarios
+        // Proyectar los campos necesarios en el resultado final
         $project: {
-            _id: 1,
-            totalAmount: 1,
-            totalCount: 1,
-            payment_dates: 1
+            _id: 1, // Incluir el campo '_id' (el método de pago)
+            totalAmount: 1, // Incluir el total de montos
+            totalCount: 1, // Incluir el total de transacciones
+            payment_dates: 1 // Incluir el array de fechas de pago
         }
     },
     {
         // Almacenar el resultado en la colección final
-        $merge: { into: "map_reduce_payment_collection", whenMatched: "replace", whenNotMatched: "insert" }
+        $merge: { 
+            into: "map_reduce_payment_collection", // Nombre de la colección destino
+            whenMatched: "replace", // Reemplazar documentos si coinciden
+            whenNotMatched: "insert" // Insertar nuevos documentos si no coinciden
+        }
     }
 ]);
 
 // Mostrar el resultado final
-db.map_reduce_payment_collection.find().pretty();
+db.map_reduce_payment_collection.find().pretty(); // Imprimir en formato legible los documentos en la colección final
 ```
 <img src="images\49_map_reduce_multiple_map_reduce.png">
 
