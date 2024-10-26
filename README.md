@@ -776,7 +776,135 @@ db.temp_collection.drop(); // Borra la colección temporal 'temp_collection' des
 // Mostrar el resultado
 db.map_reduce_payment_collection.find().pretty(); // Realiza una consulta para mostrar los documentos de la colección 'map_reduce_payment_collection' en un formato legible.
 ```
+<img src="images\49_map_reduce_multiple_map_reduce.png">
 
+
+## EL MISMO PROCESO DE MAP/REDUCE PERO CON AGGREGATE
+```mongodb
+// Eliminar todos los documentos de la colección de salida
+db.map_reduce_payment_collection.deleteMany({});
+
+// Pipeline de agregación
+db.Payments.aggregate([
+    {
+        // Verificar que payment_date sea una cadena antes de usar $split
+        $addFields: {
+            dateParts: {
+                $cond: {
+                    if: { $eq: [{ $type: "$payment_date" }, "string"] },
+                    then: { $split: ["$payment_date", "-"] },
+                    else: ["", "", ""]
+                }
+            }
+        }
+    },
+    {
+        // Extraer el año, mes y día de dateParts
+        $addFields: {
+            year: { $arrayElemAt: ["$dateParts", 0] },
+            month: { $arrayElemAt: ["$dateParts", 1] },
+            day: { $arrayElemAt: ["$dateParts", 2] }
+        }
+    },
+    {
+        // Agrupar por método de pago
+        $group: {
+            _id: "$payment_method",
+            totalAmount: { $sum: "$amount" },      // Sumar montos
+            totalCount: { $sum: 1 },               // Contar transacciones
+            payment_dates: {
+                $push: {
+                    date: { $concat: ["$year", "-", "$month", "-", "$day"] },
+                    count: 1
+                }
+            }
+        }
+    },
+    {
+        // Contar las ocurrencias de cada fecha única
+        $addFields: {
+            payment_dates: {
+                $arrayToObject: {
+                    $map: {
+                        input: {
+                            $map: {
+                                input: {
+                                    $reduce: {
+                                        input: "$payment_dates",
+                                        initialValue: [],
+                                        in: {
+                                            $concatArrays: [
+                                                "$$value",
+                                                {
+                                                    $cond: {
+                                                        if: { $in: ["$$this.date", { $map: { input: "$$value", in: "$$this.date" } }] },
+                                                        then: [],
+                                                        else: ["$$this"]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                as: "dateObj",
+                                in: "$$dateObj.date"
+                            }
+                        },
+                        as: "dateKey",
+                        in: {
+                            k: "$$dateKey",
+                            v: {
+                                $sum: {
+                                    $map: {
+                                        input: "$payment_dates",
+                                        as: "dateObj",
+                                        in: {
+                                            $cond: { if: { $eq: ["$$dateObj.date", "$$dateKey"] }, then: "$$dateObj.count", else: 0 }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        // Ordenar el arreglo de payment_dates
+        $addFields: {
+            payment_dates: {
+                $sortArray: {
+                    input: { $objectToArray: "$payment_dates" },
+                    sortBy: { k: 1 }  // Ordenar por la clave (fecha) de menor a mayor
+                }
+            }
+        }
+    },
+    {
+        // Convertir payment_dates de nuevo a objeto
+        $addFields: {
+            payment_dates: { $arrayToObject: "$payment_dates" }
+        }
+    },
+    {
+        // Proyectar los campos necesarios
+        $project: {
+            _id: 1,
+            totalAmount: 1,
+            totalCount: 1,
+            payment_dates: 1
+        }
+    },
+    {
+        // Almacenar el resultado en la colección final
+        $merge: { into: "map_reduce_payment_collection", whenMatched: "replace", whenNotMatched: "insert" }
+    }
+]);
+
+// Mostrar el resultado final
+db.map_reduce_payment_collection.find().pretty();
+```
 <img src="images\49_map_reduce_multiple_map_reduce.png">
 
 # <center> JOINs
