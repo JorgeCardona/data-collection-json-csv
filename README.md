@@ -12,6 +12,22 @@ Legibilidad: Mejora la claridad al presentar documentos con varios campos.
 Estructura: Permite identificar rápidamente la jerarquía de los datos.
 Facilidad de Análisis: Ayuda a los desarrolladores a entender mejor la salida de las consultas.
 
+Sí, exactamente. El método `.pretty()` se utiliza principalmente para mejorar la legibilidad de los resultados de las consultas que devuelven un cursor, como:
+
+### Métodos donde se puede usar `.pretty()`
+El método .pretty() se utiliza principalmente para mejorar la legibilidad de los resultados de las consultas que devuelven un cursor, como:
+
+1. **`find()`**:
+   - Para visualizar documentos en una colección de manera legible.
+   ```mongodb
+   db.Customers.find().pretty();
+   ```
+
+2. **`aggregate()`**:
+   - Para mostrar los resultados de las operaciones de agregación con un formato estructurado.
+   ```mongodb
+   db.Customers.aggregate([...]).pretty();
+   ```
 
 # <center> BASES DE DATOS Y COLECCIONES
 ## Crear bases de datos
