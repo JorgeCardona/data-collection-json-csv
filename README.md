@@ -205,6 +205,19 @@ db.Orders.deleteMany(  // Inicia la operación para eliminar múltiples document
 ```
 <img src="images\17_delete_many.png">
 
+
+##  Eliminar todos los documentos de la colección sin condicion
+```mongodb
+db.test_collection.deleteMany({});
+
+/*
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+*/
+```
+
 # <center> ACTUALIZACION DE DOCUMENTOS
 ## Actualizar 1 documento de una coleccion, basado en una condicion
 ```mongodb
@@ -1011,8 +1024,15 @@ db.Customers.aggregate([
     }
 ]);
 ```
-
 <img src="images\51_inner_join_multiple_collections.png">
+
+# VER EL PLAN DE EJECUCION DE UNA CONSULTA
+
+| Tipo de Explicación           | Descripción                                                                                                                             | Uso                                                  |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| "queryPlanner"                | Proporciona detalles sobre cómo el optimizador de consultas planifica la ejecución de la consulta.                                   | db.collection.find(query).explain("queryPlanner")  |
+| "executionStats"              | Ofrece información sobre cómo se ejecutó la consulta, incluidos los tiempos y estadísticas de rendimiento.                         | db.collection.find(query).explain("executionStats")|
+| "allPlansExecution"           | Proporciona información sobre todos los planes de ejecución considerados por el optimizador y cómo se ejecutaron.                   | db.collection.find(query).explain("allPlansExecution")|
 
 ## INNER JOIN V1, y PLAN DE EJECUCION
 ```mongodb
@@ -1255,6 +1275,50 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 ]);
 ```
 
+## LEFT JOIN, uniendo todos los campos del documento al mismo nivel y usando alias paar cada id
+```mongodb
+db.Customers.aggregate([  // Inicia una operación de agregación en la colección "Customers"
+  {
+    $lookup: {  // Realiza un Left Join entre "Customers" y "Orders"
+      from: "Orders",  // Colección "Orders" a la que se unirá
+      localField: "customer_id",  // Campo en "Customers" que se usará para la coincidencia
+      foreignField: "customer_id",  // Campo en "Orders" que se usará para la coincidencia
+      as: "coleccion_Orders"  // Campo en el que se almacenarán las órdenes coincidentes de "Orders"
+    }
+  },
+  {
+    $unwind: {  // Descompone el array "coleccion_Orders" en documentos individuales
+      path: "$coleccion_Orders",  // Campo que se descompone
+      preserveNullAndEmptyArrays: true  // Mantiene el documento de "Customers" aunque no haya coincidencia en "Orders"
+    }
+  },
+  {
+    $addFields: {  // Añade nuevos campos al documento
+      _id_coleccion_Customers: "$_id",  // Alias para el ID del cliente
+      _id_coleccion_Orders: "$coleccion_Orders._id"  // Alias para el ID de la orden
+    }
+  },
+  {
+    $replaceRoot: {  // Reemplaza la raíz del documento por una combinación de campos específicos
+      newRoot: {
+        $mergeObjects: [  // Combina el documento original y los nuevos campos en un solo documento
+          { _id_coleccion_Customers: "$_id_coleccion_Customers" },  // Mantiene el alias del ID del cliente
+          "$$ROOT",  // Incluye todos los campos del documento original
+          { _id_coleccion_Orders: "$_id_coleccion_Orders" },  // Mantiene el alias del ID de la orden
+          "$coleccion_Orders"  // Incluye los campos de la colección "Orders"
+        ]
+      }
+    }
+  },
+  {
+    $project: {  // Controla los campos que aparecerán en el resultado final
+      coleccion_Orders: 0,  // Excluye el campo "coleccion_Orders" del resultado
+      _id: 0  // Excluye el campo "_id" original del resultado
+    }
+  }
+]);
+```
+
 ## ANTI LEFT JOIN
 ```mongodb
 db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
@@ -1450,79 +1514,72 @@ db.Customers.aggregate([  // Inicia una operación de agregación en la colecci�
 
 ## FULLOUTER JOIN V3 SIN DOCUMENTOS ANIDADOS, TODOS LOS CAMPOS AL MISMO NIVEL ADICIONANDO EL ID DE AMBOS OBJETOS
 ```mongodb
-db.Customers.aggregate([  // Inicia una operación de agregación sobre la colección "Customers"
-    {
-        $lookup: {  // Realiza un Left Join entre la colección "Customers" y "Orders"
-            from: "Orders",  // Colección "Orders" a la que se va a unir
-            localField: "customer_id",  // Campo en "Customers" que se usará para la coincidencia
-            foreignField: "customer_id",  // Campo en "Orders" que se usará para la coincidencia
-            as: "orders"  // Almacena los documentos coincidentes de "Orders" en el campo "orders"
-        }
-    },
-    {
-        $unwind: {  // Descompone el array "orders" en documentos individuales para trabajar con ellos uno por uno
-            path: "$orders",  // Descompone el campo "orders"
-            preserveNullAndEmptyArrays: true  // Si no hay órdenes coincidentes, mantiene el documento de "Customers" sin modificaciones
-        }
-    },
-    {
-        $unionWith: {  // Realiza una operación de "Right Join" para incluir órdenes que no tengan clientes
-            coll: "Orders",  // Trabaja con la colección "Orders"
-            pipeline: [  // Define un pipeline (flujo de operaciones) para procesar los documentos de "Orders"
-                {
-                    $lookup: {  // Realiza un Join entre "Orders" y "Customers" para encontrar clientes
-                        from: "Customers",  // Colección "Customers" a la que se va a unir
-                        localField: "customer_id",  // Campo en "Orders" que se usará para la coincidencia
-                        foreignField: "customer_id",  // Campo en "Customers" que se usará para la coincidencia
-                        as: "customer"  // Almacena los documentos coincidentes de "Customers" en el campo "customer"
-                    }
-                },
-                {
-                    $unwind: {  // Descompone el array "customer" en documentos individuales
-                        path: "$customer",  // Descompone el campo "customer"
-                        preserveNullAndEmptyArrays: true  // Si no hay clientes coincidentes, mantiene el documento de "Orders" sin modificaciones
-                    }
-                }
-            ]
-        }
-    },
-    {
-        $addFields: {  // Añade nuevos campos al resultado sin eliminar los campos originales
-            _id_Customer: { 
-                $cond: { 
-                    if: { $ne: ["$customer", null] },  // Si el campo "customer" no es null (existe cliente asociado)
-                    then: "$customer._id",  // Asigna el ID del cliente al nuevo campo "_id_Customer"
-                    else: null  // Si no hay cliente asociado, asigna null a "_id_Customer"
-                } 
-            },
-            _id_Order: { 
-                $cond: { 
-                    if: { $ne: ["$orders", null] },  // Si el campo "orders" no es null (existe orden asociada)
-                    then: "$orders._id",  // Asigna el ID de la orden al nuevo campo "_id_Order"
-                    else: null  // Si no hay orden asociada, asigna null a "_id_Order"
-                }
-            }
-        }
-    },
-    {
-        $replaceRoot: {  // Reemplaza la raíz del documento actual por una combinación de varios campos
-            newRoot: { 
-                $mergeObjects: [ "$$ROOT", "$customer", "$orders"]  // Combina todos los campos de $$ROOT (el documento original), "customer" y "orders" en un único documento
-            }
-        }
-    },
-    {
-        $sort: {  // Ordena los resultados de la agregación
-            customer_id: 1,  // Orden ascendente por el campo "customer_id"
-            order_id: 1  // Orden ascendente por el campo "order_id"
-        }
-    },
-    {
-        $project: {  // Controla qué campos se mostrarán en los resultados finales
-            orders: 0,  // Elimina el campo "orders" del resultado
-            customer: 0  // Elimina el campo "customer" del resultado
-        }
-    }
+db.Customers.aggregate([  // Inicia una operación de agregación en la colección Customers
+  {
+      $lookup: {  // Realiza un Left Join entre Customers y Orders
+          from: "Orders",                  // Colección a la que se está uniendo
+          localField: "customer_id",       // Campo en Customers que se usa para el join
+          foreignField: "customer_id",     // Campo en Orders que se usa para el join
+          as: "coleccion_Orders"           // Alias para la colección Orders
+      }
+  },
+  {
+      $unwind: {  // Descompone el array de órdenes en documentos individuales
+          path: "$coleccion_Orders",
+          preserveNullAndEmptyArrays: true  // Mantiene documentos de Customers sin órdenes
+      }
+  },
+  {
+      $unionWith: {  // Realiza un Right Join para obtener las órdenes sin clientes
+          coll: "Orders",
+          pipeline: [
+              {
+                  $lookup: {
+                      from: "Customers",            // Colección a la que se está uniendo
+                      localField: "customer_id",    // Campo en Orders que se usa para el join
+                      foreignField: "customer_id",  // Campo en Customers que se usa para el join
+                      as: "coleccion_Customers"     // Alias para la colección Customers
+                  }
+              },
+              {
+                  $unwind: {                     // Descompone el array de clientes en documentos individuales
+                      path: "$coleccion_Customers",
+                      preserveNullAndEmptyArrays: true // Mantiene documentos de Orders sin clientes
+                  }
+              }
+          ]
+      }
+  },
+  {
+      $addFields: {  // Añade nuevos campos con alias para los IDs
+          _id_coleccion_Customers: "$_id",
+          _id_coleccion_Orders: "$coleccion_Orders._id"
+      }
+  },
+  {
+      $replaceRoot: {  // Reemplaza la raíz del documento
+          newRoot: {
+              $mergeObjects: [
+                  { _id_coleccion_Customers: "$_id_coleccion_Customers" },
+                  "$$ROOT",
+                  { _id_coleccion_Orders: "$_id_coleccion_Orders" },
+                  "$coleccion_Orders"
+              ]
+          }
+      }
+  },
+  {
+      $sort: { 
+          customer_id: 1, // Ordena los resultados por customer_id en orden ascendente
+          order_id: 1     // Ordena los resultados por order_id en orden ascendente
+      }
+  },
+  {
+      $project: {
+          coleccion_Orders: 0, // Opcional: Si no deseas mostrar el campo de órdenes como array
+          coleccion_Customers: 0 // Opcional: Si no deseas mostrar el campo de cliente como objeto
+      }
+  }
 ]);
 ```
 
